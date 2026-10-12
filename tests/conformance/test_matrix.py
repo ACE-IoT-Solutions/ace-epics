@@ -10,7 +10,7 @@ MATRIX = ROOT / "tests/conformance/matrix.yaml"
 
 
 def test_matrix_ids_statuses_and_test_references(request) -> None:
-    rows = yaml.safe_load(MATRIX.read_text())
+    rows = yaml.safe_load(MATRIX.read_text(encoding="utf-8"))
     collected = {item.nodeid for item in request.session.items}
     collected_files = {node.split("::")[0] for node in collected}
     assert isinstance(rows, list) and rows
@@ -32,7 +32,7 @@ def test_matrix_ids_statuses_and_test_references(request) -> None:
             parts = node_id.split("::")
             path = ROOT / parts[0]
             assert path.is_file(), f"Missing test file: {node_id}"
-            nodes = ast.parse(path.read_text()).body
+            nodes = ast.parse(path.read_text(encoding="utf-8")).body
             for part in parts[1:]:
                 name = part.split("[")[0]
                 matching = [node for node in nodes if getattr(node, "name", None) == name]
@@ -41,10 +41,10 @@ def test_matrix_ids_statuses_and_test_references(request) -> None:
 
 
 def test_conformance_markers_are_registered_in_matrix() -> None:
-    rows = yaml.safe_load(MATRIX.read_text())
+    rows = yaml.safe_load(MATRIX.read_text(encoding="utf-8"))
     ids = {row["id"] for row in rows}
     for path in (ROOT / "tests").rglob("test_*.py"):
-        tree = ast.parse(path.read_text())
+        tree = ast.parse(path.read_text(encoding="utf-8"))
         for node in ast.walk(tree):
             if not isinstance(node, ast.Call) or not isinstance(node.func, ast.Attribute):
                 continue

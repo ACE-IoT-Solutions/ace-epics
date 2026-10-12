@@ -23,9 +23,11 @@ jobs:
       - run: uv run ruff check .
       - run: uv run ruff format --check .
       - run: uv run pyrefly check
-      - run: uv run pytest --cov-fail-under=90 --cov-report=xml --cov-report=json
+      - run: uv run pytest --ignore=tests/codecs/epics/test_performance.py --cov-fail-under=90 --cov-report=xml --cov-report=json
       - name: Enforce overall and scoped coverage
         run: uv run python scripts/check_coverage.py coverage.json
+      - name: Enforce parser performance without coverage instrumentation
+        run: uv run pytest tests/codecs/epics/test_performance.py --no-cov
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         if: always()
         with:
