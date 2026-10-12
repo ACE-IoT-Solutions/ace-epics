@@ -26,7 +26,7 @@ jobs:
       - run: uv run pytest --cov-fail-under=90 --cov-report=xml --cov-report=json
       - name: Enforce overall and scoped coverage
         run: uv run python scripts/check_coverage.py coverage.json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage-${{ matrix.os }}-${{ matrix.python }}
