@@ -16,3 +16,10 @@ versioning. Unreleased entries describe work in the repository, not published re
 - Native EPICS reader/writer with six encodings and preserved object header metadata.
 - All twenty Clause 5 consistency checks, four structural checks, and a query API.
 - CLI conversion, validation reports, formatting, inspection, schema, and ontology commands.
+
+### Changed
+
+- RDF uses the BACpypes3 0.0.110 `bacnet:` vocabulary for supported object,
+  property, and value mappings, with explicit `ace-epics:` declaration extensions.
+- CI action pins reference verified releases; documentation deployment requires
+  configured Pages hosting and the `ENABLE_PAGES_DEPLOY` repository variable.

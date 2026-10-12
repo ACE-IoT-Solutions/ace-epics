@@ -1,4 +1,5 @@
-@prefix epics: <https://w3id.org/ace-epics#> .
+@prefix ace-epics: <https://w3id.org/ace-epics#> .
+@prefix bacnet: <http://data.ashrae.org/bacnet/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
@@ -6,183 +7,193 @@
 
 <https://w3id.org/ace-epics> a owl:Ontology ;
     rdfs:label "BACnet EPICS interchange vocabulary" ;
-    rdfs:comment "Project vocabulary for ASHRAE 135.1 Clause 4 document data; not an ASHRAE standard ontology." ;
+    rdfs:comment "EPICS-specific extensions to the BACpypes3 0.0.110 BACnet RDF vocabulary. Standard object identities, properties, and values use bacnet:; ace-epics: retains declarations, syntax, restrictions, order, and unavailable values. Extension terms are not ASHRAE standard terms and may migrate when upstream defines equivalent concepts." ;
     owl:versionInfo "ace-epics/1" .
 
-epics:Document a owl:Class ; rdfs:label "EPICS document" .
-epics:Object a owl:Class ; rdfs:label "Test database object" ; owl:disjointWith epics:Property .
-epics:ObjectIdentifier a owl:Class ; rdfs:label "Object identifier" .
-epics:Property a owl:Class ; rdfs:label "Property declaration" .
-epics:ServiceSupport a owl:Class ; rdfs:label "Application service support" .
-epics:ObjectTypeSupport a owl:Class ; rdfs:label "Object type support" .
-epics:DataLink a owl:Class ; rdfs:label "Data link option" .
-epics:Iso88023DataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:ArcnetDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:MsTpDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:PointToPointDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:BacnetIpDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:BacnetIpv6DataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:BacnetScDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:ZigbeeDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:OtherDataLink a owl:Class ; rdfs:subClassOf epics:DataLink .
-epics:SpecialFunctionality a owl:Class ; rdfs:label "Special functionality" .
-epics:RestrictionSet a owl:Class ; rdfs:label "Datatype or property restrictions" .
-epics:DefaultRestrictions a owl:Class ; rdfs:label "Default restrictions by datatype" .
-epics:FailTime a owl:Class ; rdfs:label "Timer and seconds" .
-epics:FailTimes a owl:Class ; rdfs:label "Ordered timer declaration fields" .
-epics:Dictionary a owl:Class ; rdfs:label "Extension dictionary" .
-epics:Record a owl:Class ; rdfs:label "Structured record" .
-epics:Value a owl:Class ; rdfs:label "Syntactic EPICS value" .
-epics:NullValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:BooleanValue a owl:Class ; rdfs:subClassOf epics:Value ; owl:disjointWith epics:IntegerValue .
-epics:IntegerValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:RealValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:OctetStringValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:CharacterStringValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:EnumeratedValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:DateValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:TimeValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:DateRangeValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:ObjectIdentifierValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:ContextTaggedValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:GroupValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:EmptyElement a owl:Class ; rdfs:subClassOf epics:Value .
-epics:UnspecifiedValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:WildcardValue a owl:Class ; rdfs:subClassOf epics:Value .
-epics:emptyElement a epics:EmptyElement ; epics:lexical "" .
-epics:unspecifiedValue a epics:UnspecifiedValue ; epics:lexical "?" .
-epics:ReadOnly a owl:NamedIndividual ; rdfs:label "Read only (R)" .
-epics:Writable a owl:NamedIndividual ; rdfs:label "Writable (W)" .
-epics:ConditionallyWritable a owl:NamedIndividual ; rdfs:label "Conditionally writable (C)" .
-epics:Null a owl:NamedIndividual ; rdfs:label "Absent scalar in an extension dictionary" .
+ace-epics:Document a owl:Class ; rdfs:label "EPICS document" .
+ace-epics:Object a owl:Class ; rdfs:label "EPICS object declaration metadata" ; rdfs:comment "Marks a test database declaration with EPICS property order and metadata. Its BACnet headers use the upstream vocabulary. A separate bacnet:Device endpoint contains these object declarations." ; owl:disjointWith ace-epics:Property .
+ace-epics:ObjectIdentifier a owl:Class ; rdfs:label "Object identifier" .
+ace-epics:Property a owl:Class ; rdfs:label "Property declaration" .
+ace-epics:ServiceSupport a owl:Class ; rdfs:label "Application service support" .
+ace-epics:ObjectTypeSupport a owl:Class ; rdfs:label "Object type support" .
+ace-epics:DataLink a owl:Class ; rdfs:label "Data link option" .
+ace-epics:Iso88023DataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:ArcnetDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:MsTpDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:PointToPointDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:BacnetIpDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:BacnetIpv6DataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:BacnetScDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:ZigbeeDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:OtherDataLink a owl:Class ; rdfs:subClassOf ace-epics:DataLink .
+ace-epics:SpecialFunctionality a owl:Class ; rdfs:label "Special functionality" .
+ace-epics:RestrictionSet a owl:Class ; rdfs:label "Datatype or property restrictions" .
+ace-epics:DefaultRestrictions a owl:Class ; rdfs:label "Default restrictions by datatype" .
+ace-epics:FailTime a owl:Class ; rdfs:label "Timer and seconds" .
+ace-epics:FailTimes a owl:Class ; rdfs:label "Ordered timer declaration fields" .
+ace-epics:Dictionary a owl:Class ; rdfs:label "Extension dictionary" .
+ace-epics:Record a owl:Class ; rdfs:label "Structured record" .
+ace-epics:Value a owl:Class ; rdfs:label "Syntactic EPICS value" .
+ace-epics:NullValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:BooleanValue a owl:Class ; rdfs:subClassOf ace-epics:Value ; owl:disjointWith ace-epics:IntegerValue .
+ace-epics:IntegerValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:RealValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:OctetStringValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:CharacterStringValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:EnumeratedValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:DateValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:TimeValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:DateRangeValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:ObjectIdentifierValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:ContextTaggedValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:GroupValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:EmptyElement a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:UnspecifiedValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:WildcardValue a owl:Class ; rdfs:subClassOf ace-epics:Value .
+ace-epics:emptyElement a ace-epics:EmptyElement ; ace-epics:lexical "" .
+ace-epics:unspecifiedValue a ace-epics:UnspecifiedValue ; ace-epics:lexical "?" .
+ace-epics:ReadOnly a owl:NamedIndividual ; rdfs:label "Read only (R)" .
+ace-epics:Writable a owl:NamedIndividual ; rdfs:label "Writable (W)" .
+ace-epics:ConditionallyWritable a owl:NamedIndividual ; rdfs:label "Conditionally writable (C)" .
+ace-epics:Null a owl:NamedIndividual ; rdfs:label "Absent scalar in an extension dictionary" .
 
-epics:headerCode a owl:DatatypeProperty ; rdfs:range xsd:integer .
-epics:vendorName a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:productName a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:productModelNumber a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:productDescription a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:bibb a rdf:Property ; rdfs:comment "BIBB name literal; bibbOrder preserves declarations." .
-epics:service a owl:ObjectProperty ; rdfs:range epics:ServiceSupport .
-epics:serviceName a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:initiate a owl:DatatypeProperty ; rdfs:range xsd:boolean .
-epics:execute a owl:DatatypeProperty ; rdfs:range xsd:boolean .
-epics:objectTypeSupport a owl:ObjectProperty ; rdfs:range epics:ObjectTypeSupport .
-epics:dataLink a owl:ObjectProperty ; rdfs:range epics:DataLink .
-epics:baudRate a owl:DatatypeProperty ; rdfs:range xsd:integer .
-epics:characterSet a owl:DatatypeProperty .
-epics:special a owl:ObjectProperty ; rdfs:range epics:SpecialFunctionality .
-epics:defaultRestriction a owl:ObjectProperty ; rdfs:range epics:DefaultRestrictions .
-epics:datatypeKey a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:failTime a owl:ObjectProperty ; rdfs:range epics:FailTime .
-epics:timerName a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:seconds a owl:DatatypeProperty ; rdfs:range xsd:double .
-epics:object a owl:ObjectProperty ; rdfs:range epics:Object .
-epics:objectType a rdf:Property .
-epics:instance a owl:DatatypeProperty ; rdfs:range xsd:integer .
-epics:objectName a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:objectIdentifier a owl:ObjectProperty ; rdfs:range epics:ObjectIdentifier .
-epics:property a owl:ObjectProperty ; rdfs:range epics:Property .
-epics:propertyName a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:access a owl:ObjectProperty .
-epics:notReadable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
-epics:comment a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:restriction a owl:ObjectProperty ; rdfs:range epics:RestrictionSet .
-epics:value a owl:ObjectProperty ; rdfs:range epics:Value .
-epics:lexical a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:typedValue a rdf:Property ; rdfs:comment "Derived typed convenience literal; lexical is authoritative." .
-epics:delimiter a owl:DatatypeProperty ; rdfs:range xsd:string .
-epics:tag a owl:DatatypeProperty ; rdfs:range xsd:integer .
-epics:elements a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:objectOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:propertyOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:serviceOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:bibbOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:objectTypeSupportOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:dataLinkOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:characterSetOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:baudRateOrder a owl:ObjectProperty ; rdfs:range rdf:List .
-epics:entryOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:headerCode a owl:DatatypeProperty ; rdfs:range xsd:integer .
+ace-epics:vendorName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:productName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:productModelNumber a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:productDescription a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:bibb a rdf:Property ; rdfs:comment "BIBB name literal; bibbOrder preserves declarations." .
+ace-epics:service a owl:ObjectProperty ; rdfs:range ace-epics:ServiceSupport .
+ace-epics:serviceName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:initiate a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+ace-epics:execute a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+ace-epics:objectTypeSupport a owl:ObjectProperty ; rdfs:range ace-epics:ObjectTypeSupport .
+ace-epics:dataLink a owl:ObjectProperty ; rdfs:range ace-epics:DataLink .
+ace-epics:baudRate a owl:DatatypeProperty ; rdfs:range xsd:integer .
+ace-epics:characterSet a owl:DatatypeProperty .
+ace-epics:special a owl:ObjectProperty ; rdfs:range ace-epics:SpecialFunctionality .
+ace-epics:defaultRestriction a owl:ObjectProperty ; rdfs:range ace-epics:DefaultRestrictions .
+ace-epics:datatypeKey a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:failTime a owl:ObjectProperty ; rdfs:range ace-epics:FailTime .
+ace-epics:timerName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:seconds a owl:DatatypeProperty ; rdfs:range xsd:double .
+ace-epics:object a owl:ObjectProperty ; rdfs:range ace-epics:Object .
+ace-epics:objectType a rdf:Property .
+ace-epics:instance a owl:DatatypeProperty ; rdfs:range xsd:integer .
+ace-epics:objectName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:objectIdentifier a owl:ObjectProperty ; rdfs:range ace-epics:ObjectIdentifier .
+ace-epics:property a owl:ObjectProperty ; rdfs:range ace-epics:Property .
+ace-epics:propertyName a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:access a owl:ObjectProperty .
+ace-epics:notReadable a owl:DatatypeProperty ; rdfs:range xsd:boolean .
+ace-epics:comment a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:restriction a owl:ObjectProperty ; rdfs:range ace-epics:RestrictionSet .
+ace-epics:value a owl:ObjectProperty ; rdfs:range ace-epics:Value .
+ace-epics:lexical a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:typedValue a rdf:Property ; rdfs:comment "Derived typed convenience literal; lexical is authoritative." .
+ace-epics:delimiter a owl:DatatypeProperty ; rdfs:range xsd:string .
+ace-epics:tag a owl:DatatypeProperty ; rdfs:range xsd:integer .
+ace-epics:elements a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:objectOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:propertyOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:serviceOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:bibbOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:objectTypeSupportOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:dataLinkOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:characterSetOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:baudRateOrder a owl:ObjectProperty ; rdfs:range rdf:List .
+ace-epics:entryOrder a owl:ObjectProperty ; rdfs:range rdf:List .
 
 # Structured-model fields supplement the core vocabulary.
-epics:acknowledgementFailTime a rdf:Property ; rdfs:label "acknowledgementFailTime" .
-epics:activateChangesFailTime a rdf:Property ; rdfs:label "activateChangesFailTime" .
-epics:allowedValues a rdf:Property ; rdfs:label "allowedValues" .
-epics:allowedValuesOrder a rdf:Property ; rdfs:label "allowedValuesOrder" .
-epics:auditNotificationForwarderFailTime a rdf:Property ; rdfs:label "auditNotificationForwarderFailTime" .
-epics:autoNegotiationFailTime a rdf:Property ; rdfs:label "autoNegotiationFailTime" .
-epics:autobaud a rdf:Property ; rdfs:label "autobaud" .
-epics:autobaudOrder a rdf:Property ; rdfs:label "autobaudOrder" .
-epics:bacnetIpBbmd a rdf:Property ; rdfs:label "bacnetIpBbmd" .
-epics:bacnetIpv6Bbmd a rdf:Property ; rdfs:label "bacnetIpv6Bbmd" .
-epics:bacnetScDirectConnect a rdf:Property ; rdfs:label "bacnetScDirectConnect" .
-epics:bacnetScHub a rdf:Property ; rdfs:label "bacnetScHub" .
-epics:canonical a rdf:Property ; rdfs:label "canonical" .
-epics:channelWriteFailTime a rdf:Property ; rdfs:label "channelWriteFailTime" .
-epics:characterString a rdf:Property ; rdfs:label "characterString" .
-epics:charsetCode a rdf:Property ; rdfs:label "charsetCode" .
-epics:createable a rdf:Property ; rdfs:label "createable" .
-epics:date a rdf:Property ; rdfs:label "date" .
-epics:day a rdf:Property ; rdfs:label "day" .
-epics:deleteable a rdf:Property ; rdfs:label "deleteable" .
-epics:double a rdf:Property ; rdfs:label "double" .
-epics:elementsOrder a rdf:Property ; rdfs:label "elementsOrder" .
-epics:encoding a rdf:Property ; rdfs:label "encoding" .
-epics:end a rdf:Property ; rdfs:label "end" .
-epics:externalCommandFailTime a rdf:Property ; rdfs:label "externalCommandFailTime" .
-epics:extra a rdf:Property ; rdfs:label "extra" .
-epics:failTimes a rdf:Property ; rdfs:label "failTimes" .
-epics:foreignDeviceRegistrationFailTime a rdf:Property ; rdfs:label "foreignDeviceRegistrationFailTime" .
-epics:hour a rdf:Property ; rdfs:label "hour" .
-epics:hundredth a rdf:Property ; rdfs:label "hundredth" .
-epics:internalProcessingFailTime a rdf:Property ; rdfs:label "internalProcessingFailTime" .
-epics:item a rdf:Property ; rdfs:label "item" .
-epics:key a rdf:Property ; rdfs:label "key" .
-epics:kind a rdf:Property ; rdfs:label "kind" .
-epics:list a rdf:Property ; rdfs:label "list" .
-epics:maxApduSize a rdf:Property ; rdfs:label "maxApduSize" .
-epics:maximum a rdf:Property ; rdfs:label "maximum" .
-epics:maximumLengthArray a rdf:Property ; rdfs:label "maximumLengthArray" .
-epics:maximumLengthList a rdf:Property ; rdfs:label "maximumLengthList" .
-epics:maximumLengthString a rdf:Property ; rdfs:label "maximumLengthString" .
-epics:media a rdf:Property ; rdfs:label "media" .
-epics:medium a rdf:Property ; rdfs:label "medium" .
-epics:minimum a rdf:Property ; rdfs:label "minimum" .
-epics:minimumOnOffTime a rdf:Property ; rdfs:label "minimumOnOffTime" .
-epics:minute a rdf:Property ; rdfs:label "minute" .
-epics:mode a rdf:Property ; rdfs:label "mode" .
-epics:month a rdf:Property ; rdfs:label "month" .
-epics:name a rdf:Property ; rdfs:label "name" .
-epics:notificationFailTime a rdf:Property ; rdfs:label "notificationFailTime" .
-epics:octetString a rdf:Property ; rdfs:label "octetString" .
-epics:oddLength a rdf:Property ; rdfs:label "oddLength" .
-epics:parenthesised a rdf:Property ; rdfs:label "parenthesised" .
-epics:path a rdf:Property ; rdfs:label "path" .
-epics:precision a rdf:Property ; rdfs:label "precision" .
-epics:programObjectStateChangeFailTime a rdf:Property ; rdfs:label "programObjectStateChangeFailTime" .
-epics:proprietaryNumber a rdf:Property ; rdfs:label "proprietaryNumber" .
-epics:quote a rdf:Property ; rdfs:label "quote" .
-epics:raw a rdf:Property ; rdfs:label "raw" .
-epics:real a rdf:Property ; rdfs:label "real" .
-epics:resolution a rdf:Property ; rdfs:label "resolution" .
-epics:role a rdf:Property ; rdfs:label "role" .
-epics:router a rdf:Property ; rdfs:label "router" .
-epics:scheduleEvaluationFailTime a rdf:Property ; rdfs:label "scheduleEvaluationFailTime" .
-epics:second a rdf:Property ; rdfs:label "second" .
-epics:segmentedRequestsWindow a rdf:Property ; rdfs:label "segmentedRequestsWindow" .
-epics:segmentedResponsesWindow a rdf:Property ; rdfs:label "segmentedResponsesWindow" .
-epics:short a rdf:Property ; rdfs:label "short" .
-epics:signedInteger a rdf:Property ; rdfs:label "signedInteger" .
-epics:start a rdf:Property ; rdfs:label "start" .
-epics:subordinateProxyConfirmInterval a rdf:Property ; rdfs:label "subordinateProxyConfirmInterval" .
-epics:text a rdf:Property ; rdfs:label "text" .
-epics:trailingComma a rdf:Property ; rdfs:label "trailingComma" .
-epics:unconfirmedResponseFailTime a rdf:Property ; rdfs:label "unconfirmedResponseFailTime" .
-epics:unknown a rdf:Property ; rdfs:label "unknown" .
-epics:unknownOrder a rdf:Property ; rdfs:label "unknownOrder" .
-epics:unsignedInteger a rdf:Property ; rdfs:label "unsignedInteger" .
-epics:variableLengthArray a rdf:Property ; rdfs:label "variableLengthArray" .
-epics:variant a rdf:Property ; rdfs:label "variant" .
-epics:weekday a rdf:Property ; rdfs:label "weekday" .
-epics:year a rdf:Property ; rdfs:label "year" .
+ace-epics:acknowledgementFailTime a rdf:Property ; rdfs:label "acknowledgementFailTime" .
+ace-epics:activateChangesFailTime a rdf:Property ; rdfs:label "activateChangesFailTime" .
+ace-epics:allowedValues a rdf:Property ; rdfs:label "allowedValues" .
+ace-epics:allowedValuesOrder a rdf:Property ; rdfs:label "allowedValuesOrder" .
+ace-epics:auditNotificationForwarderFailTime a rdf:Property ; rdfs:label "auditNotificationForwarderFailTime" .
+ace-epics:autoNegotiationFailTime a rdf:Property ; rdfs:label "autoNegotiationFailTime" .
+ace-epics:autobaud a rdf:Property ; rdfs:label "autobaud" .
+ace-epics:autobaudOrder a rdf:Property ; rdfs:label "autobaudOrder" .
+ace-epics:bacnetIpBbmd a rdf:Property ; rdfs:label "bacnetIpBbmd" .
+ace-epics:bacnetIpv6Bbmd a rdf:Property ; rdfs:label "bacnetIpv6Bbmd" .
+ace-epics:bacnetScDirectConnect a rdf:Property ; rdfs:label "bacnetScDirectConnect" .
+ace-epics:bacnetScHub a rdf:Property ; rdfs:label "bacnetScHub" .
+ace-epics:canonical a rdf:Property ; rdfs:label "canonical" .
+ace-epics:channelWriteFailTime a rdf:Property ; rdfs:label "channelWriteFailTime" .
+ace-epics:characterString a rdf:Property ; rdfs:label "characterString" .
+ace-epics:charsetCode a rdf:Property ; rdfs:label "charsetCode" .
+ace-epics:createable a rdf:Property ; rdfs:label "createable" .
+ace-epics:date a rdf:Property ; rdfs:label "date" .
+ace-epics:day a rdf:Property ; rdfs:label "day" .
+ace-epics:deleteable a rdf:Property ; rdfs:label "deleteable" .
+ace-epics:double a rdf:Property ; rdfs:label "double" .
+ace-epics:elementsOrder a rdf:Property ; rdfs:label "elementsOrder" .
+ace-epics:encoding a rdf:Property ; rdfs:label "encoding" .
+ace-epics:end a rdf:Property ; rdfs:label "end" .
+ace-epics:externalCommandFailTime a rdf:Property ; rdfs:label "externalCommandFailTime" .
+ace-epics:extra a rdf:Property ; rdfs:label "extra" .
+ace-epics:failTimes a rdf:Property ; rdfs:label "failTimes" .
+ace-epics:foreignDeviceRegistrationFailTime a rdf:Property ; rdfs:label "foreignDeviceRegistrationFailTime" .
+ace-epics:hour a rdf:Property ; rdfs:label "hour" .
+ace-epics:hundredth a rdf:Property ; rdfs:label "hundredth" .
+ace-epics:internalProcessingFailTime a rdf:Property ; rdfs:label "internalProcessingFailTime" .
+ace-epics:item a rdf:Property ; rdfs:label "item" .
+ace-epics:key a rdf:Property ; rdfs:label "key" .
+ace-epics:kind a rdf:Property ; rdfs:label "kind" .
+ace-epics:list a rdf:Property ; rdfs:label "list" .
+ace-epics:maxApduSize a rdf:Property ; rdfs:label "maxApduSize" .
+ace-epics:maximum a rdf:Property ; rdfs:label "maximum" .
+ace-epics:maximumLengthArray a rdf:Property ; rdfs:label "maximumLengthArray" .
+ace-epics:maximumLengthList a rdf:Property ; rdfs:label "maximumLengthList" .
+ace-epics:maximumLengthString a rdf:Property ; rdfs:label "maximumLengthString" .
+ace-epics:media a rdf:Property ; rdfs:label "media" .
+ace-epics:medium a rdf:Property ; rdfs:label "medium" .
+ace-epics:minimum a rdf:Property ; rdfs:label "minimum" .
+ace-epics:minimumOnOffTime a rdf:Property ; rdfs:label "minimumOnOffTime" .
+ace-epics:minute a rdf:Property ; rdfs:label "minute" .
+ace-epics:mode a rdf:Property ; rdfs:label "mode" .
+ace-epics:month a rdf:Property ; rdfs:label "month" .
+ace-epics:name a rdf:Property ; rdfs:label "name" .
+ace-epics:notificationFailTime a rdf:Property ; rdfs:label "notificationFailTime" .
+ace-epics:octetString a rdf:Property ; rdfs:label "octetString" .
+ace-epics:oddLength a rdf:Property ; rdfs:label "oddLength" .
+ace-epics:parenthesised a rdf:Property ; rdfs:label "parenthesised" .
+ace-epics:path a rdf:Property ; rdfs:label "path" .
+ace-epics:precision a rdf:Property ; rdfs:label "precision" .
+ace-epics:programObjectStateChangeFailTime a rdf:Property ; rdfs:label "programObjectStateChangeFailTime" .
+ace-epics:proprietaryNumber a rdf:Property ; rdfs:label "proprietaryNumber" .
+ace-epics:quote a rdf:Property ; rdfs:label "quote" .
+ace-epics:raw a rdf:Property ; rdfs:label "raw" .
+ace-epics:real a rdf:Property ; rdfs:label "real" .
+ace-epics:resolution a rdf:Property ; rdfs:label "resolution" .
+ace-epics:role a rdf:Property ; rdfs:label "role" .
+ace-epics:router a rdf:Property ; rdfs:label "router" .
+ace-epics:scheduleEvaluationFailTime a rdf:Property ; rdfs:label "scheduleEvaluationFailTime" .
+ace-epics:second a rdf:Property ; rdfs:label "second" .
+ace-epics:segmentedRequestsWindow a rdf:Property ; rdfs:label "segmentedRequestsWindow" .
+ace-epics:segmentedResponsesWindow a rdf:Property ; rdfs:label "segmentedResponsesWindow" .
+ace-epics:short a rdf:Property ; rdfs:label "short" .
+ace-epics:signedInteger a rdf:Property ; rdfs:label "signedInteger" .
+ace-epics:start a rdf:Property ; rdfs:label "start" .
+ace-epics:subordinateProxyConfirmInterval a rdf:Property ; rdfs:label "subordinateProxyConfirmInterval" .
+ace-epics:text a rdf:Property ; rdfs:label "text" .
+ace-epics:trailingComma a rdf:Property ; rdfs:label "trailingComma" .
+ace-epics:unconfirmedResponseFailTime a rdf:Property ; rdfs:label "unconfirmedResponseFailTime" .
+ace-epics:unknown a rdf:Property ; rdfs:label "unknown" .
+ace-epics:unknownOrder a rdf:Property ; rdfs:label "unknownOrder" .
+ace-epics:unsignedInteger a rdf:Property ; rdfs:label "unsignedInteger" .
+ace-epics:variableLengthArray a rdf:Property ; rdfs:label "variableLengthArray" .
+ace-epics:variant a rdf:Property ; rdfs:label "variant" .
+ace-epics:weekday a rdf:Property ; rdfs:label "weekday" .
+ace-epics:year a rdf:Property ; rdfs:label "year" .
 
-epics:headerMetadata a rdf:Property ; rdfs:label "Object header property metadata" ; rdfs:range epics:Dictionary .
+ace-epics:headerMetadata a rdf:Property ; rdfs:label "Object header property metadata" ; rdfs:range ace-epics:Dictionary .
+
+ace-epics:describesDevice a owl:ObjectProperty ;
+    rdfs:label "Device described by this EPICS document" ;
+    rdfs:comment "Project provenance link from an EPICS document to the BACnet Device endpoint entity. Object declarations are contained by that endpoint using bacnet:contains." ;
+    rdfs:domain ace-epics:Document ; rdfs:range bacnet:Device .
+
+ace-epics:canonicalObjectType a rdf:Property ;
+    rdfs:label "Canonical object type name from EPICS" ;
+    rdfs:comment "Retains the canonical EPICS name when the released BACpypes3 spelling differs, a newer standard object type is represented numerically, or an unresolved name requires an extension value. This is declaration provenance, not a shadow BACnet enumeration definition." ;
+    rdfs:domain ace-epics:Object ; rdfs:range xsd:string .

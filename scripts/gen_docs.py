@@ -155,7 +155,9 @@ terms = sorted(
 lines = [
     "# RDF vocabulary",
     "",
-    "Generated from the shipped ontology.",
+    "Generated from the shipped extension ontology. Standard concepts use the",
+    "`bacnet:` vocabulary implemented by BACpypes3 0.0.110; the terms below",
+    "are explicitly project-owned `ace-epics:` extensions.",
     "",
     "| Term | Kind | Description |",
     "|---|---|---|",
@@ -164,6 +166,6 @@ for term in terms:
     node = URIRef(term)
     types = [str(t).rsplit("#", 1)[-1] for t in vocab.objects(node, RDF.type)]
     label = str(vocab.value(node, RDFS.label) or vocab.value(node, RDFS.comment) or "")
-    lines.append(f"| `{term.split('#')[-1]}` | {', '.join(types)} | {label} |")
+    lines.append(f"| `ace-epics:{term.split('#')[-1]}` | {', '.join(types)} | {label} |")
 with mkdocs_gen_files.open("serialization/vocabulary.md", "w") as page:
     page.write("\n".join(lines) + "\n")

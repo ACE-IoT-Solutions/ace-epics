@@ -29,8 +29,11 @@ path = "src/ace_epics/__init__.py"
 [tool.hatch.build.targets.wheel]
 packages = ["src/ace_epics"]
 
+[tool.hatch.build.targets.sdist]
+exclude = ["/.vscode"]
+
 [dependency-groups]
-dev = ["pytest>=8", "pytest-asyncio", "pytest-cov", "hypothesis", "ruff", "pyrefly", "pre-commit", "mkdocs-material", "mkdocstrings[python]", "mkdocs-gen-files", "types-pyyaml", "jsonschema>=4", "pyshacl>=0.30"]
+dev = ["pytest>=8", "pytest-asyncio", "pytest-cov", "hypothesis", "ruff", "pyrefly", "pre-commit", "mkdocs-material", "mkdocstrings[python]", "mkdocs-gen-files", "types-pyyaml", "jsonschema>=4", "pyshacl>=0.30", "bacpypes3==0.0.110"]
 
 [tool.ruff]
 line-length = 100

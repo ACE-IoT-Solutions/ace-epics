@@ -38,7 +38,10 @@ Release maintainers update CHANGELOG, verify the package version matches the tag
 and run all local checks. Tags trigger the release workflow: prerelease tags use
 TestPyPI; stable tags use PyPI. Both require a configured trusted publisher and
 GitHub environment. Pages hosting and publishing setup are external configuration;
-a workflow file alone does not prove deployment or publication.
+a workflow file alone does not prove deployment or publication. After Pages is
+configured with the intended visibility, set the repository variable
+`ENABLE_PAGES_DEPLOY=true` to enable deployment from `main`. Docs builds and link
+checks run without that variable.
 
 ## Licensed local Annex A smoke test
 

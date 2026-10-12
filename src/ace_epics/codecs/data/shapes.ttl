@@ -1,30 +1,37 @@
-@prefix epics: <https://w3id.org/ace-epics#> .
+@prefix ace-epics: <https://w3id.org/ace-epics#> .
+@prefix bacnet: <http://data.ashrae.org/bacnet/> .
 @prefix sh: <http://www.w3.org/ns/shacl#> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-epics:DocumentShape a sh:NodeShape ;
-    sh:targetClass epics:Document ;
-    sh:property [ sh:path epics:headerCode ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxInclusive 5 ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:vendorName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:productName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:productModelNumber ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:productDescription ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:objectOrder ; sh:nodeKind sh:BlankNodeOrIRI ; sh:minCount 1 ; sh:maxCount 1 ] .
+ace-epics:DocumentShape a sh:NodeShape ;
+    sh:targetClass ace-epics:Document ;
+    sh:property [ sh:path ace-epics:headerCode ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxInclusive 5 ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:vendorName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:productName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:productModelNumber ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:productDescription ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:objectOrder ; sh:nodeKind sh:BlankNodeOrIRI ; sh:minCount 1 ; sh:maxCount 1 ] .
 
-epics:ObjectShape a sh:NodeShape ;
-    sh:targetClass epics:Object ;
-    sh:property [ sh:path epics:instance ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxInclusive 4194303 ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:objectName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:objectType ; sh:minCount 1 ; sh:maxCount 1 ; sh:or ( [ sh:datatype xsd:string ] [ sh:datatype xsd:integer ] ) ] ;
-    sh:property [ sh:path epics:propertyOrder ; sh:nodeKind sh:BlankNodeOrIRI ; sh:minCount 1 ; sh:maxCount 1 ] .
+ace-epics:ObjectShape a sh:NodeShape ;
+    sh:targetClass ace-epics:Object ;
+    sh:property [ sh:path bacnet:object-identifier ; sh:minCount 1 ; sh:maxCount 1 ; sh:or ( [ sh:datatype bacnet:objectIdentifier ] [ sh:class ace-epics:ObjectIdentifierValue ] ) ] ;
+    sh:property [ sh:path bacnet:object-name ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path bacnet:object-type ; sh:minCount 1 ; sh:maxCount 1 ; sh:nodeKind sh:IRI ] ;
+    sh:property [ sh:path ace-epics:propertyOrder ; sh:nodeKind sh:BlankNodeOrIRI ; sh:minCount 1 ; sh:maxCount 1 ] .
 
-epics:PropertyShape a sh:NodeShape ;
-    sh:targetClass epics:Property ;
-    sh:property [ sh:path epics:propertyName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:access ; sh:in ( epics:ReadOnly epics:Writable epics:ConditionallyWritable ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:notReadable ; sh:datatype xsd:boolean ; sh:maxCount 1 ] ;
-    sh:property [ sh:path epics:value ; sh:minCount 1 ; sh:maxCount 1 ] .
+ace-epics:PropertyShape a sh:NodeShape ;
+    sh:targetClass ace-epics:Property ;
+    sh:property [ sh:path ace-epics:propertyName ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:access ; sh:in ( ace-epics:ReadOnly ace-epics:Writable ace-epics:ConditionallyWritable ) ; sh:minCount 1 ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:notReadable ; sh:datatype xsd:boolean ; sh:maxCount 1 ] ;
+    sh:property [ sh:path ace-epics:value ; sh:minCount 1 ; sh:maxCount 1 ] .
 
-epics:LexicalValueShape a sh:NodeShape ;
-    sh:targetSubjectsOf epics:lexical ;
-    sh:property [ sh:path epics:lexical ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
+ace-epics:LexicalValueShape a sh:NodeShape ;
+    sh:targetSubjectsOf ace-epics:lexical ;
+    sh:property [ sh:path ace-epics:lexical ; sh:datatype xsd:string ; sh:minCount 1 ; sh:maxCount 1 ] .
+
+# These are project validation constraints on the upstream graph, not upstream SHACL.
+ace-epics:DeviceShape a sh:NodeShape ;
+    sh:targetObjectsOf ace-epics:describesDevice ;
+    sh:class bacnet:Device ;
+    sh:property [ sh:path bacnet:device-instance ; sh:datatype xsd:integer ; sh:minInclusive 0 ; sh:maxInclusive 4194303 ; sh:minCount 1 ; sh:maxCount 1 ] .

@@ -193,7 +193,7 @@ def test_missing_rdf_extra_explains_installation(monkeypatch) -> None:
 
 def test_rdf_graph_has_queryable_properties_values_and_shape_conformance() -> None:
     graph = rdf.to_graph(document(), base_iri="urn:example:epics", deterministic=True)
-    prop = URIRef("urn:example:epics/object/device/7/example-0")
+    prop = URIRef("urn:example:epics/device/7/device,7/example-0")
     assert graph.value(prop, EPICS.propertyName) == Literal("example-0")
     assert graph.value(prop, EPICS.access) == EPICS.Writable
     value = graph.value(prop, EPICS.value)

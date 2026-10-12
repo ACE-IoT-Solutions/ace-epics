@@ -4,10 +4,12 @@ from io import BytesIO, StringIO
 from pathlib import Path
 
 import pytest
+from hypothesis import given, settings
 
 from ace_epics import convert, dump, load
 from ace_epics.codecs import registry
 from ace_epics.codecs.epics import loads
+from tests.model_strategies import native_documents
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -66,3 +68,14 @@ def test_registry_aliases_unknown_names_and_extension_collision():
     duplicate = registry.ModuleCodec("duplicate", (".JSON",), "application/json", "json")
     with pytest.raises(ValueError, match="extension"):
         registry.register(duplicate)
+
+
+@settings(max_examples=500, deadline=None)
+@given(native_documents())
+def test_generated_complete_four_format_cycle(document):
+    current = document
+    for name in ("json", "yaml", "rdf", "epics", "json"):
+        codec = registry.get(name)
+        options = {"strict": True} if name == "epics" else {}
+        current = codec.loads(codec.dumps(current), **options)
+        assert current == document, name
