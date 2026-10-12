@@ -1,0 +1,10 @@
+{
+  "lenient": [
+    "E-DBCS",
+    "M-DEVICE-COUNT"
+  ],
+  "strict": [
+    "E-DBCS",
+    "M-DEVICE-COUNT"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-READONLY-MARKER"
+  ],
+  "strict": [
+    "P-READONLY-MARKER"
+  ]
+}

@@ -1,0 +1,3489 @@
+- id: R-4.1-CHARSET-0
+  clause: '4.1'
+  rule: Header charset code 0 selects UTF-8
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.1-CHARSET-1
+  clause: '4.1'
+  rule: Header charset code 1 selects Microsoft DBCS
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.1-CHARSET-2
+  clause: '4.1'
+  rule: Header charset code 2 selects JIS X 0208
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.1-CHARSET-3
+  clause: '4.1'
+  rule: Header charset code 3 selects UCS-4
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.1-CHARSET-4
+  clause: '4.1'
+  rule: Header charset code 4 selects UCS-2
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.1-CHARSET-5
+  clause: '4.1'
+  rule: Header charset code 5 selects ISO 8859-1
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.1-HEADER
+  clause: '4.1'
+  rule: The first line identifies the EPICS stream and charset digit
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_seeds
+  status: implemented
+  mode: both
+- id: R-4.1-WIDTH
+  clause: '4.1'
+  rule: Identify one-, two- and four-byte big-endian header patterns
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  status: implemented
+  mode: both
+- id: R-4.1-UNKNOWN
+  clause: '4.1'
+  rule: Unknown and malformed charset digits produce errors with recovery
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_seeds
+  status: implemented
+  mode: both
+- id: R-4.1-INVALID-BYTES
+  clause: '4.1'
+  rule: Encoded characters that cannot be decoded produce diagnostic evidence
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_invalid_encoding_and_conflicting_width
+  status: implemented
+  mode: both
+- id: R-4.1-BOM
+  clause: '4.1'
+  rule: Accept BOM-prefixed streams with warning; reject strictly
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_bom_variants
+  status: implemented
+  mode: both
+- id: R-4.1-LITTLE-ENDIAN
+  clause: '4.1'
+  rule: Accept little-endian wide streams with warning; reject strictly
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_little_endian_without_bom
+  status: implemented
+  mode: both
+- id: R-4.1-HEADER-FORM
+  clause: '4.1'
+  rule: Accept noncanonical header case/spacing with warning; reject strictly
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_case_spacing_policy
+  status: implemented
+  mode: both
+- id: R-4.2-LINE-ENDINGS
+  clause: '4.2'
+  rule: Physical lines use CRLF; bare LF or CR produce mode-dependent diagnostics
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_seeds
+  status: implemented
+  mode: both
+- id: R-4.2-WHITESPACE
+  clause: '4.2'
+  rule: Space, tab, CR and LF runs separate tokens while retaining physical newlines
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_comments_whitespace_and_locations
+  status: implemented
+  mode: both
+- id: R-4.2-COMMENT
+  clause: '4.2'
+  rule: Two dashes outside a string begin a comment through the line boundary
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_comments_whitespace_and_locations
+  status: implemented
+  mode: both
+- id: R-4.2-COMMENT-IN-STRING
+  clause: '4.2'
+  rule: Two dashes inside a character string remain literal
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+- id: R-4.2-EMPTY-COMMENT
+  clause: '4.2'
+  rule: A bare two-dash line is an empty comment
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_comments_whitespace_and_locations
+  status: implemented
+  mode: both
+- id: R-4.2-COMMENT-IN-GROUP
+  clause: '4.2'
+  rule: Comments inside multi-line values count as whitespace
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.2-LINE-MODE
+  clause: '4.2'
+  rule: Free-text lines retain literals while removing outside-string comments
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_punctuation_minus_and_raw_line
+  status: implemented
+  mode: both
+- id: R-4.2-SIGNATURE
+  clause: '4.2'
+  rule: The line following the header is the EPICS signature
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+- id: R-4.2-END
+  clause: '4.2'
+  rule: The final line is the EPICS end marker
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+- id: R-4.2-EMPTY-FILE
+  clause: '4.2'
+  rule: Header, signature and end marker form a structurally empty EPICS
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_structurally_empty_epics_seed
+  status: implemented
+  mode: both
+- id: R-4.3-DOUBLE-QUOTE
+  clause: '4.3'
+  rule: A double quote opens a string closed by the next double quote
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+- id: R-4.3-SINGLE-QUOTE
+  clause: '4.3'
+  rule: A single quote opens a string closed by the next apostrophe
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+- id: R-4.3-GRAVE-QUOTE
+  clause: '4.3'
+  rule: A grave opens a string closed by the next apostrophe
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+- id: R-4.3-LINE-TERMINATION
+  clause: '4.3'
+  rule: A line boundary terminates an unfinished character string with a warning
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_unterminated_string_and_single_quote_no_escape
+  status: implemented
+  mode: both
+- id: R-4.3-NO-ESCAPES
+  clause: '4.3'
+  rule: The closing quote terminates the string without an escape mechanism
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_unterminated_string_and_single_quote_no_escape
+  status: implemented
+  mode: both
+- id: R-4.3-LITERAL-CONTENT
+  clause: '4.3'
+  rule: Punctuation, spaces and angle brackets inside strings remain literal
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_angles_inside_string_and_inline_comment_boundary
+  status: implemented
+  mode: both
+- id: R-4.3-CHARSET
+  clause: '4.3'
+  rule: String characters use the declared file encoding
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_non_ascii_codec_choices
+  status: implemented
+  mode: both
+- id: R-4.4-A
+  clause: 4.4(a)
+  rule: Keywords are case insensitive
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+- id: R-4.4-B
+  clause: 4.4(b)
+  rule: NULL denotes a null value
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+- id: R-4.4-C
+  clause: 4.4(c)
+  rule: T/TRUE and F/FALSE denote Boolean values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+- id: R-4.4-D
+  clause: 4.4(d)
+  rule: Integers contain digits with an optional leading minus
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+- id: R-4.4-E
+  clause: 4.4(e)
+  rule: Canonical real values contain a decimal point with digits on both sides
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4-F
+  clause: 4.4(f)
+  rule: Octet strings use X with paired hexadecimal digits inside apostrophe or grave delimiters
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4-G
+  clause: 4.4(g)
+  rule: Character-string values follow the string grammar
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-H
+  clause: 4.4(h)
+  rule: Boolean bit strings use brace groups containing Boolean or unspecified bits
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_classifiers_and_lexical_preservation
+  status: implemented
+  mode: both
+- id: R-4.4-I
+  clause: 4.4(i)
+  rule: Enumeration names normalize case and equivalent separators with proprietary numeric suffixes
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4-J
+  clause: 4.4(j)
+  rule: Dates use parenthesized English names and wildcard fields with an optional weekday
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4-K
+  clause: 4.4(k)
+  rule: Times contain hour, minute, second and hundredth fields with wildcard support
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4-L
+  clause: 4.4(l)
+  rule: Object identifiers use a parenthesized type and numeric instance, including proprietary types
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4-M
+  clause: 4.4(m)
+  rule: Constructed values use nested comma-separated brace groups
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+- id: R-4.4.1-A
+  clause: 4.4.1(a)
+  rule: Application-tagged CHOICE values contain the chosen value without a context tag
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4.1-B
+  clause: 4.4.1(b)
+  rule: Context-tagged CHOICE values use a bracketed non-negative tag before the value
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4.1-C
+  clause: 4.4.1(c)
+  rule: Lists use comma-separated parenthesis groups, with constructed elements in braces
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4.1-D
+  clause: 4.4.1(d)
+  rule: Arrays use comma-separated brace groups, with constructed elements in braces
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4.2-MINIMUM
+  clause: 4.4.2
+  rule: The minimum restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-MAXIMUM
+  clause: 4.4.2
+  rule: The maximum restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-RESOLUTION
+  clause: 4.4.2
+  rule: The resolution restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-MAXIMUM-LENGTH-STRING
+  clause: 4.4.2
+  rule: The maximum length string restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-MAXIMUM-LENGTH-LIST
+  clause: 4.4.2
+  rule: The maximum length list restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-MAXIMUM-LENGTH-ARRAY
+  clause: 4.4.2
+  rule: The maximum length array restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-ALLOWED-VALUES
+  clause: 4.4.2
+  rule: The allowed values restriction is parsed and retains its datatype or list of values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_each_restriction_name
+  status: implemented
+  mode: both
+- id: R-4.4.2-PLACEMENT
+  clause: 4.4.2
+  rule: Restrictions follow the default property value
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_property_value_restriction_suffix_seeds
+  status: implemented
+  mode: both
+- id: R-4.4.2-BRACKETS
+  clause: 4.4.2
+  rule: Restriction statements are enclosed by angle brackets
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+- id: R-4.4.2-COLON
+  clause: 4.4.2
+  rule: Restriction names and values require a colon in strict mode
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+- id: R-4.4.2-SEMICOLON
+  clause: 4.4.2
+  rule: Multiple restriction statements use semicolons rather than commas
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+- id: R-4.4.2-ALLOWED-SPACES
+  clause: 4.4.2
+  rule: Space-separated allowed enumeration and object-type names normalize to hyphenated names
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_restriction_seeds
+  status: implemented
+  mode: both
+- id: R-4.4.2-CLOSED-NAMES
+  clause: 4.4.2
+  rule: Unknown restriction names are errors in both modes
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+- id: R-4.4.2-OVERRIDE
+  clause: 4.4.2
+  rule: Explicit property bounds override datatype defaults
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_helpers_edge_cases_and_semantic_equality
+  status: implemented
+  mode: both
+- id: R-4.4.2-STRING-LITERAL
+  clause: 4.4.2
+  rule: Angle-bracket content inside a string is not parsed as restrictions
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_angles_inside_string_and_inline_comment_boundary
+  status: implemented
+  mode: both
+- id: R-4.1-SEED-01
+  clause: '4.1'
+  rule: UTF-8 octet header
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  status: implemented
+  mode: both
+  seed: 1
+- id: R-4.1-SEED-02
+  clause: '4.1'
+  rule: Latin-1 octet header
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  status: implemented
+  mode: both
+  seed: 2
+- id: R-4.1-SEED-03
+  clause: '4.1'
+  rule: Big-endian two-octet header
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  status: implemented
+  mode: both
+  seed: 3
+- id: R-4.1-SEED-04
+  clause: '4.1'
+  rule: Big-endian four-octet header
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_standard_headers_roundtrip
+  status: implemented
+  mode: both
+  seed: 4
+- id: R-4.1-SEED-05
+  clause: '4.1'
+  rule: Unknown charset digit
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_seeds
+  status: implemented
+  mode: both
+  seed: 5
+- id: R-4.1-SEED-06
+  clause: '4.1'
+  rule: Missing or nonnumeric header digit
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_seeds
+  status: implemented
+  mode: both
+  seed: 6
+- id: R-4.1-SEED-07
+  clause: '4.1'
+  rule: Bare LF header terminator
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_header_seeds
+  status: implemented
+  mode: both
+  seed: 7
+- id: R-4.1-SEED-08
+  clause: '4.1'
+  rule: UTF-8 BOM header
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/encoding/test_encoding.py::test_bom_variants
+  status: implemented
+  mode: both
+  seed: 8
+- id: R-4.2-SEED-09
+  clause: '4.2'
+  rule: Structurally empty EPICS file
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_structurally_empty_document_collects_errors
+  status: implemented
+  mode: both
+  seed: 9
+- id: R-4.2-SEED-10
+  clause: '4.2'
+  rule: Missing signature line
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+  seed: 10
+- id: R-4.2-SEED-11
+  clause: '4.2'
+  rule: Missing end-marker line
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+  seed: 11
+- id: R-4.2-SEED-12
+  clause: '4.2'
+  rule: Comment in file body
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_comments_whitespace_and_locations
+  status: implemented
+  mode: both
+  seed: 12
+- id: R-4.2-SEED-13
+  clause: '4.2'
+  rule: Trailing property comment
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_comments_whitespace_and_locations
+  status: implemented
+  mode: both
+  seed: 13
+- id: R-4.2-SEED-14
+  clause: '4.2'
+  rule: Dashes inside a string
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+  seed: 14
+- id: R-4.2-SEED-15
+  clause: '4.2'
+  rule: Collapsed space and tab separators
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_comments_whitespace_and_locations
+  status: implemented
+  mode: both
+  seed: 15
+- id: R-4.3-SEED-16
+  clause: '4.3'
+  rule: Double-quoted embedded apostrophe
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+  seed: 16
+- id: R-4.3-SEED-17
+  clause: '4.3'
+  rule: Single-quoted embedded double quote
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+  seed: 17
+- id: R-4.3-SEED-18
+  clause: '4.3'
+  rule: Grave-opened apostrophe-closed string
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_strings
+  status: implemented
+  mode: both
+  seed: 18
+- id: R-4.3-SEED-19
+  clause: '4.3'
+  rule: Line-terminated unfinished string
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_unterminated_string_and_single_quote_no_escape
+  status: implemented
+  mode: both
+  seed: 19
+- id: R-4.3-SEED-20
+  clause: '4.3'
+  rule: Apostrophe terminates without escaping
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/lexer/test_lexer.py::test_unterminated_string_and_single_quote_no_escape
+  status: implemented
+  mode: both
+  seed: 20
+- id: R-4.4-SEED-21
+  clause: '4.4'
+  rule: Case-insensitive null
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 21
+- id: R-4.4-SEED-22
+  clause: '4.4'
+  rule: Case-insensitive Boolean forms
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 22
+- id: R-4.4-SEED-23
+  clause: '4.4'
+  rule: Positive and negative integer
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 23
+- id: R-4.4-SEED-24
+  clause: '4.4'
+  rule: Negative zero integer
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 24
+- id: R-4.4-SEED-25
+  clause: '4.4'
+  rule: Canonical real decimal forms
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 25
+- id: R-4.4-SEED-26
+  clause: '4.4'
+  rule: Noncanonical leading/trailing decimal point
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 26
+- id: R-4.4-SEED-27
+  clause: '4.4'
+  rule: Paired hexadecimal octets and odd-length diagnostics
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 27
+- id: R-4.4-SEED-28
+  clause: '4.4'
+  rule: Boolean bit-string forms
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 28
+- id: R-4.4-SEED-29
+  clause: '4.4'
+  rule: Unspecified bit value
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 29
+- id: R-4.4-SEED-30
+  clause: '4.4'
+  rule: Mixed group is not syntactically a Boolean bit string
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_classifiers_and_lexical_preservation
+  status: implemented
+  mode: both
+  seed: 30
+- id: R-4.4-SEED-31
+  clause: '4.4'
+  rule: Equivalent enumeration separators
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 31
+- id: R-4.4-SEED-32
+  clause: '4.4'
+  rule: Proprietary enumeration numeric suffix
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 32
+- id: R-4.4-SEED-33
+  clause: '4.4'
+  rule: Proprietary name without numeric suffix
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 33
+- id: R-4.4-SEED-34
+  clause: '4.4'
+  rule: Date with weekday
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 34
+- id: R-4.4-SEED-35
+  clause: '4.4'
+  rule: Date with wildcard day
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 35
+- id: R-4.4-SEED-36
+  clause: '4.4'
+  rule: Date without weekday
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 36
+- id: R-4.4-SEED-37
+  clause: '4.4'
+  rule: Unclosed date
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 37
+- id: R-4.4-SEED-38
+  clause: '4.4'
+  rule: Canonical time fields
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 38
+- id: R-4.4-SEED-39
+  clause: '4.4'
+  rule: Wildcard time fields
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 39
+- id: R-4.4-SEED-40
+  clause: '4.4'
+  rule: Standard object identifier
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 40
+- id: R-4.4-SEED-41
+  clause: '4.4'
+  rule: Proprietary object identifier
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 41
+- id: R-4.4-SEED-42
+  clause: '4.4'
+  rule: Missing object-identifier comma
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 42
+- id: R-4.4.1-SEED-43
+  clause: 4.4.1
+  rule: Nested constructed values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 43
+- id: R-4.4.1-SEED-44
+  clause: 4.4.1
+  rule: Integer parenthesis list
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 44
+- id: R-4.4.1-SEED-45
+  clause: 4.4.1
+  rule: List of constructed values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 45
+- id: R-4.4.1-SEED-46
+  clause: 4.4.1
+  rule: Context-tagged integer
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 46
+- id: R-4.4.1-SEED-47
+  clause: 4.4.1
+  rule: Application-tagged chosen integer
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+  seed: 47
+- id: R-4.4.1-SEED-48
+  clause: 4.4.1
+  rule: Unclosed constructed group
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 48
+- id: R-4.4.2-SEED-49
+  clause: 4.4.2
+  rule: Property real value with numeric restrictions
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_property_value_restriction_suffix_seeds
+  status: implemented
+  mode: both
+  seed: 49
+- id: R-4.4.2-SEED-50
+  clause: 4.4.2
+  rule: Character-string maximum-length restriction
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_property_value_restriction_suffix_seeds
+  status: implemented
+  mode: both
+  seed: 50
+- id: R-4.4.2-SEED-51
+  clause: 4.4.2
+  rule: Allowed enumeration values
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_property_value_restriction_suffix_seeds
+  status: implemented
+  mode: both
+  seed: 51
+- id: R-4.4.2-SEED-52
+  clause: 4.4.2
+  rule: Allowed object types with space-separated names
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_property_value_restriction_suffix_seeds
+  status: implemented
+  mode: both
+  seed: 52
+- id: R-4.4.2-SEED-53
+  clause: 4.4.2
+  rule: Invalid comma-separated restriction statements
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+  seed: 53
+- id: R-4.4.2-SEED-54
+  clause: 4.4.2
+  rule: Missing restriction colon
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+  seed: 54
+- id: R-4.4.2-SEED-55
+  clause: 4.4.2
+  rule: Unknown restriction name
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: both
+  seed: 55
+- id: R-4.4.2-SEED-56
+  clause: 4.4.2
+  rule: Restriction-shaped string literal
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_angles_inside_string_and_inline_comment_boundary
+  status: implemented
+  mode: both
+  seed: 56
+- id: R-4.4-ANNEX-E04-COLON
+  clause: '4.4'
+  rule: Default restrictions without colons are repaired
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: lenient-only
+  diagnostic: R-COLON
+- id: R-4.4-ANNEX-E04-JOINED-LENGTH
+  clause: '4.4'
+  rule: A joined restriction name and array length is split
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: lenient-only
+  diagnostic: R-COLON
+- id: R-4.4-ANNEX-E04-EXPONENT
+  clause: '4.4'
+  rule: Scientific real notation is accepted with diagnostics
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: lenient-only
+  diagnostic: V-REAL-NOTATION
+- id: R-4.4-ANNEX-E04-BARE-DATE
+  clause: '4.4'
+  rule: Bare restriction dates are accepted with diagnostics
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_restriction_errors
+  status: implemented
+  mode: lenient-only
+  diagnostic: R-BARE-DATE
+- id: R-4.4-ANNEX-E09-NAME
+  clause: '4.4'
+  rule: Capitalized and space-separated object types normalize consistently
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_classifiers_and_lexical_preservation
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E10-ENUM
+  clause: '4.4'
+  rule: Case and dash/underscore enumeration spellings normalize consistently
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E12-DELIMITERS
+  clause: '4.4'
+  rule: Generic syntactic groups retain parentheses or braces without imposing a datatype
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E13-DATETIME
+  clause: '4.4'
+  rule: Date-time groups accept either delimiter and bare nested dates
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E14-TIME
+  clause: '4.4'
+  rule: Short times and single-digit fractions are accepted with diagnostics
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: lenient-only
+  diagnostic: V-TIME-PRECISION
+- id: R-4.4-ANNEX-E15-RANGE
+  clause: '4.4'
+  rule: Date ranges coexist with dates in generic calendar groups
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E16-CHOICE
+  clause: '4.4'
+  rule: Syntax preserves untagged timestamp choices for later datatype interpretation
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E17-NAMED-BITS
+  clause: '4.4'
+  rule: Named-bit collections remain generic groups
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E18-EMPTY
+  clause: '4.4'
+  rule: Empty constructed-value positions remain explicit
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E19-OCTETS
+  clause: '4.4'
+  rule: Odd-length hex strings are padded with diagnostics
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: lenient-only
+  diagnostic: V-ODD-OCTETS
+- id: R-4.4-ANNEX-E20-TRAILING
+  clause: '4.4'
+  rule: Trailing group commas produce mode-dependent diagnostics
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: lenient-only
+  diagnostic: V-TRAILING-COMMA
+- id: R-4.4-ANNEX-E20-MISSING
+  clause: '4.4'
+  rule: Missing group commas are repaired with diagnostics
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: lenient-only
+  diagnostic: V-MISSING-COMMA
+- id: R-4.4-ANNEX-E20-CLOSERS
+  clause: '4.4'
+  rule: Mismatched and stray closers retain recovery trees with errors
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  diagnostic: V-CLOSER
+- id: R-4.4-ANNEX-E21-COMMENTS
+  clause: '4.4'
+  rule: Comments inside multiline values are whitespace
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_annex_notation_inventory
+  status: implemented
+  mode: both
+- id: R-4.4-ANNEX-E23-BOOLEAN
+  clause: '4.4'
+  rule: Abbreviated Boolean bits remain valid syntax
+  digest: docs/spec/04-annex-a-example-analysis.md
+  tests:
+  - tests/unit/values/test_seeds.py::test_normative_value_seeds
+  status: implemented
+  mode: both
+- id: R-4.4-ROUNDTRIP
+  clause: '4.4'
+  rule: Canonical render/parse retains meaning across 2000 generated value trees
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_properties.py::test_render_parse_roundtrip
+  status: implemented
+  mode: both
+- id: R-4.4-FUZZ
+  clause: '4.4'
+  rule: Lexer and value parser never raise across 10000 arbitrary Unicode inputs
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/unit/values/test_properties.py::test_arbitrary_input_never_raises
+  status: implemented
+  mode: both
+- id: R-4.5-CAPABILITY
+  clause: '4.5'
+  rule: Capability sections
+  digest: docs/spec/01-format-and-grammar.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_native_generated_semantic_roundtrip
+  status: implemented
+  mode: both
+- id: C5-01
+  clause: 5(a)
+  rule: BIBB-required object types are marked supported
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-01]
+  - tests/validation/test_clause5.py::test_bibb_local_object_requirements[C5-01]
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-01]
+  status: implemented
+  mode: both
+- id: C5-02
+  clause: 5(b)
+  rule: BIBB-required object instances exist
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-02]
+  - tests/validation/test_clause5.py::test_bibb_local_object_requirements[C5-02]
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-02]
+  status: implemented
+  mode: both
+- id: C5-03
+  clause: 5(c)
+  rule: BIBB-required object bits are set
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-03]
+  - tests/validation/test_clause5.py::test_bibb_local_object_requirements[C5-03]
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-03]
+  status: implemented
+  mode: both
+- id: C5-04
+  clause: 5(d)
+  rule: BIBB-required service directions are supported
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-04]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-04]
+  status: implemented
+  mode: both
+- id: C5-05
+  clause: 5(e)
+  rule: BIBB-required executed service bits are set
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-05]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-05]
+  status: implemented
+  mode: both
+- id: C5-06
+  clause: 5(f)
+  rule: Object support section matches Device supported bits
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-06]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-06]
+  status: implemented
+  mode: both
+- id: C5-07
+  clause: 5(g)
+  rule: Supported object types have database instances
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-07]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: C5-08
+  clause: 5(h)
+  rule: Object_List matches the test database
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-08]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: C5-09
+  clause: 5(i)
+  rule: All required object properties are present
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-09]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-09]
+  status: implemented
+  mode: both
+- id: C5-10
+  clause: 5(i)
+  rule: Properties exist at the declared protocol revision
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-10]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-10]
+  status: implemented
+  mode: both
+- id: C5-11
+  clause: 5(i)
+  rule: Conditional property requirements are satisfied
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-11]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-11]
+  status: implemented
+  mode: both
+- id: C5-12
+  clause: 5(j)
+  rule: Required writable properties are marked W or C
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-12]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-12]
+  status: implemented
+  mode: both
+- id: C5-13
+  clause: 5(k)
+  rule: Services bit string has the revision's exact length
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-13]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-13]
+  status: implemented
+  mode: both
+- id: C5-14
+  clause: 5(l)
+  rule: Object-types bit string has the revision's exact length
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-14]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-14]
+  status: implemented
+  mode: both
+- id: C5-15
+  clause: 5(m)
+  rule: Deprecated/removed properties obey the revision boundary
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-15]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-15]
+  status: implemented
+  mode: both
+- id: C5-16
+  clause: 5(n)
+  rule: Property_List matches explicitly listed properties
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-16]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: C5-17
+  clause: 5(o)
+  rule: Receiving segmentation accepts more than one segment
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-17]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: C5-18
+  clause: 5(p)
+  rule: Required read-only properties are marked R
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-18]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-18]
+  status: implemented
+  mode: both
+- id: C5-19
+  clause: 5(q)
+  rule: Specified values lie within standard bounds
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-19]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-19]
+  status: implemented
+  mode: both
+- id: C5-20
+  clause: 5(r)
+  rule: Declared restrictions respect allowed and minimum bounds
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[C5-20]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_missing_knowledge_is_skipped[C5-20]
+  status: implemented
+  mode: both
+- id: S-01
+  clause: 4.5.10
+  rule: Object identifiers are unique
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[S-01]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: S-02
+  clause: '5'
+  rule: Exactly one Device object exists
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[S-02]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: S-03
+  clause: 4.5.9
+  rule: Fail times are finite and non-negative
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[S-03]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: S-04
+  clause: 4.4.2
+  rule: Restriction datatypes match their values
+  digest: docs/spec/03-consistency-tests-and-usage.md
+  tests:
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule[S-04]
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+- id: R-4.5.1-HEADING-1
+  clause: 4.5.1
+  rule: Recognize and canonically emit Vendor Name
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.1-HEADING-2
+  clause: 4.5.1
+  rule: Recognize and canonically emit Product Name
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.1-HEADING-3
+  clause: 4.5.1
+  rule: Recognize and canonically emit Product Model Number
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.1-HEADING-4
+  clause: 4.5.1
+  rule: Recognize and canonically emit Product Description
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.2.1-HEADING-5
+  clause: 4.5.2.1
+  rule: Recognize and canonically emit BIBBs Supported
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.3-HEADING-6
+  clause: 4.5.3
+  rule: Recognize and canonically emit BACnet Standard Application Services Supported
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.4-HEADING-7
+  clause: 4.5.4
+  rule: Recognize and canonically emit Standard Object Types Supported
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.5-HEADING-8
+  clause: 4.5.5
+  rule: Recognize and canonically emit Data Link Layer Option
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.6-HEADING-9
+  clause: 4.5.6
+  rule: Recognize and canonically emit Character Sets Supported
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.7-HEADING-10
+  clause: 4.5.7
+  rule: Recognize and canonically emit Special Functionality
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.8-HEADING-11
+  clause: 4.5.8
+  rule: Recognize and canonically emit Default Property Value Restrictions
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.9-HEADING-12
+  clause: 4.5.9
+  rule: Recognize and canonically emit Fail Times
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.10-HEADING-13
+  clause: 4.5.10
+  rule: Recognize and canonically emit List of Objects in Test Device
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+  evidence: Exact heading appears in full.tpi strict-clean snapshot and canonical writer order.
+- id: R-4.5.5-LITERAL-1
+  clause: 4.5.5
+  rule: Data link literal ISO 8802-3, 10BASE5
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ISO 8802-3, 10BASE5'
+- id: R-4.5.5-LITERAL-2
+  clause: 4.5.5
+  rule: Data link literal ISO 8802-3, 10BASE2
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ISO 8802-3, 10BASE2'
+- id: R-4.5.5-LITERAL-3
+  clause: 4.5.5
+  rule: Data link literal ISO 8802-3, 10BASET
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ISO 8802-3, 10BASET'
+- id: R-4.5.5-LITERAL-4
+  clause: 4.5.5
+  rule: Data link literal ISO 8802-3, fiber
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ISO 8802-3, fiber'
+- id: R-4.5.5-LITERAL-5
+  clause: 4.5.5
+  rule: Data link literal ARCNET, coax star
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ARCNET, coax star'
+- id: R-4.5.5-LITERAL-6
+  clause: 4.5.5
+  rule: Data link literal ARCNET, coax bus
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ARCNET, coax bus'
+- id: R-4.5.5-LITERAL-7
+  clause: 4.5.5
+  rule: Data link literal ARCNET, twisted pair star
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ARCNET, twisted pair star'
+- id: R-4.5.5-LITERAL-8
+  clause: 4.5.5
+  rule: Data link literal ARCNET, twisted pair bus
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ARCNET, twisted pair bus'
+- id: R-4.5.5-LITERAL-9
+  clause: 4.5.5
+  rule: Data link literal ARCNET, fiber star
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='ARCNET, fiber star'
+- id: R-4.5.5-LITERAL-10
+  clause: 4.5.5
+  rule: 'Data link literal ARCNET, twisted pair, EIA-485, Baud rate(s): 9600, 19200'
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: 'Parameterized option=''ARCNET, twisted pair, EIA-485, Baud rate(s): 9600, 19200'''
+- id: R-4.5.5-LITERAL-11
+  clause: 4.5.5
+  rule: 'Data link literal MS/TP manager. Baud rate(s): 9600, 19200, 38400'
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: 'Parameterized option=''MS/TP manager. Baud rate(s): 9600, 19200, 38400'''
+- id: R-4.5.5-LITERAL-12
+  clause: 4.5.5
+  rule: 'Data link literal MS/TP subordinate. Baud rate(s): 9600'
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: 'Parameterized option=''MS/TP subordinate. Baud rate(s): 9600'''
+- id: R-4.5.5-LITERAL-13
+  clause: 4.5.5
+  rule: 'Data link literal Point-To-Point. EIA 232, Baud rate(s): 9600'
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: 'Parameterized option=''Point-To-Point. EIA 232, Baud rate(s): 9600'''
+- id: R-4.5.5-LITERAL-14
+  clause: 4.5.5
+  rule: 'Data link literal Point-To-Point. Modem, Baud rate(s): 9600, 19200'
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: 'Parameterized option=''Point-To-Point. Modem, Baud rate(s): 9600, 19200'''
+- id: R-4.5.5-LITERAL-15
+  clause: 4.5.5
+  rule: 'Data link literal Point-To-Point. Modem, Autobaud range: 9600 to 57600'
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: 'Parameterized option=''Point-To-Point. Modem, Autobaud range: 9600 to 57600'''
+- id: R-4.5.5-LITERAL-16
+  clause: 4.5.5
+  rule: Data link literal BACnet/IP, 'DIX' Ethernet
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option="BACnet/IP, 'DIX' Ethernet"
+- id: R-4.5.5-LITERAL-17
+  clause: 4.5.5
+  rule: Data link literal BACnet/IP, Other
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='BACnet/IP, Other'
+- id: R-4.5.5-LITERAL-18
+  clause: 4.5.5
+  rule: Data link literal BACnet/IPv6, 'DIX' Ethernet
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option="BACnet/IPv6, 'DIX' Ethernet"
+- id: R-4.5.5-LITERAL-19
+  clause: 4.5.5
+  rule: Data link literal BACnet/SC
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='BACnet/SC'
+- id: R-4.5.5-LITERAL-20
+  clause: 4.5.5
+  rule: Data link literal Zigbee
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='Zigbee'
+- id: R-4.5.5-LITERAL-21
+  clause: 4.5.5
+  rule: Data link literal Other
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='Other'
+- id: R-4.5.5-LITERAL-22
+  clause: 4.5.5
+  rule: Data link literal Other custom transport
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  status: implemented
+  mode: both
+  evidence: Parameterized option='Other custom transport'
+- id: R-4.5.6-LITERAL-1
+  clause: 4.5.6
+  rule: Supported character-set literal ISO 10646 (UTF-8)
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+- id: R-4.5.6-LITERAL-2
+  clause: 4.5.6
+  rule: Supported character-set literal IBM/Microsoft DBCS
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+- id: R-4.5.6-LITERAL-3
+  clause: 4.5.6
+  rule: Supported character-set literal JIS X 0208
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+- id: R-4.5.6-LITERAL-4
+  clause: 4.5.6
+  rule: Supported character-set literal ISO 8859-1
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+- id: R-4.5.6-LITERAL-5
+  clause: 4.5.6
+  rule: Supported character-set literal ISO 10646 (UCS-4)
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+- id: R-4.5.6-LITERAL-6
+  clause: 4.5.6
+  rule: Supported character-set literal ISO 10646 (UCS2)
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+- id: R-4.5.7-KEYWORD-MAX_APDU_SIZE
+  clause: 4.5.7
+  rule: Special functionality keyword Maximum APDU size in octets
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=max_apdu_size; numeric parameters require integers, flags have no parameters.
+- id: R-4.5.7-KEYWORD-SEGMENTED_REQUESTS_WINDOW
+  clause: 4.5.7
+  rule: Special functionality keyword Segmented Requests Supported, window size
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=segmented_requests_window; numeric parameters require integers, flags
+    have no parameters.
+- id: R-4.5.7-KEYWORD-SEGMENTED_RESPONSES_WINDOW
+  clause: 4.5.7
+  rule: Special functionality keyword Segmented Responses Supported, window size
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=segmented_responses_window; numeric parameters require integers, flags
+    have no parameters.
+- id: R-4.5.7-KEYWORD-ROUTER
+  clause: 4.5.7
+  rule: Special functionality keyword Router
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=router; numeric parameters require integers, flags have no parameters.
+- id: R-4.5.7-KEYWORD-BACNET_IP_BBMD
+  clause: 4.5.7
+  rule: Special functionality keyword BACnet/IP BBMD
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=bacnet_ip_bbmd; numeric parameters require integers, flags have no parameters.
+- id: R-4.5.7-KEYWORD-BACNET_IPV6_BBMD
+  clause: 4.5.7
+  rule: Special functionality keyword BACnet/IPV6 BBMD
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=bacnet_ipv6_bbmd; numeric parameters require integers, flags have no parameters.
+- id: R-4.5.7-KEYWORD-BACNET_SC_HUB
+  clause: 4.5.7
+  rule: Special functionality keyword BACnet/SC Hub
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=bacnet_sc_hub; numeric parameters require integers, flags have no parameters.
+- id: R-4.5.7-KEYWORD-BACNET_SC_DIRECT_CONNECT
+  clause: 4.5.7
+  rule: Special functionality keyword BACnet/SC Direct Connect
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  evidence: Parameterized field=bacnet_sc_direct_connect; numeric parameters require integers, flags have
+    no parameters.
+- id: R-4.5.8-DEFAULT-UNSIGNED_INTEGER-MAXIMUM
+  clause: 4.5.8
+  rule: unsigned-integer permits maximum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=unsigned_integer; rejects no facts but warns for restrictions outside
+    its printed template.
+- id: R-4.5.8-DEFAULT-UNSIGNED_INTEGER-MINIMUM
+  clause: 4.5.8
+  rule: unsigned-integer permits minimum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=unsigned_integer; rejects no facts but warns for restrictions outside
+    its printed template.
+- id: R-4.5.8-DEFAULT-SIGNED_INTEGER-MAXIMUM
+  clause: 4.5.8
+  rule: signed-integer permits maximum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=signed_integer; rejects no facts but warns for restrictions outside
+    its printed template.
+- id: R-4.5.8-DEFAULT-SIGNED_INTEGER-MINIMUM
+  clause: 4.5.8
+  rule: signed-integer permits minimum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=signed_integer; rejects no facts but warns for restrictions outside
+    its printed template.
+- id: R-4.5.8-DEFAULT-REAL-MAXIMUM
+  clause: 4.5.8
+  rule: real permits maximum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=real; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-REAL-MINIMUM
+  clause: 4.5.8
+  rule: real permits minimum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=real; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-REAL-RESOLUTION
+  clause: 4.5.8
+  rule: real permits resolution
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=real; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-DOUBLE-MAXIMUM
+  clause: 4.5.8
+  rule: double permits maximum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=double; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-DOUBLE-MINIMUM
+  clause: 4.5.8
+  rule: double permits minimum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=double; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-DOUBLE-RESOLUTION
+  clause: 4.5.8
+  rule: double permits resolution
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=double; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-DATE-MAXIMUM
+  clause: 4.5.8
+  rule: date permits maximum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=date; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-DATE-MINIMUM
+  clause: 4.5.8
+  rule: date permits minimum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=date; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-OCTET_STRING-MAXIMUM_LENGTH_STRING
+  clause: 4.5.8
+  rule: octet-string permits maximum length string
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=octet_string; rejects no facts but warns for restrictions outside its
+    printed template.
+- id: R-4.5.8-DEFAULT-CHARACTER_STRING-MAXIMUM_LENGTH_STRING
+  clause: 4.5.8
+  rule: character-string permits maximum length string
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=character_string; rejects no facts but warns for restrictions outside
+    its printed template.
+- id: R-4.5.8-DEFAULT-LIST-MAXIMUM_LENGTH_LIST
+  clause: 4.5.8
+  rule: list permits maximum length list
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=list; rejects no facts but warns for restrictions outside its printed
+    template.
+- id: R-4.5.8-DEFAULT-VARIABLE_LENGTH_ARRAY-MAXIMUM_LENGTH_ARRAY
+  clause: 4.5.8
+  rule: variable-length-array permits maximum length array
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  evidence: Parameterized datatype=variable_length_array; rejects no facts but warns for restrictions
+    outside its printed template.
+- id: R-4.5.9-KEYWORD-NOTIFICATION_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Notification Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=notification_fail_time accepts nonnegative seconds and rejects negative
+    values.
+- id: R-4.5.9-KEYWORD-INTERNAL_PROCESSING_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Internal Processing Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=internal_processing_fail_time accepts nonnegative seconds and rejects
+    negative values.
+- id: R-4.5.9-KEYWORD-MINIMUM_ON_OFF_TIME
+  clause: 4.5.9
+  rule: Timer keyword Minimum ON/OFF Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=minimum_on_off_time accepts nonnegative seconds and rejects negative values.
+- id: R-4.5.9-KEYWORD-SCHEDULE_EVALUATION_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Schedule Evaluation Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=schedule_evaluation_fail_time accepts nonnegative seconds and rejects
+    negative values.
+- id: R-4.5.9-KEYWORD-EXTERNAL_COMMAND_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword External Command Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=external_command_fail_time accepts nonnegative seconds and rejects negative
+    values.
+- id: R-4.5.9-KEYWORD-PROGRAM_OBJECT_STATE_CHANGE_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Program Object State Change Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=program_object_state_change_fail_time accepts nonnegative seconds and
+    rejects negative values.
+- id: R-4.5.9-KEYWORD-ACKNOWLEDGEMENT_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Acknowledgement Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=acknowledgement_fail_time accepts nonnegative seconds and rejects negative
+    values.
+- id: R-4.5.9-KEYWORD-SUBORDINATE_PROXY_CONFIRM_INTERVAL
+  clause: 4.5.9
+  rule: Timer keyword Subordinate Proxy Confirm Interval
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=subordinate_proxy_confirm_interval accepts nonnegative seconds and rejects
+    negative values.
+- id: R-4.5.9-KEYWORD-UNCONFIRMED_RESPONSE_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Unconfirmed Response Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=unconfirmed_response_fail_time accepts nonnegative seconds and rejects
+    negative values.
+- id: R-4.5.9-KEYWORD-CHANNEL_WRITE_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Channel Write Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=channel_write_fail_time accepts nonnegative seconds and rejects negative
+    values.
+- id: R-4.5.9-KEYWORD-AUTO_NEGOTIATION_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Auto Negotiation Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=auto_negotiation_fail_time accepts nonnegative seconds and rejects negative
+    values.
+- id: R-4.5.9-KEYWORD-ACTIVATE_CHANGES_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Activate Changes Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=activate_changes_fail_time accepts nonnegative seconds and rejects negative
+    values.
+- id: R-4.5.9-KEYWORD-FOREIGN_DEVICE_REGISTRATION_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer keyword Foreign Device Registration Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=foreign_device_registration_fail_time accepts nonnegative seconds and
+    rejects negative values.
+- id: R-6.3.14-KEYWORD-AUDIT_NOTIFICATION_FORWARDER_FAIL_TIME
+  clause: 6.3.14
+  rule: Timer keyword Audit Notification Forwarder Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  evidence: Parameterized field=audit_notification_forwarder_fail_time accepts nonnegative seconds and
+    rejects negative values.
+- id: R-4.5.9-ALIAS-ACKNOWLEDGEMENT_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer spelling alias Acknowledgment Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_clause_six_aliases
+  status: implemented
+  mode: both
+- id: R-4.5.9-ALIAS-AUTO_NEGOTIATION_FAIL_TIME
+  clause: 4.5.9
+  rule: Timer spelling alias Autonegotiation Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_clause_six_aliases
+  status: implemented
+  mode: both
+- id: R-4.5.9-ALIAS-MINIMUM_ON_OFF_TIME
+  clause: 4.5.9
+  rule: Timer spelling alias Minimum ON/OFF Fail Time
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_timers.py::test_clause_six_aliases
+  status: implemented
+  mode: both
+- id: R-4.5-ORDER
+  clause: '4.5'
+  rule: Printed section order is canonical; strict deviation is diagnosed
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_section_order_completeness_duplicates_and_database_last
+  status: implemented
+  mode: both
+- id: R-4.5-COMPLETENESS
+  clause: '4.5'
+  rule: Missing template sections are diagnosed by mode
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_section_order_completeness_duplicates_and_database_last
+  status: implemented
+  mode: both
+- id: R-4.5-DUPLICATES
+  clause: '4.5'
+  rule: Duplicate sections report an error
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_section_order_completeness_duplicates_and_database_last
+  status: implemented
+  mode: both
+- id: R-4.5.10-DATABASE-LAST
+  clause: 4.5.10
+  rule: The test database is the final section
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_section_order_completeness_duplicates_and_database_last
+  status: implemented
+  mode: both
+- id: R-4.5.2.1-BIBB-EMPTY
+  clause: 4.5.2.1
+  rule: Empty BIBB list is legal
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_native_generated_semantic_roundtrip
+  status: implemented
+  mode: both
+- id: R-4.5.2.1-BIBB-LAYOUT
+  clause: 4.5.2.1
+  rule: One BIBB per line; lenient multiple words produce warning
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_corpus_snapshots_and_mode_diagnostics
+  status: implemented
+  mode: both
+- id: R-4.5.2.1-BIBB-NAME
+  clause: 4.5.2.1
+  rule: Unknown BIBB name shape is advisory
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_conformance.py::test_default_flags_and_bibb_warnings
+  status: implemented
+  mode: both
+- id: R-4.5.2.1-BIBB-DUPLICATE
+  clause: 4.5.2.1
+  rule: Duplicate BIBB declarations are advisory
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_document.py::test_duplicate_identifiers_rejected_and_declarations_warn
+  status: implemented
+  mode: both
+- id: R-4.5.3-SERVICE-INITIATE
+  clause: 4.5.3
+  rule: Initiate direction is accepted
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_service_flag_forms
+  status: implemented
+  mode: both
+- id: R-4.5.3-SERVICE-EXECUTE
+  clause: 4.5.3
+  rule: Execute direction is accepted
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_service_flag_forms
+  status: implemented
+  mode: both
+- id: R-4.5.3-SERVICE-BOTH
+  clause: 4.5.3
+  rule: Both service directions accepted in either order
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_service_flag_forms
+  status: implemented
+  mode: both
+- id: R-4.5.3-SERVICE-INVALID
+  clause: 4.5.3
+  rule: Missing and unknown service flags are errors
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_rejects_missing_and_unknown_service_flags
+  status: implemented
+  mode: both
+- id: R-4.5.3-SERVICE-NAMES
+  clause: 4.5.3
+  rule: CamelCase service names normalize without a knowledge provider
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_service_flag_forms
+  status: implemented
+  mode: both
+- id: R-4.5.4-OBJECT-FLAGS
+  clause: 4.5.4
+  rule: Createable, Creatable and Deleteable with optional or reversed flags
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_object_type_flag_forms
+  status: implemented
+  mode: both
+- id: R-4.5.4-OBJECT-FLAGS-INVALID
+  clause: 4.5.4
+  rule: Unknown trailing object flags are errors
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_invalid_object_flags_and_data_link_ranges
+  status: implemented
+  mode: both
+- id: R-4.5.5-BAUD-PARAMETERS
+  clause: 4.5.5
+  rule: Required baud lists, ARCNET restrictions, modem-only ordered autobaud
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_invalid_parameters
+  status: implemented
+  mode: both
+- id: R-4.5.5-BAUD-9600
+  clause: 4.5.5
+  rule: Missing 9600 MS/TP support is advisory
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_datalink.py::test_mstp_9600_advisory
+  status: implemented
+  mode: both
+- id: R-4.5.5-BAUD-K
+  clause: 4.5.5
+  rule: Lenient k suffix expands to integer baud rates
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_leniency_promotes_to_strict_error
+  status: implemented
+  mode: both
+- id: R-4.5.6-CHARSET-ALIASES
+  clause: 4.5.6
+  rule: UCS-2, UCS2 and trademarked DBCS forms alias by case and whitespace
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_general.py::test_character_set_alias
+  status: implemented
+  mode: both
+- id: R-4.5.6-CHARSET-UNKNOWN
+  clause: 4.5.6
+  rule: Unknown character-set entries remain in source raw data
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_unknown_character_set_retained_in_source_raw
+  status: implemented
+  mode: both
+- id: R-4.5.7-WINDOW-ADVISORY
+  clause: 4.5.7
+  rule: Window range outside1..127 is advisory
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_conformance.py::test_special_numbers_and_advisory_windows
+  status: implemented
+  mode: both
+- id: R-4.5.8-DEFAULT-EMPTY
+  clause: 4.5.8
+  rule: Empty datatype defaults are legal
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_native_generated_semantic_roundtrip
+  status: implemented
+  mode: both
+- id: R-4.5.8-DEFAULT-EXTENSION
+  clause: 4.5.8
+  rule: Extra time defaults are preserved with unknown datatype warning
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_extension_defaults_allowed_values_and_unknown_timers
+  status: implemented
+  mode: both
+- id: R-4.5.8-DEFAULT-MERGE
+  clause: 4.5.8
+  rule: Defined instance restriction fields override defaults independently
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_merge_preserves_datatypes_and_only_overrides_defined_fields
+  status: implemented
+  mode: both
+- id: R-4.5.9-TIMER-COMPLETENESS
+  clause: 4.5.9
+  rule: Each of thirteen template timers must be present in strict input
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+- id: R-4.5.9-TIMER-INTEGER
+  clause: 4.5.9
+  rule: Integer timer seconds are leniently coerced with warning
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_leniency_promotes_to_strict_error
+  status: implemented
+  mode: both
+- id: R-4.5.9-TIMER-EXTRA
+  clause: 4.5.9
+  rule: Unknown timer values remain in extra
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_sections.py::test_extension_defaults_allowed_values_and_unknown_timers
+  status: implemented
+  mode: both
+- id: R-4.5.10-HEADER-ORDER
+  clause: 4.5.10
+  rule: First object properties are identifier, name, type
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+- id: R-4.5.10-TYPE-MATCH
+  clause: 4.5.10
+  rule: Object-type must match the identifier type
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_database.py::test_mismatch_duplicates_and_repeated_headers
+  status: implemented
+  mode: both
+- id: R-4.5.10-PROPRIETARY
+  clause: 4.5.10
+  rule: Proprietary object type is >=128 and only three headers are permitted
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_database.py::test_proprietary_header_only
+  status: implemented
+  mode: both
+- id: R-4.5.10-INSTANCE
+  clause: 4.5.10
+  rule: Object instance integer is bounded0..4194303
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_database.py::test_invalid_identifiers
+  status: implemented
+  mode: both
+- id: R-4.5.10-MISSING-INSTANCE
+  clause: 4.5.10
+  rule: Missing instance produces error and malformed object is skipped; ADR0007 recovery policy
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+- id: R-4.5.10-PROPERTY-UNIQUE
+  clause: 4.5.10
+  rule: Duplicate properties and repeated object headers are invalid
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_database.py::test_mismatch_duplicates_and_repeated_headers
+  status: implemented
+  mode: both
+- id: R-4.5.10-PROPERTY-COMMENT
+  clause: 4.5.10
+  rule: Trailing comments and not-readable extension are preserved
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_multiline_after_comment_missing_value_and_marker_order
+  status: implemented
+  mode: both
+- id: R-4.5.10-HEADER-METADATA
+  clause: 4.5.10
+  rule: Header access restrictions comments and not-readable marker survive round trips
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_header_metadata_roundtrip
+  status: implemented
+  mode: both
+- id: R-4.5.10-VALUE-RECOVERY
+  clause: 4.5.10
+  rule: Unbalanced values recover before the next property
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+- id: R-4.5.10-MARKER-ORDER
+  clause: 4.5.10
+  rule: W/C markers accepted before or after restrictions; implicit R
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_multiline_after_comment_missing_value_and_marker_order
+  status: implemented
+  mode: both
+- id: R-4.5.10-EXPLICIT-R
+  clause: 4.5.10
+  rule: Explicit R marker is accepted only with mode-dependent diagnostic
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_leniency_promotes_to_strict_error
+  status: implemented
+  mode: both
+- id: R-4.5.10-VALUE-EXTENT
+  clause: 4.5.10
+  rule: Comment-only property line accepts a value on the next line
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_reader.py::test_multiline_after_comment_missing_value_and_marker_order
+  status: implemented
+  mode: both
+- id: R-4.5.10-IDENTIFIER-UNIQUE
+  clause: 4.5.10
+  rule: Duplicate object identifiers are errors
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_document.py::test_duplicate_identifiers_rejected_and_declarations_warn
+  status: implemented
+  mode: both
+- id: R-4.1-NATIVE-CRLF
+  clause: '4.1'
+  rule: Canonical native output usesCRLF, charset-selected binary path and streams
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_full_roundtrip_and_byte_stability
+  status: implemented
+  mode: both
+- id: R-4.4.1-NATIVE-GROUP-WRAP
+  clause: 4.4.1
+  rule: Long constructed values wrap by element and preserving style keeps lexical hints
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_preserving_hints_and_group_wrapping
+  status: implemented
+  mode: both
+- id: R-4.3-NATIVE-REPRESENTABILITY
+  clause: '4.3'
+  rule: Unrepresentable character strings fail explicitly
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_writer_rejects_unrepresentable_strings
+  status: implemented
+  mode: both
+- id: R-4.5-NATIVE-ROUNDTRIP
+  clause: '4.5'
+  rule: 2000representable generated documents are strict-clean and byte stable
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/codecs/epics/test_writer.py::test_native_generated_semantic_roundtrip
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-MINIMUM
+  clause: 4.4.2
+  rule: Typed model restriction minimum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_merge_preserves_datatypes_and_only_overrides_defined_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-MAXIMUM
+  clause: 4.4.2
+  rule: Typed model restriction maximum
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_merge_preserves_datatypes_and_only_overrides_defined_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-RESOLUTION
+  clause: 4.4.2
+  rule: Typed model restriction resolution
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_merge_preserves_datatypes_and_only_overrides_defined_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-MAXIMUM_LENGTH_STRING
+  clause: 4.4.2
+  rule: Typed model restriction maximum length string
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_lengths_and_named_allowed_values
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-MAXIMUM_LENGTH_LIST
+  clause: 4.4.2
+  rule: Typed model restriction maximum length list
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-MAXIMUM_LENGTH_ARRAY
+  clause: 4.4.2
+  rule: Typed model restriction maximum length array
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_lengths_and_named_allowed_values
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: R-4.4.2-MODEL-ALLOWED_VALUES
+  clause: 4.4.2
+  rule: Typed model restriction allowed values
+  digest: docs/spec/02-sections-and-data-model.md
+  tests:
+  - tests/unit/model/test_restrictions.py::test_lengths_and_named_allowed_values
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+- id: C5-SEED-01
+  clause: '5'
+  rule: BIBB DS-RP-B claimed but Device.Protocol_Services_Supported lacks ReadProperty bit -> C5-05 error.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule
+  status: implemented
+  mode: both
+  seed: 1
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-02
+  clause: '5'
+  rule: BIBB requiring an Analog Input object type but AI not in "Standard Object Types Supported" ->
+    C5-01.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_bibb_local_object_requirements
+  status: implemented
+  mode: both
+  seed: 2
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-03
+  clause: '5'
+  rule: Same BIBB, AI listed but no AI object in test DB -> C5-02 (and C5-07).
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_bibb_local_object_requirements
+  status: implemented
+  mode: both
+  seed: 3
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-04
+  clause: '5'
+  rule: Protocol_Object_Types_Supported has AI bit unset while section lists AI -> C5-06 (and C5-03).
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed04_unset_analog_input_bit_with_retained_section
+  status: implemented
+  mode: both
+  seed: 4
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-05
+  clause: '5'
+  rule: Services section lacks Execute for ReadProperty while BIBB B side claimed -> C5-04.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 5
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-06
+  clause: '5'
+  rule: Services section has ReadProperty with only Initiate where BIBB is B-side -> C5-04.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed06_initiate_only_b_side_service
+  status: implemented
+  mode: both
+  seed: 6
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-07
+  clause: '5'
+  rule: Object_List contains (AV,3) not in test DB -> C5-08.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed07_extra_object_list_entry
+  status: implemented
+  mode: both
+  seed: 7
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-08
+  clause: '5'
+  rule: Test DB has (BV,1) not in Object_List -> C5-08.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 8
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-09
+  clause: '5'
+  rule: Proprietary object type (>=128) present in DB but missing in Object_List -> C5-08.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_preconditions.py::test_object_list_includes_proprietary_identifiers
+  status: implemented
+  mode: both
+  seed: 9
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-10
+  clause: '5'
+  rule: File type supported, no File object, annotated dynamic -> passes (warning-level note) per C5-07
+    exception; without annotation -> inferred warning/error.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_dynamic_file_exception_is_warning
+  status: implemented
+  mode: both
+  seed: 10
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-11
+  clause: '5'
+  rule: AI object missing Present_Value -> C5-09.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 11
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-12
+  clause: '5'
+  rule: Protocol_Revision 5 and object has Property_List (introduced later) -> C5-10.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed12_revision_five_property_list_introduction
+  status: implemented
+  mode: both
+  seed: 12
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-13
+  clause: '5'
+  rule: Conditionally required property missing (e.g. Event_Detection_Enable set but Notification_Class
+    missing) -> C5-11 (example inferred).
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_conditions.py::test_object_condition_groups_and_known_property_values
+  status: implemented
+  mode: both
+  seed: 13
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-14
+  clause: '5'
+  rule: Present_Value of AO marked read-only in EPICS (must be writable) -> C5-12.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 14
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-15
+  clause: '5'
+  rule: Device.Description-like required read-only property marked W -> C5-18.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_header_metadata.py::test_required_writable_and_read_only_headers
+  status: implemented
+  mode: both
+  seed: 15
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-16
+  clause: '5'
+  rule: Protocol_Services_Supported bitstring of wrong length for Protocol_Revision 14 -> C5-13; too long
+    -> C5-13; correct -> pass.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed16_revision_fourteen_service_vector_length
+  status: implemented
+  mode: both
+  seed: 16
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-17
+  clause: '5'
+  rule: Protocol_Object_Types_Supported length mismatch -> C5-14.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  - tests/validation/test_clause5.py::test_independent_baseline_passes_every_rule
+  status: implemented
+  mode: both
+  seed: 17
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-18
+  clause: '5'
+  rule: Protocol_Revision 12 with a property deprecated at 12 present at 13+ -> C5-15 boundary (inferred)
+    tests.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_deprecation_boundary_and_unspecified_range
+  status: implemented
+  mode: both
+  seed: 18
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-19
+  clause: '5'
+  rule: Protocol_Revision 15, Property_List missing a present property -> C5-16; Property_List contains
+    Object_Name -> C5-16 failure; correct list with different order -> pass; Protocol_Revision 13 with
+    no Property_List -> rule skipped.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed19_revision_fifteen_property_list_membership_and_order
+  - tests/validation/test_clause5.py::test_property_list_old_revision_not_applicable
+  status: implemented
+  mode: both
+  seed: 19
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-20
+  clause: '5'
+  rule: Protocol_Revision absent -> C5-16 skipped; C5-10 conservative behaviour noted.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_property_list_old_revision_not_applicable
+  status: implemented
+  mode: both
+  seed: 20
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-21
+  clause: '5'
+  rule: Segmentation_Supported = SEGMENTED_BOTH with Max_Segments_Accepted = 1 -> C5-17 error; = 2 ->
+    pass; SEGMENTED_TRANSMIT with 1 -> pass; NO_SEGMENTATION -> pass.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed21_segmentation_without_receiving
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 21
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-22
+  clause: '5'
+  rule: Priority_Array-style value outside standard range (e.g. Present_Value of Multi-state input = 0,
+    min is 1) -> C5-19.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_conditions.py::test_dynamic_standard_bounds_and_constructed_element_ranges
+  status: implemented
+  mode: both
+  seed: 22
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-23
+  clause: '5'
+  rule: '"?" value in a ranged property -> no C5-19 failure.'
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_preconditions.py::test_null_is_not_an_unspecified_bit_or_numeric_value
+  status: implemented
+  mode: both
+  seed: 23
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-24
+  clause: '5'
+  rule: Restricted range for an Analog Output Present_Value exceeding allowed standard range -> C5-20.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 24
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-25
+  clause: '5'
+  rule: Restricted range smaller than the minimal range mandated by the standard (e.g. restricting Max_Segments_Accepted
+    below minimum, inferred example) -> C5-20.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_minimum_required_range_and_conditional_access
+  status: implemented
+  mode: both
+  seed: 25
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-26
+  clause: '5'
+  rule: Per-property override missing but datatype default (4.5.8) used for C5-20 resolution -> default
+    applied.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed26_datatype_default_restrictions_are_validated
+  status: implemented
+  mode: both
+  seed: 26
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-27
+  clause: '5'
+  rule: Timer section missing Internal Processing Fail Time -> completeness warning; timer value negative
+    or non-real -> error (inferred).
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed27_missing_internal_processing_timer_warns
+  status: implemented
+  mode: both
+  seed: 27
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-28
+  clause: '5'
+  rule: Timer list includes Audit Notification Forwarder Fail Time -> accepted.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/unit/model/test_timers.py::test_all_fourteen_timer_fields
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  seed: 28
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-29
+  clause: '5'
+  rule: Property marked "conditionally writable" must count as writable for C5-12 and as non-read-only
+    for C5-18.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_minimum_required_range_and_conditional_access
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 29
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-30
+  clause: '5'
+  rule: Duplicate object identifiers in test DB -> extra rule (inferred) mapping to C5-08.
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_clause5.py::test_rule_fails_on_targeted_mutation
+  status: implemented
+  mode: both
+  seed: 30
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: C5-SEED-31
+  clause: '5'
+  rule: Device object absent from test DB -> everything cascading from Device properties yields a single
+    root-cause error (inferred; Device property reads are prerequisites).
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/validation/test_digest_seeds.py::test_seed31_absent_device_has_one_root_error
+  status: implemented
+  mode: both
+  seed: 31
+  evidence: Exact digest variant is asserted independently; related baseline and mutation tests cover
+    companion outcomes.
+- id: C5-SEED-32
+  clause: '5'
+  rule: Object type names in section differ only by case/spacing/hyphen from enum names -> parser normalisation
+    (inferred).
+  digest: docs/spec/03-consistency-tests-and-usage.md#7-test-case-seeds-validator-unit-tests
+  tests:
+  - tests/unit/model/test_names.py::test_normalization
+  - tests/unit/model/test_conformance.py::test_creation_aliases
+  status: implemented
+  mode: both
+  seed: 32
+  evidence: Concrete targeted mutation or model/native parameterized evidence; examples use independent
+    synthetic facts where specified.
+- id: R-4.5-SEED-01
+  clause: '4.5'
+  rule: 'V: `Vendor Name: "Ace IoT Solutions"` -> general.vendor_name = `Ace IoT Solutions`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: &id001
+  - tests/codecs/epics/test_sections.py::test_general_string_seeds
+  status: implemented
+  mode: both
+  seed: 1
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-02
+  clause: '4.5'
+  rule: 'V: `vendor name: ''ACME''` (lowercase keyword, single quotes) -> same as 1 (4.4a, 4.3).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id001
+  status: implemented
+  mode: both
+  seed: 2
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-03
+  clause: '4.5'
+  rule: 'V: `Product Description: "He said ''hi''"` -> value contains single quotes (4.3).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id001
+  status: implemented
+  mode: both
+  seed: 3
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-04
+  clause: '4.5'
+  rule: 'V: `Product Name: ''say "x"''` -> value contains double quotes.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id001
+  status: implemented
+  mode: both
+  seed: 4
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-05
+  clause: '4.5'
+  rule: 'V: unterminated `Product Name: "abc` (no closing quote) -> string ends at end of line = `abc`
+    (4.3).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id001
+  status: implemented
+  mode: both
+  seed: 5
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-06
+  clause: '4.5'
+  rule: 'V: `BIBBs Supported:` with `{` `}` and nothing between -> empty list.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_bibb_empty_case_alias_and_missing_braces
+  status: implemented
+  mode: both
+  seed: 6
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-07
+  clause: '4.5'
+  rule: 'V: `BIBBS Supported:` `{ DS-RP-B DM-DDB-A }` on separate lines -> ["DS-RP-B","DM-DDB-A"], heading
+    case-insensitive.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_bibb_empty_case_alias_and_missing_braces
+  status: implemented
+  mode: both
+  seed: 7
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-08
+  clause: '4.5'
+  rule: 'I (strict): `BIBBs Supported: DS-RP-B` without braces -> error.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_bibb_empty_case_alias_and_missing_braces
+  status: implemented
+  mode: both
+  seed: 8
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-09
+  clause: '4.5'
+  rule: 'V: `Who-Is Initiate Execute` -> initiate True, execute True.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: &id002
+  - tests/codecs/epics/test_sections.py::test_native_service_flag_forms
+  - tests/unit/model/test_conformance.py::test_services
+  status: implemented
+  mode: both
+  seed: 9
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-10
+  clause: '4.5'
+  rule: 'V: `Who-Has Execute` -> execute only.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id002
+  status: implemented
+  mode: both
+  seed: 10
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-11
+  clause: '4.5'
+  rule: 'V: `I-Have Initiate ` (trailing space) -> initiate only.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id002
+  status: implemented
+  mode: both
+  seed: 11
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-12
+  clause: '4.5'
+  rule: 'I: `ReadProperty` with no flag -> error (flag required).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_rejects_missing_and_unknown_service_flags
+  status: implemented
+  mode: both
+  seed: 12
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-13
+  clause: '4.5'
+  rule: 'I: `ReadProperty Both` -> error (unknown flag).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_rejects_missing_and_unknown_service_flags
+  status: implemented
+  mode: both
+  seed: 13
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-14
+  clause: '4.5'
+  rule: 'V: `Analog Value Createable Deleteable` -> createable and deleteable True.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_object_type_flag_forms
+  status: implemented
+  mode: both
+  seed: 14
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-15
+  clause: '4.5'
+  rule: 'V: `Device` -> both False. I: `Analog Input Creatable` -> error (spelling `Createable`).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_object_type_flag_forms
+  - tests/unit/model/test_conformance.py::test_creation_aliases
+  status: implemented
+  mode: both
+  seed: 15
+  evidence: ADR D18 accepts Creatable as an alias despite the digest seed labelling it invalid.
+- id: R-4.5-SEED-16
+  clause: '4.5'
+  rule: 'V: `ISO 8802-3, 10BASET` ; `BACnet/SC` ; `Zigbee` ; `Other`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: &id003
+  - tests/codecs/epics/test_sections.py::test_native_every_data_link_literal
+  - tests/unit/model/test_datalink.py::test_every_literal_roundtrips_regex_and_union
+  status: implemented
+  mode: both
+  seed: 16
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-17
+  clause: '4.5'
+  rule: 'V: `MS/TP manager. Baud rate(s): 9600, 19200, 38400` -> baud_rates [9600,19200,38400] (inferred
+    format).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id003
+  status: implemented
+  mode: both
+  seed: 17
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-18
+  clause: '4.5'
+  rule: 'V: `Point-To-Point. Modem, Autobaud range: 9600 to 57600` -> autobaud 9600..57600.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests: *id003
+  status: implemented
+  mode: both
+  seed: 18
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-19
+  clause: '4.5'
+  rule: 'I: `MS/TP manager.` with no baud rates -> error (shall specify baud rates).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_corpus_snapshots_and_mode_diagnostics
+  status: implemented
+  mode: both
+  seed: 19
+  evidence: Missing required baud parameters warn in lenient mode and fail in strict mode.
+- id: R-4.5-SEED-20
+  clause: '4.5'
+  rule: 'I: `ARCNET, fiber bus` -> not in the standard''s list.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/unit/model/test_datalink.py::test_invalid_parameters
+  status: implemented
+  mode: both
+  seed: 20
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-21
+  clause: '4.5'
+  rule: 'V: `ISO 10646 (UTF-8)` ; I (strict): `ISO 10646 (UTF-16)`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/unit/model/test_general.py::test_unsupported_character_set
+  - tests/codecs/epics/test_sections.py::test_native_every_character_set_literal
+  status: implemented
+  mode: both
+  seed: 21
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-22
+  clause: '4.5'
+  rule: 'V: `Maximum APDU size in octets: 1476` -> 1476; I: `Maximum APDU size in octets: 1476.0` -> error
+    (integer required).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  - tests/codecs/epics/test_sections.py::test_native_invalid_parameter_rules
+  status: implemented
+  mode: both
+  seed: 22
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-23
+  clause: '4.5'
+  rule: 'V: `Segmented Requests Supported, window size: 4`; V: `Router`; V: `BACnet/IPV6 BBMD` and `bacnet/ipv6
+    bbmd` equal.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_special_keyword
+  status: implemented
+  mode: both
+  seed: 23
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-24
+  clause: '4.5'
+  rule: 'V: `real: <minimum: 0.0; maximum: 100.0; resolution: 0.1>` under `Default Property Value Restrictions`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  status: implemented
+  mode: both
+  seed: 24
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-25
+  clause: '4.5'
+  rule: 'I: `real: <minimum: .5; maximum: 1.0>` -> `.5` invalid real (4.4e); V: `signed-integer: <minimum:
+    -10; maximum: 10>`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/values/test_seeds.py::test_deviation_matrix
+  status: implemented
+  mode: both
+  seed: 25
+  evidence: Noncanonical decimal syntax warns in lenient mode and fails strict mode.
+- id: R-4.5-SEED-26
+  clause: '4.5'
+  rule: 'V: `octet-string: <maximum length string: 255>`; I (strict): `octet-string: <maximum length list:
+    5>` -> wrong restriction for type.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/unit/model/test_restrictions.py::test_default_restrictions_warn_without_rejecting
+  status: implemented
+  mode: both
+  seed: 26
+  evidence: Wrong default restriction names produce model advisory diagnostics rather than rejecting the
+    document.
+- id: R-4.5-SEED-27
+  clause: '4.5'
+  rule: 'V: `Fail Times:` block with `Notification Fail Time: 10.0` ; I: `Notification Fail Time: 10`
+    (integer where Real required; lenient parsers may coerce).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  - tests/codecs/epics/test_reader.py::test_leniency_promotes_to_strict_error
+  status: implemented
+  mode: both
+  seed: 27
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-28
+  clause: '4.5'
+  rule: 'I: Fail Times missing `Channel Write Fail Time` -> error per "for each timer" (or warn, see open
+    question 15).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_timer_keyword
+  status: implemented
+  mode: both
+  seed: 28
+  evidence: Missing template timers warn leniently and fail strict mode.
+- id: R-4.5-SEED-29
+  clause: '4.5'
+  rule: 'V: object with identifier `(analog-value, 6)`, name `"AV6"`, type `analog-value`, `present-value:
+    23.4 W` -> access W.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  status: implemented
+  mode: both
+  seed: 29
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-30
+  clause: '4.5'
+  rule: 'V: `present-value: 12.3 C -- Writable when Out_Of_Service is TRUE` -> access C, comment captured,
+    not part of value.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_multiline_after_comment_missing_value_and_marker_order
+  status: implemented
+  mode: both
+  seed: 30
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-31
+  clause: '4.5'
+  rule: 'V: `present-value: ?` -> Unknown; V: `status-flags: {F,F,?,F}`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_corpus_snapshots_and_mode_diagnostics
+  status: implemented
+  mode: both
+  seed: 31
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-32
+  clause: '4.5'
+  rule: 'I: object whose `object-type: analog-input` conflicts with identifier `(analog-value, 6)` ->
+    error.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/unit/model/test_database.py::test_mismatch_duplicates_and_repeated_headers
+  status: implemented
+  mode: both
+  seed: 32
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-33
+  clause: '4.5'
+  rule: 'I: object where `object-name` appears before `object-identifier` -> error (order fixed: id, name,
+    type).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+  seed: 33
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-34
+  clause: '4.5'
+  rule: 'V: proprietary object with exactly three properties and `(proprietary 700, 1)`; I: same plus
+    `present-value: 1` -> error (only three properties allowed).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/unit/model/test_database.py::test_proprietary_header_only
+  - tests/codecs/epics/test_reader.py::test_corpus_snapshots_and_mode_diagnostics
+  status: implemented
+  mode: both
+  seed: 34
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-35
+  clause: '4.5'
+  rule: 'V: `present-value: 13.4 <minimum: 0.0; maximum: 20.0; resolution: 0.1>` -> value 13.4, restrictions
+    parsed.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_corpus_snapshots_and_mode_diagnostics
+  status: implemented
+  mode: both
+  seed: 35
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-36
+  clause: '4.5'
+  rule: 'V: `units: milliamperes <allowed values: milliamperes, amperes>` -> allowed_values list of 2.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_extension_defaults_allowed_values_and_unknown_timers
+  status: implemented
+  mode: both
+  seed: 36
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-37
+  clause: '4.5'
+  rule: 'V: `description: "this is a description" <maximum length string: 30>`.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_native_every_default_datatype_and_restriction
+  - tests/codecs/epics/test_writer.py::test_header_metadata_roundtrip
+  status: implemented
+  mode: both
+  seed: 37
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-38
+  clause: '4.5'
+  rule: 'V: `Present_Value: 1.0` equals `present-value: 1.0` (underscore/dash/case equivalence, inferred
+    for property names).'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/unit/model/test_database.py::test_property_helpers_and_non_readable_marker
+  status: implemented
+  mode: both
+  seed: 38
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-39
+  clause: '4.5'
+  rule: 'V: `-- comment line` between sections and trailing `-- x` on lines ignored; I: `"a -- b"` inside
+    string is not a comment.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_sections.py::test_general_string_seeds
+  - tests/codecs/epics/test_reader.py::test_multiline_after_comment_missing_value_and_marker_order
+  status: implemented
+  mode: both
+  seed: 39
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.
+- id: R-4.5-SEED-40
+  clause: '4.5'
+  rule: 'V: file with `PICS 0` header, signature, sections, `End of BACnet Protocol Implementation Conformance
+    Statement`; I: missing end line -> error.'
+  digest: docs/spec/02-sections-and-data-model.md#6-test-case-seeds
+  tests:
+  - tests/codecs/epics/test_reader.py::test_full_exact_model_and_strictness
+  - tests/codecs/epics/test_reader.py::test_explicit_error_recovery
+  status: implemented
+  mode: both
+  seed: 40
+  evidence: Literal/model table or independent synthetic native fixture asserts this behavior.

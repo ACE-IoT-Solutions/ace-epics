@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-SIGNATURE"
+  ],
+  "strict": [
+    "P-SIGNATURE"
+  ]
+}

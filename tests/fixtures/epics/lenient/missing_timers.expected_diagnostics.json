@@ -1,0 +1,10 @@
+{
+  "lenient": [
+    "P-UNKNOWN-SECTION",
+    "P-SECTIONS-INCOMPLETE"
+  ],
+  "strict": [
+    "P-UNKNOWN-SECTION",
+    "P-SECTIONS-INCOMPLETE"
+  ]
+}

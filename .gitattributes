@@ -1,0 +1,4 @@
+*.tpi text eol=crlf whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+*.epics text eol=crlf whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
+tests/fixtures/epics/encodings/*.tpi -text
+tests/fixtures/epics/lenient/line_endings.tpi -text

@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "V-ODD-OCTETS"
+  ],
+  "strict": [
+    "V-ODD-OCTETS"
+  ]
+}

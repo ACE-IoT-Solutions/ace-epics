@@ -1,0 +1,36 @@
+name: Nightly fuzz and performance
+on:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  fuzz:
+    strategy:
+      fail-fast: false
+      matrix:
+        run: [1, 2, 3, 4]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9
+        with:
+          python-version: '3.13'
+      - run: uv sync --locked --all-extras --group dev
+      - name: Independent generated input budgets
+        run: >-
+          uv run pytest --no-cov
+          tests/unit/values/test_properties.py
+          tests/codecs/epics/test_reader.py
+          tests/codecs/epics/test_writer.py
+          tests/codecs/serdes/test_interchange.py
+  performance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9
+        with:
+          python-version: '3.13'
+      - run: uv sync --locked --all-extras --group dev
+      - run: uv run pytest --no-cov -m slow

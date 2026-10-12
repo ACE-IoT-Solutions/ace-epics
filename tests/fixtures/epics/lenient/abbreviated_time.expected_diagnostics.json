@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "V-TIME-PRECISION"
+  ],
+  "strict": [
+    "V-TIME-PRECISION"
+  ]
+}

@@ -1,0 +1,2444 @@
+{
+  "$defs": {
+    "Access": {
+      "description": "EPICS access flags; no native marker means R (4.5.10).",
+      "enum": [
+        "R",
+        "W",
+        "C"
+      ],
+      "title": "Access",
+      "type": "string"
+    },
+    "Arcnet": {
+      "additionalProperties": false,
+      "description": "ARCNET media; EIA-485 additionally requires baud rates (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "arcnet",
+          "default": "arcnet",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "media": {
+          "description": "Media (4.5.5).",
+          "enum": [
+            "coax star",
+            "coax bus",
+            "twisted pair star",
+            "twisted pair bus",
+            "fiber star",
+            "twisted pair, EIA-485"
+          ],
+          "title": "Media",
+          "type": "string"
+        },
+        "baud_rates": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Baud rates (4.5.5).",
+          "title": "Baud Rates"
+        }
+      },
+      "required": [
+        "media"
+      ],
+      "title": "Arcnet",
+      "type": "object"
+    },
+    "BacnetIp": {
+      "additionalProperties": false,
+      "description": "BACnet/IP media variant (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "bacnet-ip",
+          "default": "bacnet-ip",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "variant": {
+          "description": "Variant (4.5.5).",
+          "enum": [
+            "'DIX' Ethernet",
+            "Other"
+          ],
+          "title": "Variant",
+          "type": "string"
+        }
+      },
+      "required": [
+        "variant"
+      ],
+      "title": "BacnetIp",
+      "type": "object"
+    },
+    "BacnetIpv6": {
+      "additionalProperties": false,
+      "description": "BACnet/IPv6's single media variant (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "bacnet-ipv6",
+          "default": "bacnet-ipv6",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "variant": {
+          "const": "'DIX' Ethernet",
+          "default": "'DIX' Ethernet",
+          "description": "Variant (4.5.5).",
+          "title": "Variant",
+          "type": "string"
+        }
+      },
+      "title": "BacnetIpv6",
+      "type": "object"
+    },
+    "BacnetSc": {
+      "additionalProperties": false,
+      "description": "BACnet/SC literal (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "bacnet-sc",
+          "default": "bacnet-sc",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "BacnetSc",
+      "type": "object"
+    },
+    "Bibb": {
+      "additionalProperties": false,
+      "description": "A BIBB name; unknown Annex K names remain representable (4.5.2.1).",
+      "properties": {
+        "canonical": {
+          "description": "Normalized token (4.4i).",
+          "title": "Canonical",
+          "type": "string"
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Source token spelling (4.4i).",
+          "title": "Raw"
+        }
+      },
+      "required": [
+        "canonical"
+      ],
+      "title": "Bibb",
+      "type": "object"
+    },
+    "BooleanValue": {
+      "additionalProperties": false,
+      "description": "A Boolean value with its abbreviated spelling retained (135.1 Clause 4.4(c)).",
+      "properties": {
+        "kind": {
+          "const": "boolean",
+          "default": "boolean",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "boolean"
+        },
+        "short": {
+          "default": false,
+          "title": "Short",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "BooleanValue",
+      "type": "object"
+    },
+    "CharacterSet": {
+      "description": "Supported character-set literals from Clause 4.5.6.",
+      "enum": [
+        "ISO 10646 (UTF-8)",
+        "IBM/Microsoft DBCS",
+        "JIS X 0208",
+        "ISO 8859-1",
+        "ISO 10646 (UCS-4)",
+        "ISO 10646 (UCS2)"
+      ],
+      "title": "CharacterSet",
+      "type": "string"
+    },
+    "CharacterStringValue": {
+      "additionalProperties": false,
+      "description": "A character string with its original opening quote retained (135.1 Clause 4.3 and 4.4(g)).",
+      "properties": {
+        "kind": {
+          "const": "character-string",
+          "default": "character-string",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "string"
+        },
+        "quote": {
+          "default": "\"",
+          "enum": [
+            "\"",
+            "'",
+            "`"
+          ],
+          "title": "Quote",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "CharacterStringValue",
+      "type": "object"
+    },
+    "ContextTaggedValue": {
+      "additionalProperties": false,
+      "description": "A context tag number followed by its selected value (135.1 Clause 4.4.1(b)).",
+      "properties": {
+        "kind": {
+          "const": "context-tagged",
+          "default": "context-tagged",
+          "title": "Kind",
+          "type": "string"
+        },
+        "tag": {
+          "title": "Tag",
+          "type": "integer"
+        },
+        "value": {
+          "discriminator": {
+            "mapping": {
+              "boolean": "#/$defs/BooleanValue",
+              "character-string": "#/$defs/CharacterStringValue",
+              "context-tagged": "#/$defs/ContextTaggedValue",
+              "date": "#/$defs/DateValue",
+              "date-range": "#/$defs/DateRangeValue",
+              "empty": "#/$defs/EmptyElement",
+              "enumerated": "#/$defs/EnumeratedValue",
+              "group": "#/$defs/GroupValue",
+              "integer": "#/$defs/IntegerValue",
+              "null": "#/$defs/NullValue",
+              "object-identifier": "#/$defs/ObjectIdentifierValue",
+              "octet-string": "#/$defs/OctetStringValue",
+              "real": "#/$defs/RealValue",
+              "time": "#/$defs/TimeValue",
+              "unspecified": "#/$defs/UnspecifiedValue",
+              "wildcard": "#/$defs/WildcardValue"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NullValue"
+            },
+            {
+              "$ref": "#/$defs/BooleanValue"
+            },
+            {
+              "$ref": "#/$defs/IntegerValue"
+            },
+            {
+              "$ref": "#/$defs/RealValue"
+            },
+            {
+              "$ref": "#/$defs/OctetStringValue"
+            },
+            {
+              "$ref": "#/$defs/CharacterStringValue"
+            },
+            {
+              "$ref": "#/$defs/EnumeratedValue"
+            },
+            {
+              "$ref": "#/$defs/DateValue"
+            },
+            {
+              "$ref": "#/$defs/TimeValue"
+            },
+            {
+              "$ref": "#/$defs/DateRangeValue"
+            },
+            {
+              "$ref": "#/$defs/ObjectIdentifierValue"
+            },
+            {
+              "$ref": "#/$defs/ContextTaggedValue"
+            },
+            {
+              "$ref": "#/$defs/GroupValue"
+            },
+            {
+              "$ref": "#/$defs/EmptyElement"
+            },
+            {
+              "$ref": "#/$defs/UnspecifiedValue"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "tag",
+        "value"
+      ],
+      "title": "ContextTaggedValue",
+      "type": "object"
+    },
+    "DateRangeValue": {
+      "additionalProperties": false,
+      "description": "An inclusive pair of date endpoints in calendar syntax (135.1 Clause 4.4 and 4.4.1).",
+      "properties": {
+        "kind": {
+          "const": "date-range",
+          "default": "date-range",
+          "title": "Kind",
+          "type": "string"
+        },
+        "start": {
+          "$ref": "#/$defs/DateValue"
+        },
+        "end": {
+          "$ref": "#/$defs/DateValue"
+        }
+      },
+      "required": [
+        "start",
+        "end"
+      ],
+      "title": "DateRangeValue",
+      "type": "object"
+    },
+    "DateValue": {
+      "additionalProperties": false,
+      "description": "Date fields with an optional weekday and independent wildcards (135.1 Clause 4.4(j)).",
+      "properties": {
+        "kind": {
+          "const": "date",
+          "default": "date",
+          "title": "Kind",
+          "type": "string"
+        },
+        "weekday": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Weekday"
+        },
+        "day": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Day"
+        },
+        "month": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Month"
+        },
+        "year": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Year"
+        },
+        "parenthesised": {
+          "default": true,
+          "title": "Parenthesised",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "day",
+        "month",
+        "year"
+      ],
+      "title": "DateValue",
+      "type": "object"
+    },
+    "DefaultRestrictions": {
+      "additionalProperties": false,
+      "description": "Defaults for the nine datatype keys in Clause 4.5.8.",
+      "properties": {
+        "unsigned-integer": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Unsigned defaults (4.5.8)."
+        },
+        "signed-integer": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Signed defaults (4.5.8)."
+        },
+        "real": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Real defaults (4.5.8)."
+        },
+        "double": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Double defaults (4.5.8)."
+        },
+        "date": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Date defaults (4.5.8)."
+        },
+        "octet-string": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Octet string defaults (4.5.8)."
+        },
+        "character-string": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Character string defaults (4.5.8)."
+        },
+        "list": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List defaults (4.5.8)."
+        },
+        "variable-length-array": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Variable array defaults (4.5.8)."
+        },
+        "extra": {
+          "additionalProperties": {
+            "$ref": "#/$defs/Restrictions"
+          },
+          "description": "Lenient unlisted datatype defaults (4.5.8).",
+          "title": "Extra",
+          "type": "object"
+        }
+      },
+      "title": "DefaultRestrictions",
+      "type": "object"
+    },
+    "Diagnostic": {
+      "additionalProperties": false,
+      "description": "A located finding with a standard clause reference (Clause 14).",
+      "properties": {
+        "code": {
+          "title": "Code",
+          "type": "string"
+        },
+        "severity": {
+          "$ref": "#/$defs/Severity"
+        },
+        "message": {
+          "title": "Message",
+          "type": "string"
+        },
+        "clause": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clause"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Line"
+        },
+        "column": {
+          "anyOf": [
+            {
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Column"
+        },
+        "section": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Section"
+        },
+        "object_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Object Id"
+        },
+        "property": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Property"
+        },
+        "caused_by": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Caused By",
+          "type": "array"
+        }
+      },
+      "required": [
+        "code",
+        "severity",
+        "message"
+      ],
+      "title": "Diagnostic",
+      "type": "object"
+    },
+    "EmptyElement": {
+      "additionalProperties": false,
+      "description": "An omitted positional field inside a generic constructed group (135.1 Clause 4.4 and\n4.4.1).",
+      "properties": {
+        "kind": {
+          "const": "empty",
+          "default": "empty",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "EmptyElement",
+      "type": "object"
+    },
+    "EnumeratedValue": {
+      "additionalProperties": false,
+      "description": "A normalized enumeration name and optional proprietary number (135.1 Clause 4.4(i)).",
+      "properties": {
+        "kind": {
+          "const": "enumerated",
+          "default": "enumerated",
+          "title": "Kind",
+          "type": "string"
+        },
+        "name": {
+          "$ref": "#/$defs/NamedToken"
+        },
+        "proprietary_number": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Proprietary Number"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "EnumeratedValue",
+      "type": "object"
+    },
+    "FailTimes": {
+      "additionalProperties": false,
+      "description": "Optional nonnegative seconds; completeness belongs to parsing mode (4.5.9).",
+      "properties": {
+        "Notification Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Notification fail time (4.5.9).",
+          "title": "Notification Fail Time"
+        },
+        "Internal Processing Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Internal processing fail time (4.5.9).",
+          "title": "Internal Processing Fail Time"
+        },
+        "Minimum ON/OFF Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimum on/off time (4.5.9).",
+          "title": "Minimum On/Off Time"
+        },
+        "Schedule Evaluation Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Schedule evaluation fail time (4.5.9).",
+          "title": "Schedule Evaluation Fail Time"
+        },
+        "External Command Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "External command fail time (4.5.9).",
+          "title": "External Command Fail Time"
+        },
+        "Program Object State Change Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Program state change fail time (4.5.9).",
+          "title": "Program Object State Change Fail Time"
+        },
+        "Acknowledgement Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Acknowledgement fail time (4.5.9, 6.3).",
+          "title": "Acknowledgement Fail Time"
+        },
+        "Subordinate Proxy Confirm Interval": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Subordinate proxy confirmation interval (4.5.9).",
+          "title": "Subordinate Proxy Confirm Interval"
+        },
+        "Unconfirmed Response Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Unconfirmed response fail time (4.5.9).",
+          "title": "Unconfirmed Response Fail Time"
+        },
+        "Channel Write Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Channel write fail time (4.5.9).",
+          "title": "Channel Write Fail Time"
+        },
+        "Auto Negotiation Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Autonegotiation fail time (4.5.9, 6.3).",
+          "title": "Auto Negotiation Fail Time"
+        },
+        "Activate Changes Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Activate changes fail time (4.5.9).",
+          "title": "Activate Changes Fail Time"
+        },
+        "Foreign Device Registration Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Foreign device registration fail time (4.5.9).",
+          "title": "Foreign Device Registration Fail Time"
+        },
+        "Audit Notification Forwarder Fail Time": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Audit notification forwarder fail time (6.3.14).",
+          "title": "Audit Notification Forwarder Fail Time"
+        },
+        "extra": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "description": "Unrecognized lenient timers (4.5.9).",
+          "title": "Extra",
+          "type": "object"
+        }
+      },
+      "title": "FailTimes",
+      "type": "object"
+    },
+    "GeneralInformation": {
+      "additionalProperties": false,
+      "description": "Unbounded vendor and product strings (Clause 4.5.1).",
+      "properties": {
+        "Vendor Name": {
+          "description": "Vendor name (4.5.1).",
+          "title": "Vendor Name",
+          "type": "string"
+        },
+        "Product Name": {
+          "description": "Product name (4.5.1).",
+          "title": "Product Name",
+          "type": "string"
+        },
+        "Product Model Number": {
+          "description": "Product model (4.5.1).",
+          "title": "Product Model Number",
+          "type": "string"
+        },
+        "Product Description": {
+          "description": "Description (4.5.1).",
+          "title": "Product Description",
+          "type": "string"
+        }
+      },
+      "required": [
+        "Vendor Name",
+        "Product Name",
+        "Product Model Number",
+        "Product Description"
+      ],
+      "title": "GeneralInformation",
+      "type": "object"
+    },
+    "GroupValue": {
+      "additionalProperties": false,
+      "description": "A generic parenthesis or brace group with positional elements (135.1 Clause 4.4(m) and\n4.4.1(c)-(d)).",
+      "properties": {
+        "kind": {
+          "const": "group",
+          "default": "group",
+          "title": "Kind",
+          "type": "string"
+        },
+        "delimiter": {
+          "enum": [
+            "{",
+            "("
+          ],
+          "title": "Delimiter",
+          "type": "string"
+        },
+        "elements": {
+          "items": {
+            "discriminator": {
+              "mapping": {
+                "boolean": "#/$defs/BooleanValue",
+                "character-string": "#/$defs/CharacterStringValue",
+                "context-tagged": "#/$defs/ContextTaggedValue",
+                "date": "#/$defs/DateValue",
+                "date-range": "#/$defs/DateRangeValue",
+                "empty": "#/$defs/EmptyElement",
+                "enumerated": "#/$defs/EnumeratedValue",
+                "group": "#/$defs/GroupValue",
+                "integer": "#/$defs/IntegerValue",
+                "null": "#/$defs/NullValue",
+                "object-identifier": "#/$defs/ObjectIdentifierValue",
+                "octet-string": "#/$defs/OctetStringValue",
+                "real": "#/$defs/RealValue",
+                "time": "#/$defs/TimeValue",
+                "unspecified": "#/$defs/UnspecifiedValue",
+                "wildcard": "#/$defs/WildcardValue"
+              },
+              "propertyName": "kind"
+            },
+            "oneOf": [
+              {
+                "$ref": "#/$defs/NullValue"
+              },
+              {
+                "$ref": "#/$defs/BooleanValue"
+              },
+              {
+                "$ref": "#/$defs/IntegerValue"
+              },
+              {
+                "$ref": "#/$defs/RealValue"
+              },
+              {
+                "$ref": "#/$defs/OctetStringValue"
+              },
+              {
+                "$ref": "#/$defs/CharacterStringValue"
+              },
+              {
+                "$ref": "#/$defs/EnumeratedValue"
+              },
+              {
+                "$ref": "#/$defs/DateValue"
+              },
+              {
+                "$ref": "#/$defs/TimeValue"
+              },
+              {
+                "$ref": "#/$defs/DateRangeValue"
+              },
+              {
+                "$ref": "#/$defs/ObjectIdentifierValue"
+              },
+              {
+                "$ref": "#/$defs/ContextTaggedValue"
+              },
+              {
+                "$ref": "#/$defs/GroupValue"
+              },
+              {
+                "$ref": "#/$defs/EmptyElement"
+              },
+              {
+                "$ref": "#/$defs/UnspecifiedValue"
+              },
+              {
+                "$ref": "#/$defs/WildcardValue"
+              }
+            ]
+          },
+          "title": "Elements",
+          "type": "array"
+        },
+        "trailing_comma": {
+          "default": false,
+          "title": "Trailing Comma",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "delimiter"
+      ],
+      "title": "GroupValue",
+      "type": "object"
+    },
+    "IntegerValue": {
+      "additionalProperties": false,
+      "description": "A signed or unsigned integer in untyped EPICS syntax (135.1 Clause 4.4(d)).",
+      "properties": {
+        "kind": {
+          "const": "integer",
+          "default": "integer",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "title": "Value",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "IntegerValue",
+      "type": "object"
+    },
+    "Iso8802_3": {
+      "additionalProperties": false,
+      "description": "ISO 8802-3 media literals (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "iso8802-3",
+          "default": "iso8802-3",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "media": {
+          "description": "Media (4.5.5).",
+          "enum": [
+            "10BASE5",
+            "10BASE2",
+            "10BASET",
+            "fiber"
+          ],
+          "title": "Media",
+          "type": "string"
+        }
+      },
+      "required": [
+        "media"
+      ],
+      "title": "Iso8802_3",
+      "type": "object"
+    },
+    "MsTp": {
+      "additionalProperties": false,
+      "description": "MS/TP manager or subordinate with supported baud rates (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "ms-tp",
+          "default": "ms-tp",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "role": {
+          "description": "Role (4.5.5).",
+          "enum": [
+            "manager",
+            "subordinate"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "baud_rates": {
+          "description": "Baud rates (4.5.5).",
+          "items": {
+            "type": "integer"
+          },
+          "minItems": 1,
+          "title": "Baud Rates",
+          "type": "array"
+        }
+      },
+      "required": [
+        "role",
+        "baud_rates"
+      ],
+      "title": "MsTp",
+      "type": "object"
+    },
+    "NamedToken": {
+      "additionalProperties": false,
+      "description": "A hashable canonical name and its original spelling (Clause 4.4i).",
+      "properties": {
+        "canonical": {
+          "description": "Normalized token (4.4i).",
+          "title": "Canonical",
+          "type": "string"
+        },
+        "raw": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Source token spelling (4.4i).",
+          "title": "Raw"
+        }
+      },
+      "required": [
+        "canonical"
+      ],
+      "title": "NamedToken",
+      "type": "object"
+    },
+    "NullValue": {
+      "additionalProperties": false,
+      "description": "A null application value (135.1 Clause 4.4(b)).",
+      "properties": {
+        "kind": {
+          "const": "null",
+          "default": "null",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "NullValue",
+      "type": "object"
+    },
+    "ObjectIdentifier": {
+      "additionalProperties": false,
+      "description": "An object type and its 22-bit instance number (4.4l, 4.5.10).",
+      "properties": {
+        "object_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NamedToken"
+            },
+            {
+              "minimum": 128,
+              "type": "integer"
+            }
+          ],
+          "description": "Standard name or proprietary number (4.4l).",
+          "title": "Object Type"
+        },
+        "instance": {
+          "description": "22-bit instance (4.4l).",
+          "maximum": 4194303,
+          "minimum": 0,
+          "title": "Instance",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "object_type",
+        "instance"
+      ],
+      "title": "ObjectIdentifier",
+      "type": "object"
+    },
+    "ObjectIdentifierValue": {
+      "additionalProperties": false,
+      "description": "An object type token or proprietary number with its instance (135.1 Clause 4.4(l)).",
+      "properties": {
+        "kind": {
+          "const": "object-identifier",
+          "default": "object-identifier",
+          "title": "Kind",
+          "type": "string"
+        },
+        "object_type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NamedToken"
+            },
+            {
+              "type": "integer"
+            }
+          ],
+          "title": "Object Type"
+        },
+        "instance": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Instance"
+        }
+      },
+      "required": [
+        "object_type",
+        "instance"
+      ],
+      "title": "ObjectIdentifierValue",
+      "type": "object"
+    },
+    "ObjectTypeSupport": {
+      "additionalProperties": false,
+      "description": "An object-type declaration and dynamic creation flags (4.5.4).",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/NamedToken",
+          "description": "Object type name (4.5.4)."
+        },
+        "Createable": {
+          "default": false,
+          "description": "Dynamic creation (4.5.4, D18).",
+          "title": "Createable",
+          "type": "boolean"
+        },
+        "Deleteable": {
+          "default": false,
+          "description": "Dynamic deletion (4.5.4).",
+          "title": "Deleteable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ObjectTypeSupport",
+      "type": "object"
+    },
+    "OctetStringValue": {
+      "additionalProperties": false,
+      "description": "Raw octets with odd-length recovery metadata (135.1 Clause 4.4(f)).",
+      "properties": {
+        "kind": {
+          "const": "octet-string",
+          "default": "octet-string",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "format": "binary",
+          "title": "Value",
+          "type": "string"
+        },
+        "odd_length": {
+          "default": false,
+          "title": "Odd Length",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "OctetStringValue",
+      "type": "object"
+    },
+    "Other": {
+      "additionalProperties": false,
+      "description": "Other media with optional lenient descriptive text (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "other",
+          "default": "other",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "text": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Text (4.5.5).",
+          "title": "Text"
+        }
+      },
+      "title": "Other",
+      "type": "object"
+    },
+    "PicsHeader": {
+      "additionalProperties": false,
+      "description": "The PICS encoding selector (Clause 4.1).",
+      "properties": {
+        "PICS": {
+          "default": 0,
+          "description": "Encoding selector (4.1).",
+          "enum": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "title": "Pics",
+          "type": "integer"
+        }
+      },
+      "title": "PicsHeader",
+      "type": "object"
+    },
+    "PointToPoint": {
+      "additionalProperties": false,
+      "description": "Point-To-Point with one baud-rate declaration form (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "point-to-point",
+          "default": "point-to-point",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        },
+        "medium": {
+          "description": "Medium (4.5.5).",
+          "enum": [
+            "EIA 232",
+            "Modem"
+          ],
+          "title": "Medium",
+          "type": "string"
+        },
+        "baud_rates": {
+          "anyOf": [
+            {
+              "items": {
+                "type": "integer"
+              },
+              "minItems": 1,
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Baud rates (4.5.5).",
+          "title": "Baud Rates"
+        },
+        "autobaud": {
+          "anyOf": [
+            {
+              "maxItems": 2,
+              "minItems": 2,
+              "prefixItems": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ],
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Autobaud (4.5.5).",
+          "title": "Autobaud"
+        }
+      },
+      "required": [
+        "medium"
+      ],
+      "title": "PointToPoint",
+      "type": "object"
+    },
+    "PropertyEntry": {
+      "additionalProperties": false,
+      "description": "A value, access declaration, restrictions, and optional comment (4.5.10).",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/NamedToken",
+          "description": "Property name (4.5.10)."
+        },
+        "value": {
+          "description": "Property value node (4.4, 4.5.10).",
+          "discriminator": {
+            "mapping": {
+              "boolean": "#/$defs/BooleanValue",
+              "character-string": "#/$defs/CharacterStringValue",
+              "context-tagged": "#/$defs/ContextTaggedValue",
+              "date": "#/$defs/DateValue",
+              "date-range": "#/$defs/DateRangeValue",
+              "empty": "#/$defs/EmptyElement",
+              "enumerated": "#/$defs/EnumeratedValue",
+              "group": "#/$defs/GroupValue",
+              "integer": "#/$defs/IntegerValue",
+              "null": "#/$defs/NullValue",
+              "object-identifier": "#/$defs/ObjectIdentifierValue",
+              "octet-string": "#/$defs/OctetStringValue",
+              "real": "#/$defs/RealValue",
+              "time": "#/$defs/TimeValue",
+              "unspecified": "#/$defs/UnspecifiedValue",
+              "wildcard": "#/$defs/WildcardValue"
+            },
+            "propertyName": "kind"
+          },
+          "oneOf": [
+            {
+              "$ref": "#/$defs/NullValue"
+            },
+            {
+              "$ref": "#/$defs/BooleanValue"
+            },
+            {
+              "$ref": "#/$defs/IntegerValue"
+            },
+            {
+              "$ref": "#/$defs/RealValue"
+            },
+            {
+              "$ref": "#/$defs/OctetStringValue"
+            },
+            {
+              "$ref": "#/$defs/CharacterStringValue"
+            },
+            {
+              "$ref": "#/$defs/EnumeratedValue"
+            },
+            {
+              "$ref": "#/$defs/DateValue"
+            },
+            {
+              "$ref": "#/$defs/TimeValue"
+            },
+            {
+              "$ref": "#/$defs/DateRangeValue"
+            },
+            {
+              "$ref": "#/$defs/ObjectIdentifierValue"
+            },
+            {
+              "$ref": "#/$defs/ContextTaggedValue"
+            },
+            {
+              "$ref": "#/$defs/GroupValue"
+            },
+            {
+              "$ref": "#/$defs/EmptyElement"
+            },
+            {
+              "$ref": "#/$defs/UnspecifiedValue"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            }
+          ],
+          "title": "Value"
+        },
+        "access": {
+          "$ref": "#/$defs/Access",
+          "default": "R",
+          "description": "Writable or conditionally writable marker (4.5.10)."
+        },
+        "restrictions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Instance restrictions (4.4.2)."
+        },
+        "comment": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Trailing comment (4.3).",
+          "title": "Comment"
+        },
+        "not_readable": {
+          "default": false,
+          "description": "Unavailable through ReadProperty; extension marker (7.1.1).",
+          "title": "Not Readable",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name",
+        "value"
+      ],
+      "title": "PropertyEntry",
+      "type": "object"
+    },
+    "PropertyMetadata": {
+      "additionalProperties": false,
+      "description": "Non-value property declarations, including object headers (Clause 4.5.10).",
+      "properties": {
+        "access": {
+          "$ref": "#/$defs/Access",
+          "default": "R",
+          "description": "Access marker (4.5.10)."
+        },
+        "restrictions": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Restrictions"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Instance restrictions (4.4.2)."
+        },
+        "comment": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Trailing comment (4.3).",
+          "title": "Comment"
+        },
+        "not_readable": {
+          "default": false,
+          "description": "ReadProperty extension marker (7.1.1).",
+          "title": "Not Readable",
+          "type": "boolean"
+        }
+      },
+      "title": "PropertyMetadata",
+      "type": "object"
+    },
+    "RealValue": {
+      "additionalProperties": false,
+      "description": "A finite decimal value with the original numeric text retained (135.1 Clause 4.4(e)).",
+      "properties": {
+        "kind": {
+          "const": "real",
+          "default": "real",
+          "title": "Kind",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "string"
+            }
+          ],
+          "title": "Value"
+        },
+        "text": {
+          "default": "",
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ],
+      "title": "RealValue",
+      "type": "object"
+    },
+    "Restrictions": {
+      "additionalProperties": false,
+      "description": "Restriction values retain their precise value-node datatype (4.4.2).",
+      "properties": {
+        "minimum": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "boolean": "#/$defs/BooleanValue",
+                  "character-string": "#/$defs/CharacterStringValue",
+                  "context-tagged": "#/$defs/ContextTaggedValue",
+                  "date": "#/$defs/DateValue",
+                  "date-range": "#/$defs/DateRangeValue",
+                  "empty": "#/$defs/EmptyElement",
+                  "enumerated": "#/$defs/EnumeratedValue",
+                  "group": "#/$defs/GroupValue",
+                  "integer": "#/$defs/IntegerValue",
+                  "null": "#/$defs/NullValue",
+                  "object-identifier": "#/$defs/ObjectIdentifierValue",
+                  "octet-string": "#/$defs/OctetStringValue",
+                  "real": "#/$defs/RealValue",
+                  "time": "#/$defs/TimeValue",
+                  "unspecified": "#/$defs/UnspecifiedValue",
+                  "wildcard": "#/$defs/WildcardValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/NullValue"
+                },
+                {
+                  "$ref": "#/$defs/BooleanValue"
+                },
+                {
+                  "$ref": "#/$defs/IntegerValue"
+                },
+                {
+                  "$ref": "#/$defs/RealValue"
+                },
+                {
+                  "$ref": "#/$defs/OctetStringValue"
+                },
+                {
+                  "$ref": "#/$defs/CharacterStringValue"
+                },
+                {
+                  "$ref": "#/$defs/EnumeratedValue"
+                },
+                {
+                  "$ref": "#/$defs/DateValue"
+                },
+                {
+                  "$ref": "#/$defs/TimeValue"
+                },
+                {
+                  "$ref": "#/$defs/DateRangeValue"
+                },
+                {
+                  "$ref": "#/$defs/ObjectIdentifierValue"
+                },
+                {
+                  "$ref": "#/$defs/ContextTaggedValue"
+                },
+                {
+                  "$ref": "#/$defs/GroupValue"
+                },
+                {
+                  "$ref": "#/$defs/EmptyElement"
+                },
+                {
+                  "$ref": "#/$defs/UnspecifiedValue"
+                },
+                {
+                  "$ref": "#/$defs/WildcardValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Minimum writable value (4.4.2).",
+          "title": "Minimum"
+        },
+        "maximum": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "boolean": "#/$defs/BooleanValue",
+                  "character-string": "#/$defs/CharacterStringValue",
+                  "context-tagged": "#/$defs/ContextTaggedValue",
+                  "date": "#/$defs/DateValue",
+                  "date-range": "#/$defs/DateRangeValue",
+                  "empty": "#/$defs/EmptyElement",
+                  "enumerated": "#/$defs/EnumeratedValue",
+                  "group": "#/$defs/GroupValue",
+                  "integer": "#/$defs/IntegerValue",
+                  "null": "#/$defs/NullValue",
+                  "object-identifier": "#/$defs/ObjectIdentifierValue",
+                  "octet-string": "#/$defs/OctetStringValue",
+                  "real": "#/$defs/RealValue",
+                  "time": "#/$defs/TimeValue",
+                  "unspecified": "#/$defs/UnspecifiedValue",
+                  "wildcard": "#/$defs/WildcardValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/NullValue"
+                },
+                {
+                  "$ref": "#/$defs/BooleanValue"
+                },
+                {
+                  "$ref": "#/$defs/IntegerValue"
+                },
+                {
+                  "$ref": "#/$defs/RealValue"
+                },
+                {
+                  "$ref": "#/$defs/OctetStringValue"
+                },
+                {
+                  "$ref": "#/$defs/CharacterStringValue"
+                },
+                {
+                  "$ref": "#/$defs/EnumeratedValue"
+                },
+                {
+                  "$ref": "#/$defs/DateValue"
+                },
+                {
+                  "$ref": "#/$defs/TimeValue"
+                },
+                {
+                  "$ref": "#/$defs/DateRangeValue"
+                },
+                {
+                  "$ref": "#/$defs/ObjectIdentifierValue"
+                },
+                {
+                  "$ref": "#/$defs/ContextTaggedValue"
+                },
+                {
+                  "$ref": "#/$defs/GroupValue"
+                },
+                {
+                  "$ref": "#/$defs/EmptyElement"
+                },
+                {
+                  "$ref": "#/$defs/UnspecifiedValue"
+                },
+                {
+                  "$ref": "#/$defs/WildcardValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Maximum writable value (4.4.2).",
+          "title": "Maximum"
+        },
+        "resolution": {
+          "anyOf": [
+            {
+              "discriminator": {
+                "mapping": {
+                  "boolean": "#/$defs/BooleanValue",
+                  "character-string": "#/$defs/CharacterStringValue",
+                  "context-tagged": "#/$defs/ContextTaggedValue",
+                  "date": "#/$defs/DateValue",
+                  "date-range": "#/$defs/DateRangeValue",
+                  "empty": "#/$defs/EmptyElement",
+                  "enumerated": "#/$defs/EnumeratedValue",
+                  "group": "#/$defs/GroupValue",
+                  "integer": "#/$defs/IntegerValue",
+                  "null": "#/$defs/NullValue",
+                  "object-identifier": "#/$defs/ObjectIdentifierValue",
+                  "octet-string": "#/$defs/OctetStringValue",
+                  "real": "#/$defs/RealValue",
+                  "time": "#/$defs/TimeValue",
+                  "unspecified": "#/$defs/UnspecifiedValue",
+                  "wildcard": "#/$defs/WildcardValue"
+                },
+                "propertyName": "kind"
+              },
+              "oneOf": [
+                {
+                  "$ref": "#/$defs/NullValue"
+                },
+                {
+                  "$ref": "#/$defs/BooleanValue"
+                },
+                {
+                  "$ref": "#/$defs/IntegerValue"
+                },
+                {
+                  "$ref": "#/$defs/RealValue"
+                },
+                {
+                  "$ref": "#/$defs/OctetStringValue"
+                },
+                {
+                  "$ref": "#/$defs/CharacterStringValue"
+                },
+                {
+                  "$ref": "#/$defs/EnumeratedValue"
+                },
+                {
+                  "$ref": "#/$defs/DateValue"
+                },
+                {
+                  "$ref": "#/$defs/TimeValue"
+                },
+                {
+                  "$ref": "#/$defs/DateRangeValue"
+                },
+                {
+                  "$ref": "#/$defs/ObjectIdentifierValue"
+                },
+                {
+                  "$ref": "#/$defs/ContextTaggedValue"
+                },
+                {
+                  "$ref": "#/$defs/GroupValue"
+                },
+                {
+                  "$ref": "#/$defs/EmptyElement"
+                },
+                {
+                  "$ref": "#/$defs/UnspecifiedValue"
+                },
+                {
+                  "$ref": "#/$defs/WildcardValue"
+                }
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Writable resolution (4.4.2).",
+          "title": "Resolution"
+        },
+        "maximum length string": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "String length limit (4.4.2).",
+          "title": "Maximum Length String"
+        },
+        "maximum length list": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "List length limit (4.4.2).",
+          "title": "Maximum Length List"
+        },
+        "maximum length array": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Array length limit (4.4.2).",
+          "title": "Maximum Length Array"
+        },
+        "allowed values": {
+          "anyOf": [
+            {
+              "items": {
+                "$ref": "#/$defs/NamedToken"
+              },
+              "type": "array"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Allowed enumeration names (4.4.2).",
+          "title": "Allowed Values"
+        }
+      },
+      "title": "Restrictions",
+      "type": "object"
+    },
+    "ServiceSupport": {
+      "additionalProperties": false,
+      "description": "A service with at least one declared direction (4.5.3).",
+      "properties": {
+        "name": {
+          "$ref": "#/$defs/NamedToken",
+          "description": "Service name (4.5.3)."
+        },
+        "Initiate": {
+          "default": false,
+          "description": "Initiates service (4.5.3).",
+          "title": "Initiate",
+          "type": "boolean"
+        },
+        "Execute": {
+          "default": false,
+          "description": "Executes service (4.5.3).",
+          "title": "Execute",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "title": "ServiceSupport",
+      "type": "object"
+    },
+    "Severity": {
+      "description": "Severity of a finding; SKIPPED denotes unavailable Clause 5 knowledge.",
+      "enum": [
+        "error",
+        "warning",
+        "info",
+        "skipped"
+      ],
+      "title": "Severity",
+      "type": "string"
+    },
+    "SourceInfo": {
+      "additionalProperties": false,
+      "description": "Optional origin metadata; reading files is outside the model (Clause 4).",
+      "properties": {
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Input location (Clause 4).",
+          "title": "Path"
+        },
+        "encoding": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Decoded input encoding (4.1).",
+          "title": "Encoding"
+        },
+        "mode": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Parser mode (D1).",
+          "title": "Mode"
+        },
+        "raw": {
+          "additionalProperties": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "description": "Unrecognized lenient source entries (4.5).",
+          "title": "Raw",
+          "type": "object"
+        }
+      },
+      "title": "SourceInfo",
+      "type": "object"
+    },
+    "SpecialFunctionality": {
+      "additionalProperties": false,
+      "description": "Optional numeric parameters and feature declarations (4.5.7).",
+      "properties": {
+        "Maximum APDU size in octets": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Maximum APDU length (4.5.7).",
+          "title": "Maximum Apdu Size In Octets"
+        },
+        "Segmented Requests Supported, window size": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Request segmentation window (4.5.7).",
+          "title": "Segmented Requests Supported, Window Size"
+        },
+        "Segmented Responses Supported, window size": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "description": "Response segmentation window (4.5.7).",
+          "title": "Segmented Responses Supported, Window Size"
+        },
+        "Router": {
+          "default": false,
+          "description": "Routing support (4.5.7).",
+          "title": "Router",
+          "type": "boolean"
+        },
+        "BACnet/IP BBMD": {
+          "default": false,
+          "description": "IPv4 BBMD (4.5.7).",
+          "title": "Bacnet/Ip Bbmd",
+          "type": "boolean"
+        },
+        "BACnet/IPV6 BBMD": {
+          "default": false,
+          "description": "IPv6 BBMD (4.5.7).",
+          "title": "Bacnet/Ipv6 Bbmd",
+          "type": "boolean"
+        },
+        "BACnet/SC Hub": {
+          "default": false,
+          "description": "SC hub (4.5.7).",
+          "title": "Bacnet/Sc Hub",
+          "type": "boolean"
+        },
+        "BACnet/SC Direct Connect": {
+          "default": false,
+          "description": "SC direct connections (4.5.7).",
+          "title": "Bacnet/Sc Direct Connect",
+          "type": "boolean"
+        },
+        "unknown": {
+          "description": "Unrecognized lenient input (4.5.7).",
+          "items": {
+            "type": "string"
+          },
+          "title": "Unknown",
+          "type": "array"
+        }
+      },
+      "title": "SpecialFunctionality",
+      "type": "object"
+    },
+    "TestObject": {
+      "additionalProperties": false,
+      "description": "The three object headers and ordered subsequent properties (4.5.10).",
+      "properties": {
+        "object-identifier": {
+          "$ref": "#/$defs/ObjectIdentifier",
+          "description": "Object identifier header (4.5.10)."
+        },
+        "object-name": {
+          "description": "Object name header (4.5.10).",
+          "title": "Object-Name",
+          "type": "string"
+        },
+        "object-type": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/NamedToken"
+            },
+            {
+              "minimum": 128,
+              "type": "integer"
+            }
+          ],
+          "description": "Object type header (4.5.10).",
+          "title": "Object-Type"
+        },
+        "header_metadata": {
+          "additionalProperties": {
+            "$ref": "#/$defs/PropertyMetadata"
+          },
+          "description": "Nondefault metadata for the three object headers (4.5.10).",
+          "title": "Header Metadata",
+          "type": "object"
+        },
+        "properties": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/PropertyEntry"
+          },
+          "description": "Ordered properties after headers (4.5.10).",
+          "title": "Properties"
+        }
+      },
+      "required": [
+        "object-identifier",
+        "object-name",
+        "object-type"
+      ],
+      "title": "TestObject",
+      "type": "object"
+    },
+    "TimeValue": {
+      "additionalProperties": false,
+      "description": "Time fields and their original fractional precision (135.1 Clause 4.4(k)).",
+      "properties": {
+        "kind": {
+          "const": "time",
+          "default": "time",
+          "title": "Kind",
+          "type": "string"
+        },
+        "hour": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hour"
+        },
+        "minute": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Minute"
+        },
+        "second": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0,
+          "title": "Second"
+        },
+        "hundredth": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "$ref": "#/$defs/WildcardValue"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0,
+          "title": "Hundredth"
+        },
+        "precision": {
+          "default": 2,
+          "title": "Precision",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "hour",
+        "minute"
+      ],
+      "title": "TimeValue",
+      "type": "object"
+    },
+    "UnspecifiedValue": {
+      "additionalProperties": false,
+      "description": "An unspecified property or bit value denoted by a question mark (135.1 Clause 4.4 and\n4.4.1).",
+      "properties": {
+        "kind": {
+          "const": "unspecified",
+          "default": "unspecified",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "UnspecifiedValue",
+      "type": "object"
+    },
+    "WildcardValue": {
+      "additionalProperties": false,
+      "description": "An asterisk wildcard, standalone or in a date/time field (135.1 Clause 4.4 and 4.4.1).",
+      "properties": {
+        "kind": {
+          "const": "wildcard",
+          "default": "wildcard",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "WildcardValue",
+      "type": "object"
+    },
+    "Zigbee": {
+      "additionalProperties": false,
+      "description": "Zigbee literal (4.5.5).",
+      "properties": {
+        "kind": {
+          "const": "zigbee",
+          "default": "zigbee",
+          "description": "Kind (4.5.5).",
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "title": "Zigbee",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Every section in printed order with nonserialized diagnostics (Clause 4.5).",
+  "properties": {
+    "header": {
+      "$ref": "#/$defs/PicsHeader",
+      "description": "PICS header (4.1)."
+    },
+    "General Information": {
+      "$ref": "#/$defs/GeneralInformation",
+      "description": "Product information (4.5.1)."
+    },
+    "BIBBs Supported": {
+      "description": "BIBB declarations (4.5.2).",
+      "items": {
+        "$ref": "#/$defs/Bibb"
+      },
+      "title": "Bibbs Supported",
+      "type": "array"
+    },
+    "BACnet Standard Application Services Supported": {
+      "description": "Services (4.5.3).",
+      "items": {
+        "$ref": "#/$defs/ServiceSupport"
+      },
+      "title": "Bacnet Standard Application Services Supported",
+      "type": "array"
+    },
+    "Standard Object Types Supported": {
+      "description": "Object types (4.5.4).",
+      "items": {
+        "$ref": "#/$defs/ObjectTypeSupport"
+      },
+      "title": "Standard Object Types Supported",
+      "type": "array"
+    },
+    "Data Link Layer Option": {
+      "description": "Data links (4.5.5).",
+      "items": {
+        "discriminator": {
+          "mapping": {
+            "arcnet": "#/$defs/Arcnet",
+            "bacnet-ip": "#/$defs/BacnetIp",
+            "bacnet-ipv6": "#/$defs/BacnetIpv6",
+            "bacnet-sc": "#/$defs/BacnetSc",
+            "iso8802-3": "#/$defs/Iso8802_3",
+            "ms-tp": "#/$defs/MsTp",
+            "other": "#/$defs/Other",
+            "point-to-point": "#/$defs/PointToPoint",
+            "zigbee": "#/$defs/Zigbee"
+          },
+          "propertyName": "kind"
+        },
+        "oneOf": [
+          {
+            "$ref": "#/$defs/Iso8802_3"
+          },
+          {
+            "$ref": "#/$defs/Arcnet"
+          },
+          {
+            "$ref": "#/$defs/MsTp"
+          },
+          {
+            "$ref": "#/$defs/PointToPoint"
+          },
+          {
+            "$ref": "#/$defs/BacnetIp"
+          },
+          {
+            "$ref": "#/$defs/BacnetIpv6"
+          },
+          {
+            "$ref": "#/$defs/BacnetSc"
+          },
+          {
+            "$ref": "#/$defs/Zigbee"
+          },
+          {
+            "$ref": "#/$defs/Other"
+          }
+        ]
+      },
+      "title": "Data Link Layer Option",
+      "type": "array"
+    },
+    "Character Sets Supported": {
+      "description": "Supported character sets (4.5.6).",
+      "items": {
+        "$ref": "#/$defs/CharacterSet"
+      },
+      "title": "Character Sets Supported",
+      "type": "array"
+    },
+    "Special Functionality": {
+      "$ref": "#/$defs/SpecialFunctionality",
+      "description": "Special features (4.5.7)."
+    },
+    "Default Property Value Restrictions": {
+      "$ref": "#/$defs/DefaultRestrictions",
+      "description": "Datatype defaults (4.5.8)."
+    },
+    "Fail Times": {
+      "$ref": "#/$defs/FailTimes",
+      "description": "Timer declarations (4.5.9)."
+    },
+    "List of Objects in Test Device": {
+      "description": "Test database (4.5.10).",
+      "items": {
+        "$ref": "#/$defs/TestObject"
+      },
+      "title": "List Of Objects In Test Device",
+      "type": "array"
+    },
+    "diagnostics": {
+      "description": "Nonserialized warnings and errors (14).",
+      "items": {
+        "$ref": "#/$defs/Diagnostic"
+      },
+      "title": "Diagnostics",
+      "type": "array"
+    },
+    "source": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SourceInfo"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "description": "Input origin metadata (Clause 4)."
+    }
+  },
+  "required": [
+    "General Information"
+  ],
+  "title": "EpicsDocument",
+  "type": "object"
+}

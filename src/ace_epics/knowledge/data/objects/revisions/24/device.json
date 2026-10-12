@@ -1,0 +1,1379 @@
+{
+  "source": "ASHRAE 135-2024",
+  "clause": "12.11",
+  "table": "12-13",
+  "object_type": "device",
+  "revision": 24,
+  "coverage_min_revision": 24,
+  "properties": {
+    "object-identifier": {
+      "requirement": "required",
+      "datatype": "BACnetObjectIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "object-name": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min_length": 1
+      }
+    },
+    "object-type": {
+      "requirement": "required",
+      "datatype": "BACnetObjectType",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "system-status": {
+      "requirement": "required",
+      "datatype": "BACnetDeviceStatus",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "vendor-name": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "vendor-identifier": {
+      "requirement": "required",
+      "datatype": "Unsigned16",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true,
+      "range": {
+        "min": 0,
+        "max": 65535
+      }
+    },
+    "model-name": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "firmware-revision": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "application-software-version": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "location": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "description": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "protocol-version": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min": 0
+      }
+    },
+    "protocol-revision": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min": 0
+      },
+      "introduced_rev": 1
+    },
+    "protocol-services-supported": {
+      "requirement": "required",
+      "datatype": "BACnetServicesSupported",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "protocol-object-types-supported": {
+      "requirement": "required",
+      "datatype": "BACnetObjectTypesSupported",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "object-list": {
+      "requirement": "required",
+      "datatype": "BACnetARRAY[N] of BACnetObjectIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "structured-object-list": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[N] of BACnetObjectIdentifier",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "max-apdu-length-accepted": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min": 0
+      }
+    },
+    "segmentation-supported": {
+      "requirement": "required",
+      "datatype": "BACnetSegmentation",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "max-segments-accepted": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O1",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "segmentation"
+        },
+        {
+          "kind": "only_if",
+          "feature": "segmentation"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "vt-classes-supported": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetVTClass",
+      "access": "R",
+      "conformance_code": "O2",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "vt-services"
+        },
+        {
+          "kind": "only_if",
+          "feature": "vt-services"
+        }
+      ]
+    },
+    "active-vt-sessions": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetVTSession",
+      "access": "R",
+      "conformance_code": "O2",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "vt-services"
+        },
+        {
+          "kind": "only_if",
+          "feature": "vt-services"
+        }
+      ],
+      "read_only": true
+    },
+    "local-time": {
+      "requirement": "conditional",
+      "datatype": "Time",
+      "access": "R",
+      "conformance_code": "O3,4,12",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "service": "time-synchronization",
+          "direction": "execute"
+        },
+        {
+          "kind": "required_if",
+          "service": "utc-time-synchronization",
+          "direction": "execute"
+        },
+        {
+          "kind": "required_if",
+          "feature": "date-time-tracking"
+        }
+      ]
+    },
+    "local-date": {
+      "requirement": "conditional",
+      "datatype": "Date",
+      "access": "R",
+      "conformance_code": "O3,4,12",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "service": "time-synchronization",
+          "direction": "execute"
+        },
+        {
+          "kind": "required_if",
+          "service": "utc-time-synchronization",
+          "direction": "execute"
+        },
+        {
+          "kind": "required_if",
+          "feature": "date-time-tracking"
+        }
+      ]
+    },
+    "utc-offset": {
+      "requirement": "conditional",
+      "datatype": "Integer",
+      "access": "R",
+      "conformance_code": "O4",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "service": "utc-time-synchronization",
+          "direction": "execute"
+        }
+      ],
+      "range": {
+        "min": -1440,
+        "max": 1440
+      },
+      "min_range": {
+        "min": -1440,
+        "max": 1440,
+        "step": 15
+      },
+      "range_evidence": {
+        "source": "ASHRAE Addendum 135-2012bg",
+        "revision": 18,
+        "section": "bg-6, Clause12.11.25",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012bg.pdf"
+      },
+      "source_datatype": "INTEGER",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "daylight-savings-status": {
+      "requirement": "conditional",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "O4",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "service": "utc-time-synchronization",
+          "direction": "execute"
+        }
+      ],
+      "source_datatype": "BOOLEAN",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "apdu-segment-timeout": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O1",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "segmentation"
+        },
+        {
+          "kind": "only_if",
+          "feature": "segmentation"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "apdu-timeout": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min": 0
+      }
+    },
+    "number-of-apdu-retries": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min": 0
+      }
+    },
+    "time-synchronization-recipients": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetRecipient",
+      "access": "W",
+      "conformance_code": "O5",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "time-synchronization-recipients",
+            "utc-time-synchronization-recipients",
+            "time-synchronization-interval",
+            "align-intervals",
+            "interval-offset"
+          ]
+        }
+      ]
+    },
+    "max-manager": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O6",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "mstp-manager"
+        }
+      ],
+      "range": {
+        "min": 0,
+        "max": 127
+      }
+    },
+    "max-info-frames": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O6",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "mstp-manager"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "device-address-binding": {
+      "requirement": "required",
+      "datatype": "BACnetLIST of BACnetAddressBinding",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "database-revision": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min": 0
+      }
+    },
+    "configuration-files": {
+      "requirement": "conditional",
+      "datatype": "BACnetARRAY[N] of BACnetObjectIdentifier",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore"
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore"
+        }
+      ]
+    },
+    "last-restore-time": {
+      "requirement": "conditional",
+      "datatype": "BACnetTimeStamp",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore"
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore"
+        }
+      ]
+    },
+    "backup-failure-timeout": {
+      "requirement": "conditional",
+      "datatype": "Unsigned16",
+      "access": "W",
+      "conformance_code": "O8",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore"
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore"
+        }
+      ],
+      "range": {
+        "min": 0,
+        "max": 65535
+      }
+    },
+    "backup-preparation-time": {
+      "requirement": "conditional",
+      "datatype": "Unsigned16",
+      "access": "R",
+      "conformance_code": "O13",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore",
+          "cannot_respond_within_min_apdu_timeout": true
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore",
+          "cannot_respond_within_min_apdu_timeout": true
+        }
+      ],
+      "range": {
+        "min": 0,
+        "max": 65535
+      }
+    },
+    "restore-preparation-time": {
+      "requirement": "conditional",
+      "datatype": "Unsigned16",
+      "access": "R",
+      "conformance_code": "O13",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore",
+          "cannot_respond_within_min_apdu_timeout": true
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore",
+          "cannot_respond_within_min_apdu_timeout": true
+        }
+      ],
+      "range": {
+        "min": 0,
+        "max": 65535
+      }
+    },
+    "restore-completion-time": {
+      "requirement": "conditional",
+      "datatype": "Unsigned16",
+      "access": "R",
+      "conformance_code": "O13",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore",
+          "cannot_respond_within_min_apdu_timeout": true
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore",
+          "cannot_respond_within_min_apdu_timeout": true
+        }
+      ],
+      "range": {
+        "min": 0,
+        "max": 65535
+      }
+    },
+    "backup-and-restore-state": {
+      "requirement": "conditional",
+      "datatype": "BACnetBackupState",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "backup-and-restore"
+        },
+        {
+          "kind": "only_if",
+          "feature": "backup-and-restore"
+        }
+      ]
+    },
+    "active-cov-subscriptions": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetCOVSubscription",
+      "access": "R",
+      "conformance_code": "O9",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "services_any": [
+            "subscribe-cov",
+            "subscribe-cov-property"
+          ],
+          "direction": "execute"
+        },
+        {
+          "kind": "only_if",
+          "services_any": [
+            "subscribe-cov",
+            "subscribe-cov-property"
+          ],
+          "direction": "execute"
+        }
+      ]
+    },
+    "last-restart-reason": {
+      "requirement": "conditional",
+      "datatype": "BACnetRestartReason",
+      "access": "R",
+      "conformance_code": "O10",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "restart"
+        }
+      ]
+    },
+    "time-of-device-restart": {
+      "requirement": "conditional",
+      "datatype": "BACnetTimeStamp",
+      "access": "R",
+      "conformance_code": "O10",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "restart"
+        }
+      ]
+    },
+    "restart-notification-recipients": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetRecipient",
+      "access": "R",
+      "conformance_code": "O14",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "restart"
+        },
+        {
+          "kind": "only_if",
+          "feature": "restart"
+        }
+      ]
+    },
+    "utc-time-synchronization-recipients": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetRecipient",
+      "access": "W",
+      "conformance_code": "O5",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "time-synchronization-recipients",
+            "utc-time-synchronization-recipients",
+            "time-synchronization-interval",
+            "align-intervals",
+            "interval-offset"
+          ]
+        }
+      ]
+    },
+    "time-synchronization-interval": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "W",
+      "conformance_code": "O5",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "time-synchronization-recipients",
+            "utc-time-synchronization-recipients",
+            "time-synchronization-interval",
+            "align-intervals",
+            "interval-offset"
+          ]
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "align-intervals": {
+      "requirement": "conditional",
+      "datatype": "Boolean",
+      "access": "W",
+      "conformance_code": "O5",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "time-synchronization-recipients",
+            "utc-time-synchronization-recipients",
+            "time-synchronization-interval",
+            "align-intervals",
+            "interval-offset"
+          ]
+        }
+      ],
+      "source_datatype": "BOOLEAN",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "interval-offset": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "W",
+      "conformance_code": "O5",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "time-synchronization-recipients",
+            "utc-time-synchronization-recipients",
+            "time-synchronization-interval",
+            "align-intervals",
+            "interval-offset"
+          ]
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "serial-number": {
+      "requirement": "conditional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O11",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "service": "you-are",
+          "direction": "execute"
+        }
+      ],
+      "read_only": true,
+      "introduced_rev": 14,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2010ak",
+        "section": "ak-3, p. 5",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2010ak.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "property-list": {
+      "requirement": "required",
+      "datatype": "BACnetARRAY[N] of BACnetPropertyIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true,
+      "introduced_rev": 14
+    },
+    "status-flags": {
+      "requirement": "conditional",
+      "datatype": "BACnetStatusFlags",
+      "access": "R",
+      "conformance_code": "O15",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "event-state": {
+      "requirement": "conditional",
+      "datatype": "BACnetEventState",
+      "access": "R",
+      "conformance_code": "O15",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "reliability": {
+      "requirement": "conditional",
+      "datatype": "BACnetReliability",
+      "access": "R",
+      "conformance_code": "O15",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "event-detection-enable": {
+      "requirement": "conditional",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "O15,16",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      },
+      "source_datatype": "BOOLEAN",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "notification-class": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O15,16",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "range": {
+        "min": 0
+      },
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "event-enable": {
+      "requirement": "conditional",
+      "datatype": "BACnetEventTransitionBits",
+      "access": "R",
+      "conformance_code": "O15,16",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "acked-transitions": {
+      "requirement": "conditional",
+      "datatype": "BACnetEventTransitionBits",
+      "access": "R",
+      "conformance_code": "O15,16",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "notify-type": {
+      "requirement": "conditional",
+      "datatype": "BACnetNotifyType",
+      "access": "R",
+      "conformance_code": "O15,16",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "event-time-stamps": {
+      "requirement": "conditional",
+      "datatype": "BACnetARRAY[3] of BACnetTimeStamp",
+      "access": "R",
+      "conformance_code": "O15,16",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "array_length": 3,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "event-message-texts": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[3] of CharacterString",
+      "access": "R",
+      "conformance_code": "O16",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "array_length": 3,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "event-message-texts-config": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[3] of CharacterString",
+      "access": "R",
+      "conformance_code": "O16",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "array_length": 3,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      }
+    },
+    "reliability-evaluation-inhibit": {
+      "requirement": "optional",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "O17",
+      "conditions": [
+        {
+          "kind": "requires_property",
+          "property": "reliability"
+        }
+      ],
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Intrinsic fault-reporting property added.",
+        "section": "aw-6, Tables and Clauses 12.11/12.21"
+      },
+      "source_datatype": "BOOLEAN",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "active-cov-multiple-subscriptions": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetCOVMultipleSubscription",
+      "access": "R",
+      "conformance_code": "O18",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "service": "subscribe-cov-property-multiple",
+          "direction": "execute"
+        },
+        {
+          "kind": "only_if",
+          "service": "subscribe-cov-property-multiple",
+          "direction": "execute"
+        }
+      ],
+      "introduced_rev": 18,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012aq",
+        "section": "aq-2, p. 30",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012aq.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "audit-notification-recipient": {
+      "requirement": "conditional",
+      "datatype": "BACnetRecipient",
+      "access": "W",
+      "conformance_code": "O19,20",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        },
+        {
+          "kind": "required_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "audit-level": {
+      "requirement": "optional",
+      "datatype": "BACnetAuditLevel",
+      "access": "R",
+      "conformance_code": "O21",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "auditable-operations": {
+      "requirement": "optional",
+      "datatype": "BACnetAuditOperationFlags",
+      "access": "R",
+      "conformance_code": "O21",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "device-uuid": {
+      "requirement": "conditional",
+      "datatype": "OctetString",
+      "access": "R",
+      "conformance_code": "O22",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "bacnet-sc-network-ports"
+        }
+      ],
+      "read_only": true,
+      "range": {
+        "min_length": 16,
+        "max_length": 16
+      },
+      "introduced_rev": 22,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bj",
+        "section": "bj-4, p. 56",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bj.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      },
+      "source_datatype": "OCTET STRING",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "tags": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[N] of BACnetNameValue",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-2, p. 14",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "profile-location": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-1, p. 13",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "deployed-profile-location": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "W",
+      "conformance_code": "O19",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-1, p. 13",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "profile-name": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    }
+  },
+  "history_coverage": {
+    "complete": true,
+    "complete_snapshot_revisions": [
+      24
+    ],
+    "snapshot_evidence": [
+      {
+        "source": "ASHRAE Addendum 135-2020cm",
+        "protocol_revision": 30,
+        "url": "https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/135_2020_cm_20241231.pdf",
+        "effect": "No Clause 12 property facts change."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cp",
+        "protocol_revision": 29,
+        "url": "https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/135_2020_cp_20241129.pdf",
+        "effect": "Six Device authorization properties added."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cj",
+        "protocol_revision": 28,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_cj_20240930.pdf",
+        "effect": "Lighting object changes outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020co",
+        "protocol_revision": 28,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_co_20240930.pdf",
+        "effect": "Reliability runtime configuration-error constraints added; property presence, datatype, access and required-property conditions unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020bx",
+        "protocol_revision": 27,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_bx_20240930.pdf",
+        "effect": "Two Device proxy properties added; remaining object changes concern Network Port."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ci",
+        "protocol_revision": 27,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_ci_20240930.pdf",
+        "effect": "Schedule occupancy datatype recommendation has no required-property or range effect; other object changes outside these types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ch",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ch-PR-26.pdf",
+        "effect": "Segmentation state-machine changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "effect": "Application datatype aliases retain identical application tags and primitive value sets."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cn",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cn-PR-26.pdf",
+        "effect": "Engineering-unit meanings clarified and enum extended; Units remains BACnetEngineeringUnits."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cq",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cq-PR-26.pdf",
+        "effect": "CSML short-form serialization changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cs",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cs-PR-26.pdf",
+        "effect": "Certificate file interchange changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cf",
+        "protocol_revision": 25,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2023/10/135_2020_cf_20221130.pdf",
+        "effect": "Data attributes and segmentation changes only."
+      }
+    ],
+    "notes": "Property presence, datatype wire semantics, access, represented ranges and required-property conditions reconstructed from the sourced amendment chain. Runtime algorithm conditions are retained with their introduction revisions."
+  },
+  "historical_properties": {
+    "subordinate-proxy-enable": {
+      "requirement": "conditional",
+      "datatype": "BACnetARRAY of Boolean",
+      "access": "R",
+      "removed_rev": 17,
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "subordinate-proxy"
+        },
+        {
+          "kind": "only_if",
+          "feature": "subordinate-proxy"
+        }
+      ],
+      "removal_evidence": {
+        "source": "ASHRAE Addendum 135-2012ai",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ai.pdf",
+        "section": "Table 12-13 and Clauses 12.11.40\u201343"
+      },
+      "source_name_aliases": [
+        "slave-proxy-enable"
+      ]
+    },
+    "manual-subordinate-address-binding": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetAddressBinding",
+      "access": "C",
+      "removed_rev": 17,
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "subordinate-proxy"
+        },
+        {
+          "kind": "only_if",
+          "feature": "subordinate-proxy"
+        },
+        {
+          "kind": "writable_if",
+          "feature": "direct-mstp-connection"
+        }
+      ],
+      "removal_evidence": {
+        "source": "ASHRAE Addendum 135-2012ai",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ai.pdf",
+        "section": "Table 12-13 and Clauses 12.11.40\u201343"
+      },
+      "source_name_aliases": [
+        "manual-slave-address-binding"
+      ]
+    },
+    "auto-subordinate-discovery": {
+      "requirement": "conditional",
+      "datatype": "BACnetARRAY of Boolean",
+      "access": "R",
+      "removed_rev": 17,
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "automatic-subordinate-discovery"
+        },
+        {
+          "kind": "only_if",
+          "feature": "automatic-subordinate-discovery"
+        }
+      ],
+      "removal_evidence": {
+        "source": "ASHRAE Addendum 135-2012ai",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ai.pdf",
+        "section": "Table 12-13 and Clauses 12.11.40\u201343"
+      },
+      "source_name_aliases": [
+        "auto-slave-discovery"
+      ]
+    },
+    "subordinate-address-binding": {
+      "requirement": "conditional",
+      "datatype": "BACnetLIST of BACnetAddressBinding",
+      "access": "C",
+      "removed_rev": 17,
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "subordinate-proxy"
+        },
+        {
+          "kind": "only_if",
+          "feature": "subordinate-proxy"
+        },
+        {
+          "kind": "writable_if",
+          "feature": "direct-mstp-connection"
+        }
+      ],
+      "removal_evidence": {
+        "source": "ASHRAE Addendum 135-2012ai",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ai.pdf",
+        "section": "Table 12-13 and Clauses 12.11.40\u201343"
+      },
+      "source_name_aliases": [
+        "slave-address-binding"
+      ]
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-UNQUOTED-STRING"
+  ],
+  "strict": [
+    "P-UNQUOTED-STRING"
+  ]
+}

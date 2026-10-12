@@ -1,0 +1,285 @@
+{
+  "source": "ASHRAE 135-2024",
+  "clause": "12.13",
+  "table": "12-16",
+  "object_type": "file",
+  "revision": 25,
+  "coverage_min_revision": 25,
+  "properties": {
+    "object-identifier": {
+      "requirement": "required",
+      "datatype": "BACnetObjectIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "object-name": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min_length": 1
+      }
+    },
+    "object-type": {
+      "requirement": "required",
+      "datatype": "BACnetObjectType",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "description": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "file-type": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "modification-date": {
+      "requirement": "required",
+      "datatype": "BACnetDateTime",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "archive": {
+      "requirement": "required",
+      "datatype": "Boolean",
+      "access": "W",
+      "conformance_code": "W",
+      "conditions": [],
+      "source_datatype": "BOOLEAN",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "read-only": {
+      "requirement": "required",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "source_datatype": "BOOLEAN",
+      "datatype_normalization": {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "revision": 26,
+        "rationale": "ASN.1 alias uses the same application tag, universal primitive and value set; spelling does not change BACnet wire encoding."
+      }
+    },
+    "file-access-method": {
+      "requirement": "required",
+      "datatype": "BACnetFileAccessMethod",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "record-count": {
+      "requirement": "optional",
+      "datatype": "Unsigned",
+      "access": "C",
+      "conformance_code": "O2",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "property": "file-access-method",
+          "equals": "record-access"
+        },
+        {
+          "kind": "writable_if",
+          "feature": "record-count-can-change-by-writing"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "property-list": {
+      "requirement": "required",
+      "datatype": "BACnetARRAY[N] of BACnetPropertyIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true,
+      "introduced_rev": 14
+    },
+    "audit-level": {
+      "requirement": "optional",
+      "datatype": "BACnetAuditLevel",
+      "access": "R",
+      "conformance_code": "O3",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "auditable-operations": {
+      "requirement": "optional",
+      "datatype": "BACnetAuditOperationFlags",
+      "access": "R",
+      "conformance_code": "O3",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "tags": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[N] of BACnetNameValue",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-2, p. 14",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "profile-location": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-1, p. 13",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "profile-name": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "file-size": {
+      "requirement": "required",
+      "datatype": "Unsigned",
+      "access": "C",
+      "conformance_code": "R1",
+      "conditions": [
+        {
+          "kind": "writable_if",
+          "property": "file-access-method",
+          "equals": "stream-access",
+          "feature": "file-size-can-change-by-writing"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    }
+  },
+  "history_coverage": {
+    "complete": true,
+    "complete_snapshot_revisions": [
+      25
+    ],
+    "snapshot_evidence": [
+      {
+        "source": "ASHRAE Addendum 135-2020cm",
+        "protocol_revision": 30,
+        "url": "https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/135_2020_cm_20241231.pdf",
+        "effect": "No Clause 12 property facts change."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cp",
+        "protocol_revision": 29,
+        "url": "https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/135_2020_cp_20241129.pdf",
+        "effect": "Six Device authorization properties added."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cj",
+        "protocol_revision": 28,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_cj_20240930.pdf",
+        "effect": "Lighting object changes outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020co",
+        "protocol_revision": 28,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_co_20240930.pdf",
+        "effect": "Reliability runtime configuration-error constraints added; property presence, datatype, access and required-property conditions unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020bx",
+        "protocol_revision": 27,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_bx_20240930.pdf",
+        "effect": "Two Device proxy properties added; remaining object changes concern Network Port."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ci",
+        "protocol_revision": 27,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_ci_20240930.pdf",
+        "effect": "Schedule occupancy datatype recommendation has no required-property or range effect; other object changes outside these types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ch",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ch-PR-26.pdf",
+        "effect": "Segmentation state-machine changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "effect": "Application datatype aliases retain identical application tags and primitive value sets."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cn",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cn-PR-26.pdf",
+        "effect": "Engineering-unit meanings clarified and enum extended; Units remains BACnetEngineeringUnits."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cq",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cq-PR-26.pdf",
+        "effect": "CSML short-form serialization changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cs",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cs-PR-26.pdf",
+        "effect": "Certificate file interchange changes only."
+      }
+    ],
+    "notes": "Property presence, datatype wire semantics, access, represented ranges and required-property conditions reconstructed from the sourced amendment chain. Runtime algorithm conditions are retained with their introduction revisions."
+  }
+}

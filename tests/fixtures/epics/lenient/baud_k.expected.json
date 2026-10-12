@@ -1,0 +1,5118 @@
+{
+  "bibbs": [
+    {
+      "canonical": "ds-rp-b",
+      "raw": "DS-RP-B"
+    }
+  ],
+  "character_sets": [
+    "ISO 10646 (UTF-8)"
+  ],
+  "data_links": [
+    {
+      "kind": "bacnet-ip",
+      "variant": "'DIX' Ethernet"
+    },
+    {
+      "baud_rates": [
+        9600,
+        19200
+      ],
+      "kind": "ms-tp",
+      "role": "manager"
+    }
+  ],
+  "default_restrictions": {
+    "character_string": null,
+    "date": null,
+    "double": null,
+    "extra": {},
+    "list": null,
+    "octet_string": null,
+    "real": null,
+    "signed_integer": null,
+    "unsigned_integer": null,
+    "variable_length_array": null
+  },
+  "fail_times": {
+    "acknowledgement_fail_time": 1.0,
+    "activate_changes_fail_time": 1.0,
+    "audit_notification_forwarder_fail_time": null,
+    "auto_negotiation_fail_time": 1.0,
+    "channel_write_fail_time": 1.0,
+    "external_command_fail_time": 1.0,
+    "extra": {},
+    "foreign_device_registration_fail_time": 1.0,
+    "internal_processing_fail_time": 1.0,
+    "minimum_on_off_time": 1.0,
+    "notification_fail_time": 1.0,
+    "program_object_state_change_fail_time": 1.0,
+    "schedule_evaluation_fail_time": 1.0,
+    "subordinate_proxy_confirm_interval": 1.0,
+    "unconfirmed_response_fail_time": 1.0
+  },
+  "general": {
+    "product_description": "Invented conformance fixture",
+    "product_model_number": "SW-1",
+    "product_name": "Example Controller",
+    "vendor_name": "Synthetic Works"
+  },
+  "header": {
+    "charset_code": 0
+  },
+  "object_types": [
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "accumulator",
+        "raw": "accumulator"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "analog-input",
+        "raw": "analog-input"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "analog-output",
+        "raw": "analog-output"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "analog-value",
+        "raw": "analog-value"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "averaging",
+        "raw": "averaging"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "binary-input",
+        "raw": "binary-input"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "binary-output",
+        "raw": "binary-output"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "binary-value",
+        "raw": "binary-value"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "calendar",
+        "raw": "calendar"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "command",
+        "raw": "command"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "device",
+        "raw": "device"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "event-enrollment",
+        "raw": "event-enrollment"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "file",
+        "raw": "file"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "group",
+        "raw": "group"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "life-safety-point",
+        "raw": "life-safety-point"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "life-safety-zone",
+        "raw": "life-safety-zone"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "loop",
+        "raw": "loop"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "multi-state-input",
+        "raw": "multi-state-input"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "multi-state-output",
+        "raw": "multi-state-output"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "multi-state-value",
+        "raw": "multi-state-value"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "notification-class",
+        "raw": "notification-class"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "program",
+        "raw": "program"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "pulse-converter",
+        "raw": "pulse-converter"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "schedule",
+        "raw": "schedule"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "trend-log",
+        "raw": "trend-log"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "network-port",
+        "raw": "network-port"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "channel",
+        "raw": "channel"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "timer",
+        "raw": "timer"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "color",
+        "raw": "color"
+      }
+    },
+    {
+      "createable": false,
+      "deleteable": false,
+      "name": {
+        "canonical": "audit-log",
+        "raw": "audit-log"
+      }
+    }
+  ],
+  "objects": [
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 1,
+        "object_type": {
+          "canonical": "accumulator",
+          "raw": "accumulator"
+        }
+      },
+      "name": "Synthetic accumulator",
+      "object_type": {
+        "canonical": "accumulator",
+        "raw": "accumulator"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 2,
+        "object_type": {
+          "canonical": "analog-input",
+          "raw": "analog-input"
+        }
+      },
+      "name": "Synthetic analog-input",
+      "object_type": {
+        "canonical": "analog-input",
+        "raw": "analog-input"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "real",
+            "text": "1.0",
+            "value": "1.0"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "units",
+            "raw": "units"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "units",
+                  "raw": "units"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 3,
+        "object_type": {
+          "canonical": "analog-output",
+          "raw": "analog-output"
+        }
+      },
+      "name": "Synthetic analog-output",
+      "object_type": {
+        "canonical": "analog-output",
+        "raw": "analog-output"
+      },
+      "properties": [
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "real",
+            "text": "1.0",
+            "value": "1.0"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "units",
+            "raw": "units"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "priority-array",
+            "raw": "priority-array"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "relinquish-default",
+            "raw": "relinquish-default"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "real",
+            "text": "1.0",
+            "value": "1.0"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "current-command-priority",
+            "raw": "current-command-priority"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "units",
+                  "raw": "units"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "priority-array",
+                  "raw": "priority-array"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "relinquish-default",
+                  "raw": "relinquish-default"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "current-command-priority",
+                  "raw": "current-command-priority"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 4,
+        "object_type": {
+          "canonical": "analog-value",
+          "raw": "analog-value"
+        }
+      },
+      "name": "Synthetic analog-value",
+      "object_type": {
+        "canonical": "analog-value",
+        "raw": "analog-value"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "real",
+            "text": "1.0",
+            "value": "1.0"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "units",
+            "raw": "units"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "description",
+            "raw": "description"
+          },
+          "not_readable": false,
+          "restrictions": {
+            "allowed_values": null,
+            "maximum": null,
+            "maximum_length_array": null,
+            "maximum_length_list": null,
+            "maximum_length_string": 30,
+            "minimum": null,
+            "resolution": null
+          },
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "Invented value"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "units",
+                  "raw": "units"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "description",
+                  "raw": "description"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 5,
+        "object_type": {
+          "canonical": "averaging",
+          "raw": "averaging"
+        }
+      },
+      "name": "Synthetic averaging",
+      "object_type": {
+        "canonical": "averaging",
+        "raw": "averaging"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 6,
+        "object_type": {
+          "canonical": "binary-input",
+          "raw": "binary-input"
+        }
+      },
+      "name": "Synthetic binary-input",
+      "object_type": {
+        "canonical": "binary-input",
+        "raw": "binary-input"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "enumerated",
+            "name": {
+              "canonical": "inactive",
+              "raw": "inactive"
+            },
+            "proprietary_number": null
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "polarity",
+            "raw": "polarity"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "polarity",
+                  "raw": "polarity"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 7,
+        "object_type": {
+          "canonical": "binary-output",
+          "raw": "binary-output"
+        }
+      },
+      "name": "Synthetic binary-output",
+      "object_type": {
+        "canonical": "binary-output",
+        "raw": "binary-output"
+      },
+      "properties": [
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "enumerated",
+            "name": {
+              "canonical": "inactive",
+              "raw": "inactive"
+            },
+            "proprietary_number": null
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "polarity",
+            "raw": "polarity"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "priority-array",
+            "raw": "priority-array"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "relinquish-default",
+            "raw": "relinquish-default"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "enumerated",
+            "name": {
+              "canonical": "inactive",
+              "raw": "inactive"
+            },
+            "proprietary_number": null
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "current-command-priority",
+            "raw": "current-command-priority"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "polarity",
+                  "raw": "polarity"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "priority-array",
+                  "raw": "priority-array"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "relinquish-default",
+                  "raw": "relinquish-default"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "current-command-priority",
+                  "raw": "current-command-priority"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 8,
+        "object_type": {
+          "canonical": "binary-value",
+          "raw": "binary-value"
+        }
+      },
+      "name": "Synthetic binary-value",
+      "object_type": {
+        "canonical": "binary-value",
+        "raw": "binary-value"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "enumerated",
+            "name": {
+              "canonical": "inactive",
+              "raw": "inactive"
+            },
+            "proprietary_number": null
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 9,
+        "object_type": {
+          "canonical": "calendar",
+          "raw": "calendar"
+        }
+      },
+      "name": "Synthetic calendar",
+      "object_type": {
+        "canonical": "calendar",
+        "raw": "calendar"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "date-list",
+            "raw": "date-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "date-list",
+                  "raw": "date-list"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 10,
+        "object_type": {
+          "canonical": "command",
+          "raw": "command"
+        }
+      },
+      "name": "Synthetic command",
+      "object_type": {
+        "canonical": "command",
+        "raw": "command"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 11,
+        "object_type": {
+          "canonical": "device",
+          "raw": "device"
+        }
+      },
+      "name": "Synthetic device",
+      "object_type": {
+        "canonical": "device",
+        "raw": "device"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "system-status",
+            "raw": "system-status"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "vendor-name",
+            "raw": "vendor-name"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "Synthetic"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "vendor-identifier",
+            "raw": "vendor-identifier"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "model-name",
+            "raw": "model-name"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "Synthetic"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "firmware-revision",
+            "raw": "firmware-revision"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "Synthetic"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "application-software-version",
+            "raw": "application-software-version"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "Synthetic"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "protocol-version",
+            "raw": "protocol-version"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "protocol-revision",
+            "raw": "protocol-revision"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 30
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "protocol-services-supported",
+            "raw": "protocol-services-supported"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "protocol-object-types-supported",
+            "raw": "protocol-object-types-supported"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": true
+              },
+              {
+                "kind": "boolean",
+                "short": false,
+                "value": false
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "object-list",
+            "raw": "object-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "instance": 1,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "accumulator",
+                  "raw": "accumulator"
+                }
+              },
+              {
+                "instance": 2,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "analog-input",
+                  "raw": "analog-input"
+                }
+              },
+              {
+                "instance": 3,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "analog-output",
+                  "raw": "analog-output"
+                }
+              },
+              {
+                "instance": 4,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "analog-value",
+                  "raw": "analog-value"
+                }
+              },
+              {
+                "instance": 5,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "averaging",
+                  "raw": "averaging"
+                }
+              },
+              {
+                "instance": 6,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "binary-input",
+                  "raw": "binary-input"
+                }
+              },
+              {
+                "instance": 7,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "binary-output",
+                  "raw": "binary-output"
+                }
+              },
+              {
+                "instance": 8,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "binary-value",
+                  "raw": "binary-value"
+                }
+              },
+              {
+                "instance": 9,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "calendar",
+                  "raw": "calendar"
+                }
+              },
+              {
+                "instance": 10,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "command",
+                  "raw": "command"
+                }
+              },
+              {
+                "instance": 11,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "device",
+                  "raw": "device"
+                }
+              },
+              {
+                "instance": 12,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "event-enrollment",
+                  "raw": "event-enrollment"
+                }
+              },
+              {
+                "instance": 13,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "file",
+                  "raw": "file"
+                }
+              },
+              {
+                "instance": 14,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "group",
+                  "raw": "group"
+                }
+              },
+              {
+                "instance": 15,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "life-safety-point",
+                  "raw": "life-safety-point"
+                }
+              },
+              {
+                "instance": 16,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "life-safety-zone",
+                  "raw": "life-safety-zone"
+                }
+              },
+              {
+                "instance": 17,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "loop",
+                  "raw": "loop"
+                }
+              },
+              {
+                "instance": 18,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "multi-state-input",
+                  "raw": "multi-state-input"
+                }
+              },
+              {
+                "instance": 19,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "multi-state-output",
+                  "raw": "multi-state-output"
+                }
+              },
+              {
+                "instance": 20,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "multi-state-value",
+                  "raw": "multi-state-value"
+                }
+              },
+              {
+                "instance": 21,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "notification-class",
+                  "raw": "notification-class"
+                }
+              },
+              {
+                "instance": 22,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "program",
+                  "raw": "program"
+                }
+              },
+              {
+                "instance": 23,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "pulse-converter",
+                  "raw": "pulse-converter"
+                }
+              },
+              {
+                "instance": 24,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "schedule",
+                  "raw": "schedule"
+                }
+              },
+              {
+                "instance": 25,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "trend-log",
+                  "raw": "trend-log"
+                }
+              },
+              {
+                "instance": 26,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "network-port",
+                  "raw": "network-port"
+                }
+              },
+              {
+                "instance": 27,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "channel",
+                  "raw": "channel"
+                }
+              },
+              {
+                "instance": 28,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "timer",
+                  "raw": "timer"
+                }
+              },
+              {
+                "instance": 29,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "color",
+                  "raw": "color"
+                }
+              },
+              {
+                "instance": 30,
+                "kind": "object-identifier",
+                "object_type": {
+                  "canonical": "audit-log",
+                  "raw": "audit-log"
+                }
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "max-apdu-length-accepted",
+            "raw": "max-apdu-length-accepted"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "segmentation-supported",
+            "raw": "segmentation-supported"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "enumerated",
+            "name": {
+              "canonical": "no-segmentation",
+              "raw": "no-segmentation"
+            },
+            "proprietary_number": null
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "apdu-timeout",
+            "raw": "apdu-timeout"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "number-of-apdu-retries",
+            "raw": "number-of-apdu-retries"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "device-address-binding",
+            "raw": "device-address-binding"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "database-revision",
+            "raw": "database-revision"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "local-time",
+            "raw": "local-time"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "hour": 12,
+            "hundredth": 0,
+            "kind": "time",
+            "minute": 0,
+            "precision": 2,
+            "second": 0
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "local-date",
+            "raw": "local-date"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "day": 1,
+            "kind": "date",
+            "month": 1,
+            "parenthesised": true,
+            "weekday": 4,
+            "year": 2026
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "utc-offset",
+            "raw": "utc-offset"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 0
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "daylight-savings-status",
+            "raw": "daylight-savings-status"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "active-cov-subscriptions",
+            "raw": "active-cov-subscriptions"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "(",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "active-cov-multiple-subscriptions",
+            "raw": "active-cov-multiple-subscriptions"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "(",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "serial-number",
+            "raw": "serial-number"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "SYNTHETIC-001"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "system-status",
+                  "raw": "system-status"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "vendor-name",
+                  "raw": "vendor-name"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "vendor-identifier",
+                  "raw": "vendor-identifier"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "model-name",
+                  "raw": "model-name"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "firmware-revision",
+                  "raw": "firmware-revision"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "application-software-version",
+                  "raw": "application-software-version"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "protocol-version",
+                  "raw": "protocol-version"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "protocol-revision",
+                  "raw": "protocol-revision"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "protocol-services-supported",
+                  "raw": "protocol-services-supported"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "protocol-object-types-supported",
+                  "raw": "protocol-object-types-supported"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "object-list",
+                  "raw": "object-list"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "max-apdu-length-accepted",
+                  "raw": "max-apdu-length-accepted"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "segmentation-supported",
+                  "raw": "segmentation-supported"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "apdu-timeout",
+                  "raw": "apdu-timeout"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "number-of-apdu-retries",
+                  "raw": "number-of-apdu-retries"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "device-address-binding",
+                  "raw": "device-address-binding"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "database-revision",
+                  "raw": "database-revision"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "local-time",
+                  "raw": "local-time"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "local-date",
+                  "raw": "local-date"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "utc-offset",
+                  "raw": "utc-offset"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "daylight-savings-status",
+                  "raw": "daylight-savings-status"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "active-cov-subscriptions",
+                  "raw": "active-cov-subscriptions"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "active-cov-multiple-subscriptions",
+                  "raw": "active-cov-multiple-subscriptions"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "serial-number",
+                  "raw": "serial-number"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 12,
+        "object_type": {
+          "canonical": "event-enrollment",
+          "raw": "event-enrollment"
+        }
+      },
+      "name": "Synthetic event-enrollment",
+      "object_type": {
+        "canonical": "event-enrollment",
+        "raw": "event-enrollment"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 13,
+        "object_type": {
+          "canonical": "file",
+          "raw": "file"
+        }
+      },
+      "name": "Synthetic file",
+      "object_type": {
+        "canonical": "file",
+        "raw": "file"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "file-type",
+            "raw": "file-type"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "character-string",
+            "quote": "\"",
+            "value": "Synthetic"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "modification-date",
+            "raw": "modification-date"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "archive",
+            "raw": "archive"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "read-only",
+            "raw": "read-only"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "file-access-method",
+            "raw": "file-access-method"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "file-size",
+            "raw": "file-size"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "file-type",
+                  "raw": "file-type"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "modification-date",
+                  "raw": "modification-date"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "archive",
+                  "raw": "archive"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "read-only",
+                  "raw": "read-only"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "file-access-method",
+                  "raw": "file-access-method"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "file-size",
+                  "raw": "file-size"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 14,
+        "object_type": {
+          "canonical": "group",
+          "raw": "group"
+        }
+      },
+      "name": "Synthetic group",
+      "object_type": {
+        "canonical": "group",
+        "raw": "group"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 15,
+        "object_type": {
+          "canonical": "life-safety-point",
+          "raw": "life-safety-point"
+        }
+      },
+      "name": "Synthetic life-safety-point",
+      "object_type": {
+        "canonical": "life-safety-point",
+        "raw": "life-safety-point"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 16,
+        "object_type": {
+          "canonical": "life-safety-zone",
+          "raw": "life-safety-zone"
+        }
+      },
+      "name": "Synthetic life-safety-zone",
+      "object_type": {
+        "canonical": "life-safety-zone",
+        "raw": "life-safety-zone"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 17,
+        "object_type": {
+          "canonical": "loop",
+          "raw": "loop"
+        }
+      },
+      "name": "Synthetic loop",
+      "object_type": {
+        "canonical": "loop",
+        "raw": "loop"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 18,
+        "object_type": {
+          "canonical": "multi-state-input",
+          "raw": "multi-state-input"
+        }
+      },
+      "name": "Synthetic multi-state-input",
+      "object_type": {
+        "canonical": "multi-state-input",
+        "raw": "multi-state-input"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "number-of-states",
+            "raw": "number-of-states"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "number-of-states",
+                  "raw": "number-of-states"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 19,
+        "object_type": {
+          "canonical": "multi-state-output",
+          "raw": "multi-state-output"
+        }
+      },
+      "name": "Synthetic multi-state-output",
+      "object_type": {
+        "canonical": "multi-state-output",
+        "raw": "multi-state-output"
+      },
+      "properties": [
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "number-of-states",
+            "raw": "number-of-states"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "priority-array",
+            "raw": "priority-array"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              },
+              {
+                "kind": "unspecified"
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "relinquish-default",
+            "raw": "relinquish-default"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "current-command-priority",
+            "raw": "current-command-priority"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "number-of-states",
+                  "raw": "number-of-states"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "priority-array",
+                  "raw": "priority-array"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "relinquish-default",
+                  "raw": "relinquish-default"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "current-command-priority",
+                  "raw": "current-command-priority"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 20,
+        "object_type": {
+          "canonical": "multi-state-value",
+          "raw": "multi-state-value"
+        }
+      },
+      "name": "Synthetic multi-state-value",
+      "object_type": {
+        "canonical": "multi-state-value",
+        "raw": "multi-state-value"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "number-of-states",
+            "raw": "number-of-states"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "number-of-states",
+                  "raw": "number-of-states"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 21,
+        "object_type": {
+          "canonical": "notification-class",
+          "raw": "notification-class"
+        }
+      },
+      "name": "Synthetic notification-class",
+      "object_type": {
+        "canonical": "notification-class",
+        "raw": "notification-class"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "priority",
+            "raw": "priority"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "ack-required",
+            "raw": "ack-required"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "recipient-list",
+            "raw": "recipient-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "priority",
+                  "raw": "priority"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "ack-required",
+                  "raw": "ack-required"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "recipient-list",
+                  "raw": "recipient-list"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 22,
+        "object_type": {
+          "canonical": "program",
+          "raw": "program"
+        }
+      },
+      "name": "Synthetic program",
+      "object_type": {
+        "canonical": "program",
+        "raw": "program"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 23,
+        "object_type": {
+          "canonical": "pulse-converter",
+          "raw": "pulse-converter"
+        }
+      },
+      "name": "Synthetic pulse-converter",
+      "object_type": {
+        "canonical": "pulse-converter",
+        "raw": "pulse-converter"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 24,
+        "object_type": {
+          "canonical": "schedule",
+          "raw": "schedule"
+        }
+      },
+      "name": "Synthetic schedule",
+      "object_type": {
+        "canonical": "schedule",
+        "raw": "schedule"
+      },
+      "properties": [
+        {
+          "access": "C",
+          "comment": null,
+          "name": {
+            "canonical": "present-value",
+            "raw": "present-value"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "effective-period",
+            "raw": "effective-period"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "schedule-default",
+            "raw": "schedule-default"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "list-of-object-property-references",
+            "raw": "list-of-object-property-references"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "priority-for-writing",
+            "raw": "priority-for-writing"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "reliability",
+            "raw": "reliability"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "out-of-service",
+            "raw": "out-of-service"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "weekly-schedule",
+            "raw": "weekly-schedule"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              },
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              },
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              },
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              },
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              },
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              },
+              {
+                "delimiter": "(",
+                "elements": [],
+                "kind": "group",
+                "trailing_comma": false
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "present-value",
+                  "raw": "present-value"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "effective-period",
+                  "raw": "effective-period"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "schedule-default",
+                  "raw": "schedule-default"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "list-of-object-property-references",
+                  "raw": "list-of-object-property-references"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "priority-for-writing",
+                  "raw": "priority-for-writing"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "reliability",
+                  "raw": "reliability"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "out-of-service",
+                  "raw": "out-of-service"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "weekly-schedule",
+                  "raw": "weekly-schedule"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 25,
+        "object_type": {
+          "canonical": "trend-log",
+          "raw": "trend-log"
+        }
+      },
+      "name": "Synthetic trend-log",
+      "object_type": {
+        "canonical": "trend-log",
+        "raw": "trend-log"
+      },
+      "properties": [
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "enable",
+            "raw": "enable"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "stop-when-full",
+            "raw": "stop-when-full"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "boolean",
+            "short": false,
+            "value": false
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "buffer-size",
+            "raw": "buffer-size"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "log-buffer",
+            "raw": "log-buffer"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        },
+        {
+          "access": "W",
+          "comment": null,
+          "name": {
+            "canonical": "record-count",
+            "raw": "record-count"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "total-record-count",
+            "raw": "total-record-count"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "integer",
+            "value": 1
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "logging-type",
+            "raw": "logging-type"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "status-flags",
+            "raw": "status-flags"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "event-state",
+            "raw": "event-state"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "kind": "unspecified"
+          }
+        },
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "enable",
+                  "raw": "enable"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "stop-when-full",
+                  "raw": "stop-when-full"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "buffer-size",
+                  "raw": "buffer-size"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "log-buffer",
+                  "raw": "log-buffer"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "record-count",
+                  "raw": "record-count"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "total-record-count",
+                  "raw": "total-record-count"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "logging-type",
+                  "raw": "logging-type"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "status-flags",
+                  "raw": "status-flags"
+                },
+                "proprietary_number": null
+              },
+              {
+                "kind": "enumerated",
+                "name": {
+                  "canonical": "event-state",
+                  "raw": "event-state"
+                },
+                "proprietary_number": null
+              }
+            ],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 26,
+        "object_type": {
+          "canonical": "network-port",
+          "raw": "network-port"
+        }
+      },
+      "name": "Synthetic network-port",
+      "object_type": {
+        "canonical": "network-port",
+        "raw": "network-port"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 27,
+        "object_type": {
+          "canonical": "channel",
+          "raw": "channel"
+        }
+      },
+      "name": "Synthetic channel",
+      "object_type": {
+        "canonical": "channel",
+        "raw": "channel"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 28,
+        "object_type": {
+          "canonical": "timer",
+          "raw": "timer"
+        }
+      },
+      "name": "Synthetic timer",
+      "object_type": {
+        "canonical": "timer",
+        "raw": "timer"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 29,
+        "object_type": {
+          "canonical": "color",
+          "raw": "color"
+        }
+      },
+      "name": "Synthetic color",
+      "object_type": {
+        "canonical": "color",
+        "raw": "color"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    },
+    {
+      "header_metadata": {},
+      "identifier": {
+        "instance": 30,
+        "object_type": {
+          "canonical": "audit-log",
+          "raw": "audit-log"
+        }
+      },
+      "name": "Synthetic audit-log",
+      "object_type": {
+        "canonical": "audit-log",
+        "raw": "audit-log"
+      },
+      "properties": [
+        {
+          "access": "R",
+          "comment": null,
+          "name": {
+            "canonical": "property-list",
+            "raw": "property-list"
+          },
+          "not_readable": false,
+          "restrictions": null,
+          "value": {
+            "delimiter": "{",
+            "elements": [],
+            "kind": "group",
+            "trailing_comma": false
+          }
+        }
+      ]
+    }
+  ],
+  "services": [
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "acknowledge-alarm",
+        "raw": "acknowledge-alarm"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "confirmed-cov-notification",
+        "raw": "confirmed-cov-notification"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "confirmed-event-notification",
+        "raw": "confirmed-event-notification"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "get-alarm-summary",
+        "raw": "get-alarm-summary"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "get-enrollment-summary",
+        "raw": "get-enrollment-summary"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "subscribe-cov",
+        "raw": "subscribe-cov"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "atomic-read-file",
+        "raw": "atomic-read-file"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "atomic-write-file",
+        "raw": "atomic-write-file"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "add-list-element",
+        "raw": "add-list-element"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "remove-list-element",
+        "raw": "remove-list-element"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "create-object",
+        "raw": "create-object"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "delete-object",
+        "raw": "delete-object"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "read-property",
+        "raw": "read-property"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "read-property-multiple",
+        "raw": "read-property-multiple"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "write-property",
+        "raw": "write-property"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "write-property-multiple",
+        "raw": "write-property-multiple"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "device-communication-control",
+        "raw": "device-communication-control"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "confirmed-private-transfer",
+        "raw": "confirmed-private-transfer"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "confirmed-text-message",
+        "raw": "confirmed-text-message"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "reinitialize-device",
+        "raw": "reinitialize-device"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "vt-open",
+        "raw": "vt-open"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "vt-close",
+        "raw": "vt-close"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "vt-data",
+        "raw": "vt-data"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "i-am",
+        "raw": "i-am"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "i-have",
+        "raw": "i-have"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "unconfirmed-cov-notification",
+        "raw": "unconfirmed-cov-notification"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "unconfirmed-event-notification",
+        "raw": "unconfirmed-event-notification"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "unconfirmed-private-transfer",
+        "raw": "unconfirmed-private-transfer"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "unconfirmed-text-message",
+        "raw": "unconfirmed-text-message"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "time-synchronization",
+        "raw": "time-synchronization"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "who-has",
+        "raw": "who-has"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "who-is",
+        "raw": "who-is"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "read-range",
+        "raw": "read-range"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "utc-time-synchronization",
+        "raw": "utc-time-synchronization"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "life-safety-operation",
+        "raw": "life-safety-operation"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "subscribe-cov-property",
+        "raw": "subscribe-cov-property"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "get-event-information",
+        "raw": "get-event-information"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "write-group",
+        "raw": "write-group"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "subscribe-cov-property-multiple",
+        "raw": "subscribe-cov-property-multiple"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "confirmed-cov-notification-multiple",
+        "raw": "confirmed-cov-notification-multiple"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "unconfirmed-cov-notification-multiple",
+        "raw": "unconfirmed-cov-notification-multiple"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "confirmed-audit-notification",
+        "raw": "confirmed-audit-notification"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "audit-log-query",
+        "raw": "audit-log-query"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "unconfirmed-audit-notification",
+        "raw": "unconfirmed-audit-notification"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "who-am-i",
+        "raw": "who-am-i"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "you-are",
+        "raw": "you-are"
+      }
+    },
+    {
+      "execute": true,
+      "initiate": true,
+      "name": {
+        "canonical": "auth-request",
+        "raw": "auth-request"
+      }
+    }
+  ],
+  "special": {
+    "bacnet_ip_bbmd": false,
+    "bacnet_ipv6_bbmd": false,
+    "bacnet_sc_direct_connect": false,
+    "bacnet_sc_hub": false,
+    "max_apdu_size": 1476,
+    "router": false,
+    "segmented_requests_window": null,
+    "segmented_responses_window": null,
+    "unknown": []
+  }
+}

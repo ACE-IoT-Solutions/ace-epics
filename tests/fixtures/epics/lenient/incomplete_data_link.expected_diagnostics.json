@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-DATA-LINK"
+  ],
+  "strict": [
+    "P-DATA-LINK"
+  ]
+}

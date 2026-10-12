@@ -1,0 +1,13 @@
+{
+  "source": "ASHRAE 135-2024",
+  "revision": 30,
+  "values": {
+    "segmented-both": 0,
+    "segmented-transmit": 1,
+    "segmented-receive": 2,
+    "no-segmentation": 3
+  },
+  "provenance": {
+    "enumeration": "Clause 21 BACnetSegmentation, p. 1020"
+  }
+}

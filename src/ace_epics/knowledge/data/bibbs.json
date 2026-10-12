@@ -1,0 +1,2720 @@
+{
+  "source": "ASHRAE 135-2024",
+  "revision": 30,
+  "scope": [
+    "DS",
+    "AE",
+    "SCHED",
+    "T",
+    "DM"
+  ],
+  "definitions": {
+    "DS-RP-A": {
+      "clause": "K.1.1",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-RP-B": {
+      "clause": "K.1.2",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-RPM-A": {
+      "clause": "K.1.3",
+      "services": [
+        {
+          "name": "read-property-multiple",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-RPM-B": {
+      "clause": "K.1.4",
+      "services": [
+        {
+          "name": "read-property-multiple",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-WP-A": {
+      "clause": "K.1.5",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-WP-B": {
+      "clause": "K.1.6",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-WPM-A": {
+      "clause": "K.1.7",
+      "services": [
+        {
+          "name": "write-property-multiple",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-WPM-B": {
+      "clause": "K.1.8",
+      "services": [
+        {
+          "name": "write-property-multiple",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-COV-A": {
+      "clause": "K.1.9",
+      "services": [
+        {
+          "name": "subscribe-cov",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "service_parameter_used",
+            "service": "subscribe-cov",
+            "parameter": "issue-confirmed-notifications",
+            "value": true
+          },
+          "services": [
+            {
+              "name": "confirmed-cov-notification",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        },
+        {
+          "condition": {
+            "kind": "service_parameter_used",
+            "service": "subscribe-cov",
+            "parameter": "issue-confirmed-notifications",
+            "value": false
+          },
+          "services": [
+            {
+              "name": "unconfirmed-cov-notification",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        }
+      ]
+    },
+    "DS-COV-B": {
+      "clause": "K.1.10",
+      "services": [
+        {
+          "name": "subscribe-cov",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "confirmed-cov-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-cov-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-COVP-A": {
+      "clause": "K.1.11",
+      "services": [
+        {
+          "name": "subscribe-cov-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "service_parameter_used",
+            "service": "subscribe-cov-property",
+            "parameter": "issue-confirmed-notifications",
+            "value": true
+          },
+          "services": [
+            {
+              "name": "confirmed-cov-notification",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        },
+        {
+          "condition": {
+            "kind": "service_parameter_used",
+            "service": "subscribe-cov-property",
+            "parameter": "issue-confirmed-notifications",
+            "value": false
+          },
+          "services": [
+            {
+              "name": "unconfirmed-cov-notification",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        }
+      ]
+    },
+    "DS-COVP-B": {
+      "clause": "K.1.12",
+      "services": [
+        {
+          "name": "subscribe-cov-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "confirmed-cov-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-cov-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-COVU-A": {
+      "clause": "K.1.13",
+      "services": [
+        {
+          "name": "unconfirmed-cov-notification",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-COVU-B": {
+      "clause": "K.1.14",
+      "services": [
+        {
+          "name": "unconfirmed-cov-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-V-A": {
+      "clause": "K.1.15",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A"
+      ]
+    },
+    "DS-AV-A": {
+      "clause": "K.1.16",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-M-A": {
+      "clause": "K.1.17",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-AM-A": {
+      "clause": "K.1.18",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-WG-A": {
+      "clause": "K.1.19",
+      "services": [
+        {
+          "name": "write-group",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-WG-I-B": {
+      "clause": "K.1.20",
+      "services": [
+        {
+          "name": "write-group",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "channel"
+      ]
+    },
+    "DS-WG-E-B": {
+      "clause": "K.1.21",
+      "services": [
+        {
+          "name": "write-group",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [
+        "channel"
+      ],
+      "requires_bibbs": [
+        "DS-WG-I-B",
+        "DS-WP-A"
+      ]
+    },
+    "DS-VSI-B": {
+      "clause": "K.1.22",
+      "services": [],
+      "object_types": []
+    },
+    "DS-COVM-A": {
+      "clause": "K.1.23",
+      "services": [
+        {
+          "name": "subscribe-cov-property-multiple",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "service_parameter_used",
+            "service": "subscribe-cov-property-multiple",
+            "parameter": "issue-confirmed-notifications",
+            "value": true
+          },
+          "services": [
+            {
+              "name": "confirmed-cov-notification-multiple",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        },
+        {
+          "condition": {
+            "kind": "service_parameter_used",
+            "service": "subscribe-cov-property-multiple",
+            "parameter": "issue-confirmed-notifications",
+            "value": false
+          },
+          "services": [
+            {
+              "name": "unconfirmed-cov-notification-multiple",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        }
+      ],
+      "service_alternatives": [
+        [
+          {
+            "name": "confirmed-cov-notification-multiple",
+            "initiate": false,
+            "execute": true
+          },
+          {
+            "name": "unconfirmed-cov-notification-multiple",
+            "initiate": false,
+            "execute": true
+          }
+        ]
+      ]
+    },
+    "DS-COVM-B": {
+      "clause": "K.1.24",
+      "services": [
+        {
+          "name": "subscribe-cov-property-multiple",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "confirmed-cov-notification-multiple",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-cov-notification-multiple",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LSV-A": {
+      "clause": "K.1.25",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A"
+      ]
+    },
+    "DS-LSAV-A": {
+      "clause": "K.1.26",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LSM-A": {
+      "clause": "K.1.27",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LSAM-A": {
+      "clause": "K.1.28",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ACV-A": {
+      "clause": "K.1.29",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A"
+      ]
+    },
+    "DS-ACAV-A": {
+      "clause": "K.1.30",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ACM-A": {
+      "clause": "K.1.31",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ACAM-A": {
+      "clause": "K.1.32",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ACUC-A": {
+      "clause": "K.1.33",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DM-OCD-A"
+      ]
+    },
+    "DS-ACUC-B": {
+      "clause": "K.1.34",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ACSC-A": {
+      "clause": "K.1.35",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DM-OCD-A"
+      ]
+    },
+    "DS-ACSC-B": {
+      "clause": "K.1.36",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ACAD-A": {
+      "clause": "K.1.37",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "DS-ACAD-B": {
+      "clause": "K.1.38",
+      "services": [],
+      "object_types": [
+        "access-door"
+      ],
+      "requires_bibbs": [
+        "DS-RP-B",
+        "DS-WP-B"
+      ]
+    },
+    "DS-ACCDI-A": {
+      "clause": "K.1.39",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DS-COV-A"
+      ]
+    },
+    "DS-ACCDI-B": {
+      "clause": "K.1.40",
+      "services": [],
+      "object_types": [
+        "credential-data-input"
+      ],
+      "requires_bibbs": [
+        "DS-RP-B",
+        "DS-WP-B",
+        "DS-COV-B"
+      ],
+      "interpretation": "The local credential-data-input requirement follows the subject of K.1.40 despite its mismatched BIBB cross-reference."
+    },
+    "DS-LO-A": {
+      "clause": "K.1.41",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LOS-A": {
+      "clause": "K.1.42",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-ALO-A": {
+      "clause": "K.1.43",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LO-B": {
+      "clause": "K.1.44",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "lighting-output"
+      ]
+    },
+    "DS-BLO-B": {
+      "clause": "K.1.45",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "binary-lighting-output"
+      ]
+    },
+    "DS-LV-A": {
+      "clause": "K.1.46",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A"
+      ]
+    },
+    "DS-LAV-A": {
+      "clause": "K.1.47",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LM-A": {
+      "clause": "K.1.48",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-LAM-A": {
+      "clause": "K.1.49",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-EV-A": {
+      "clause": "K.1.50",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A"
+      ]
+    },
+    "DS-EAV-A": {
+      "clause": "K.1.51",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-EM-A": {
+      "clause": "K.1.52",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DS-EAM-A": {
+      "clause": "K.1.53",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-N-A": {
+      "clause": "K.2.1",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "AE-N-I-B": {
+      "clause": "K.2.2",
+      "services": [
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-INFO-B"
+      ],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "any",
+            "conditions": [
+              {
+                "kind": "writable_property_present",
+                "property": "recipient-list"
+              },
+              {
+                "kind": "object_type_supported",
+                "object_type": "notification-forwarder"
+              }
+            ]
+          },
+          "services": [
+            {
+              "name": "confirmed-event-notification",
+              "initiate": true,
+              "execute": false
+            }
+          ]
+        },
+        {
+          "condition": {
+            "kind": "operator_acknowledgement_supported"
+          },
+          "requires_bibbs": [
+            "AE-ACK-B",
+            "AE-INFO-B"
+          ]
+        },
+        {
+          "condition": {
+            "kind": "event_transition_supported",
+            "transitions": [
+              "to-fault",
+              "to-offnormal"
+            ]
+          },
+          "requires_bibbs": [
+            "AE-INFO-B"
+          ]
+        }
+      ]
+    },
+    "AE-N-E-B": {
+      "clause": "K.2.3",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [
+        "event-enrollment"
+      ],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "AE-N-I-B"
+      ],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "operator_acknowledgement_supported"
+          },
+          "requires_bibbs": [
+            "AE-ACK-B",
+            "AE-INFO-B"
+          ]
+        },
+        {
+          "condition": {
+            "kind": "event_transition_supported",
+            "transitions": [
+              "to-fault",
+              "to-offnormal"
+            ]
+          },
+          "requires_bibbs": [
+            "AE-INFO-B"
+          ]
+        }
+      ],
+      "interpretation": "Writable event recipients or a notification forwarder make the inherited confirmed-notification initiation requirement applicable."
+    },
+    "AE-ACK-A": {
+      "clause": "K.2.4",
+      "services": [
+        {
+          "name": "acknowledge-alarm",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-ACK-B": {
+      "clause": "K.2.5",
+      "services": [
+        {
+          "name": "acknowledge-alarm",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "AE-ASUM-A": {
+      "clause": "K.2.6",
+      "services": [
+        {
+          "name": "get-alarm-summary",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "AE-ASUM-B": {
+      "clause": "K.2.7",
+      "services": [
+        {
+          "name": "get-alarm-summary",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "AE-ESUM-A": {
+      "clause": "K.2.8",
+      "services": [
+        {
+          "name": "get-enrollment-summary",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "AE-ESUM-B": {
+      "clause": "K.2.9",
+      "services": [
+        {
+          "name": "get-enrollment-summary",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "AE-INFO-A": {
+      "clause": "K.2.10",
+      "services": [
+        {
+          "name": "get-event-information",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "AE-INFO-B": {
+      "clause": "K.2.11",
+      "services": [
+        {
+          "name": "get-event-information",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "AE-LS-A": {
+      "clause": "K.2.12",
+      "services": [
+        {
+          "name": "life-safety-operation",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "acknowledge-alarm",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-LS-B": {
+      "clause": "K.2.13",
+      "services": [
+        {
+          "name": "life-safety-operation",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "object_type_alternatives": [
+        [
+          "life-safety-point",
+          "life-safety-zone"
+        ]
+      ],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "operator_acknowledgement_supported"
+          },
+          "requires_bibbs": [
+            "AE-ACK-B",
+            "AE-INFO-B"
+          ]
+        },
+        {
+          "condition": {
+            "kind": "event_transition_supported",
+            "transitions": [
+              "to-fault",
+              "to-offnormal"
+            ]
+          },
+          "requires_bibbs": [
+            "AE-INFO-B"
+          ]
+        }
+      ]
+    },
+    "AE-VN-A": {
+      "clause": "K.2.14",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-N-A"
+      ]
+    },
+    "AE-AVN-A": {
+      "clause": "K.2.15",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-VN-A"
+      ]
+    },
+    "AE-VM-A": {
+      "clause": "K.2.16",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "AE-AVM-A": {
+      "clause": "K.2.17",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DM-OCD-A"
+      ]
+    },
+    "AE-AS-A": {
+      "clause": "K.2.18",
+      "services": [
+        {
+          "name": "get-event-information",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "get-alarm-summary",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-ELV-A": {
+      "clause": "K.2.19",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-ELVM-A": {
+      "clause": "K.2.20",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "AE-EL-I-B": {
+      "clause": "K.2.21",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "event-log"
+      ]
+    },
+    "AE-EL-E-B": {
+      "clause": "K.2.22",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "event-log"
+      ]
+    },
+    "AE-NF-B": {
+      "clause": "K.2.23",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": true
+        },
+        {
+          "name": "add-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "notification-forwarder"
+      ]
+    },
+    "AE-NF-I-B": {
+      "clause": "K.2.24",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "add-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "notification-forwarder"
+      ]
+    },
+    "AE-CRL-B": {
+      "clause": "K.2.25",
+      "services": [
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "who-is",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "i-am",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [],
+      "object_type_alternatives": [
+        [
+          "notification-class",
+          "notification-forwarder"
+        ]
+      ]
+    },
+    "AE-TES-A": {
+      "clause": "K.2.26",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "add-list-element",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-LSVN-A": {
+      "clause": "K.2.27",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-N-A",
+        "AE-LS-A"
+      ]
+    },
+    "AE-LSAVN-A": {
+      "clause": "K.2.28",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-AVN-A",
+        "AE-LS-A"
+      ]
+    },
+    "AE-LSVM-A": {
+      "clause": "K.2.29",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "AE-LSAVM-A": {
+      "clause": "K.2.30",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DM-OCD-A"
+      ]
+    },
+    "AE-AC-A": {
+      "clause": "K.2.31",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "acknowledge-alarm",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "AE-AC-B": {
+      "clause": "K.2.32",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [
+        "access-point"
+      ],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "operator_acknowledgement_supported"
+          },
+          "requires_bibbs": [
+            "AE-ACK-B",
+            "AE-INFO-B"
+          ]
+        },
+        {
+          "condition": {
+            "kind": "event_transition_supported",
+            "transitions": [
+              "to-fault",
+              "to-offnormal"
+            ]
+          },
+          "requires_bibbs": [
+            "AE-INFO-B"
+          ]
+        }
+      ]
+    },
+    "AE-ACAVN-A": {
+      "clause": "K.2.33",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-AVN-A",
+        "AE-AC-A"
+      ]
+    },
+    "AE-ACVM-A": {
+      "clause": "K.2.34",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "AE-ACAVM-A": {
+      "clause": "K.2.35",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DM-OCD-A"
+      ]
+    },
+    "AE-EVN-A": {
+      "clause": "K.2.36",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-N-A"
+      ]
+    },
+    "AE-EAVN-A": {
+      "clause": "K.2.37",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "AE-AVN-A"
+      ]
+    },
+    "AE-EVM-A": {
+      "clause": "K.2.38",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "AE-EAVM-A": {
+      "clause": "K.2.39",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A",
+        "DM-OCD-A"
+      ]
+    },
+    "SCHED-A": {
+      "clause": "K.3.1",
+      "services": [],
+      "object_types": [],
+      "deprecated": true,
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "SCHED-I-B": {
+      "clause": "K.3.2",
+      "services": [],
+      "object_types": [
+        "calendar",
+        "schedule"
+      ],
+      "requires_bibbs": [
+        "DS-RP-B",
+        "DS-WP-B"
+      ],
+      "bibb_alternatives": [
+        [
+          "DM-TS-B",
+          "DM-UTC-B"
+        ]
+      ]
+    },
+    "SCHED-E-B": {
+      "clause": "K.3.3",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "SCHED-I-B",
+        "DS-WP-A"
+      ]
+    },
+    "SCHED-R-B": {
+      "clause": "K.3.4",
+      "services": [],
+      "object_types": [
+        "schedule"
+      ],
+      "requires_bibbs": [
+        "DS-RP-B"
+      ],
+      "bibb_alternatives": [
+        [
+          "DM-TS-B",
+          "DM-UTC-B"
+        ]
+      ]
+    },
+    "SCHED-AVM-A": {
+      "clause": "K.3.5",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DM-OCD-A",
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "SCHED-VM-A": {
+      "clause": "K.3.6",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "SCHED-WS-A": {
+      "clause": "K.3.7",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "SCHED-WS-I-B": {
+      "clause": "K.3.8",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "schedule"
+      ],
+      "requires_bibbs": [
+        "DS-RP-B",
+        "DS-WP-B"
+      ],
+      "bibb_alternatives": [
+        [
+          "DM-TS-B",
+          "DM-UTC-B"
+        ]
+      ]
+    },
+    "SCHED-TMR-I-B": {
+      "clause": "K.3.9",
+      "services": [],
+      "object_types": [
+        "timer"
+      ],
+      "requires_bibbs": [
+        "DS-RP-B",
+        "DS-WP-B"
+      ]
+    },
+    "SCHED-TMR-E-B": {
+      "clause": "K.3.10",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "SCHED-TMR-I-B",
+        "DS-WP-A"
+      ]
+    },
+    "T-VMT-A": {
+      "clause": "K.4.1",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "T-VMT-I-B": {
+      "clause": "K.4.2",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "trend-log"
+      ]
+    },
+    "T-VMT-E-B": {
+      "clause": "K.4.3",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "T-VMT-I-B",
+        "DS-RP-A"
+      ]
+    },
+    "T-ATR-A": {
+      "clause": "K.4.4",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "T-ATR-B": {
+      "clause": "K.4.5",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "trend-log"
+      ]
+    },
+    "T-VMMV-A": {
+      "clause": "K.4.6",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "deprecated": true
+    },
+    "T-VMMV-I-B": {
+      "clause": "K.4.7",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "trend-log-multiple"
+      ]
+    },
+    "T-VMMV-E-B": {
+      "clause": "K.4.8",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "T-VMMV-I-B",
+        "DS-RPM-A"
+      ]
+    },
+    "T-AMVR-A": {
+      "clause": "K.4.9",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "T-AMVR-B": {
+      "clause": "K.4.10",
+      "services": [
+        {
+          "name": "confirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "unconfirmed-event-notification",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "trend-log-multiple"
+      ]
+    },
+    "T-V-A": {
+      "clause": "K.4.11",
+      "services": [
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "T-AVM-A": {
+      "clause": "K.4.12",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A",
+        "DS-WP-A"
+      ]
+    },
+    "T-A-A": {
+      "clause": "K.4.13",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "T-ATR-A"
+      ],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "protocol_revision_at_least",
+            "revision": 7
+          },
+          "requires_bibbs": [
+            "T-AMVR-A"
+          ]
+        }
+      ]
+    },
+    "DM-DDB-A": {
+      "clause": "K.5.1",
+      "services": [
+        {
+          "name": "who-is",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "i-am",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DDB-B": {
+      "clause": "K.5.2",
+      "services": [
+        {
+          "name": "who-is",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "i-am",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DOB-A": {
+      "clause": "K.5.3",
+      "services": [
+        {
+          "name": "who-has",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "i-have",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DOB-B": {
+      "clause": "K.5.4",
+      "services": [
+        {
+          "name": "who-has",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "i-have",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DCC-A": {
+      "clause": "K.5.5",
+      "services": [
+        {
+          "name": "device-communication-control",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DCC-B": {
+      "clause": "K.5.6",
+      "services": [
+        {
+          "name": "device-communication-control",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-TM-A": {
+      "clause": "K.5.9",
+      "services": [],
+      "object_types": [],
+      "service_alternatives": [
+        [
+          {
+            "name": "confirmed-text-message",
+            "initiate": true,
+            "execute": false
+          },
+          {
+            "name": "unconfirmed-text-message",
+            "initiate": true,
+            "execute": false
+          }
+        ]
+      ]
+    },
+    "DM-TM-B": {
+      "clause": "K.5.10",
+      "services": [
+        {
+          "name": "confirmed-text-message",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "unconfirmed-text-message",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-TS-A": {
+      "clause": "K.5.11",
+      "services": [
+        {
+          "name": "time-synchronization",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-TS-B": {
+      "clause": "K.5.12",
+      "services": [
+        {
+          "name": "time-synchronization",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-UTC-A": {
+      "clause": "K.5.13",
+      "services": [
+        {
+          "name": "utc-time-synchronization",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-UTC-B": {
+      "clause": "K.5.14",
+      "services": [
+        {
+          "name": "utc-time-synchronization",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-RD-A": {
+      "clause": "K.5.15",
+      "services": [
+        {
+          "name": "reinitialize-device",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-RD-B": {
+      "clause": "K.5.16",
+      "services": [
+        {
+          "name": "reinitialize-device",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-BR-A": {
+      "clause": "K.5.17",
+      "services": [
+        {
+          "name": "atomic-read-file",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "atomic-write-file",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "reinitialize-device",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-BR-B": {
+      "clause": "K.5.18",
+      "services": [
+        {
+          "name": "atomic-read-file",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "atomic-write-file",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "reinitialize-device",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [
+        "file"
+      ],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "configuration_files_not_guaranteed_after_restore"
+          },
+          "services": [
+            {
+              "name": "create-object",
+              "initiate": false,
+              "execute": true
+            }
+          ]
+        }
+      ]
+    },
+    "DM-R-A": {
+      "clause": "K.5.19",
+      "services": [
+        {
+          "name": "unconfirmed-cov-notification",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-R-B": {
+      "clause": "K.5.20",
+      "services": [
+        {
+          "name": "unconfirmed-cov-notification",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-LM-A": {
+      "clause": "K.5.21",
+      "services": [
+        {
+          "name": "add-list-element",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-LM-B": {
+      "clause": "K.5.22",
+      "services": [
+        {
+          "name": "add-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-OCD-A": {
+      "clause": "K.5.23",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-OCD-B": {
+      "clause": "K.5.24",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "delete-object",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-VT-A": {
+      "clause": "K.5.25",
+      "services": [
+        {
+          "name": "vt-open",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "vt-close",
+          "initiate": true,
+          "execute": true
+        },
+        {
+          "name": "vt-data",
+          "initiate": true,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-VT-B": {
+      "clause": "K.5.26",
+      "services": [
+        {
+          "name": "vt-open",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "vt-close",
+          "initiate": true,
+          "execute": true
+        },
+        {
+          "name": "vt-data",
+          "initiate": true,
+          "execute": true
+        }
+      ],
+      "object_types": []
+    },
+    "DM-ANM-A": {
+      "clause": "K.5.27",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "DM-DDB-A"
+      ]
+    },
+    "DM-ADM-A": {
+      "clause": "K.5.28",
+      "services": [],
+      "object_types": [],
+      "requires_bibbs": [
+        "DS-RP-A"
+      ]
+    },
+    "DM-ATS-A": {
+      "clause": "K.5.29",
+      "services": [
+        {
+          "name": "time-synchronization",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "utc-time-synchronization",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-MTS-A": {
+      "clause": "K.5.30",
+      "services": [
+        {
+          "name": "time-synchronization",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "utc-time-synchronization",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-SP-VM-A": {
+      "clause": "K.5.31",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "add-list-element",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-SP-B": {
+      "clause": "K.5.32",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": true
+        },
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "add-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "who-is",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "i-am",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-LOM-A": {
+      "clause": "K.5.33",
+      "services": [
+        {
+          "name": "create-object",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "delete-object",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DDA-A": {
+      "clause": "K.5.34",
+      "services": [
+        {
+          "name": "who-am-i",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "you-are",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "who-is",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DDA-B": {
+      "clause": "K.5.35",
+      "services": [
+        {
+          "name": "who-am-i",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "you-are",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "who-is",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "i-am",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DAP-VM-A": {
+      "clause": "K.5.36",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "read-range",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "add-list-element",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": true,
+          "execute": false
+        },
+        {
+          "name": "write-property",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": []
+    },
+    "DM-DAP-B": {
+      "clause": "K.5.37",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": true,
+          "execute": true
+        },
+        {
+          "name": "read-range",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "add-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "remove-list-element",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "write-property",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "who-is",
+          "initiate": false,
+          "execute": true
+        },
+        {
+          "name": "i-am",
+          "initiate": true,
+          "execute": false
+        }
+      ],
+      "object_types": [
+        "network-port"
+      ],
+      "requires_bibbs": [
+        "NM-RC-B"
+      ]
+    },
+    "DM-TSDI-A": {
+      "clause": "K.5.38",
+      "services": [],
+      "object_types": []
+    },
+    "DM-TSDE-A": {
+      "clause": "K.5.39",
+      "services": [],
+      "object_types": []
+    },
+    "NM-RC-B": {
+      "clause": "K.6.4",
+      "services": [
+        {
+          "name": "read-property",
+          "initiate": false,
+          "execute": true
+        }
+      ],
+      "object_types": [],
+      "conditional_requirements": [
+        {
+          "condition": {
+            "kind": "protocol_revision_at_least",
+            "revision": 17
+          },
+          "services": [
+            {
+              "name": "write-property",
+              "initiate": false,
+              "execute": true
+            }
+          ],
+          "object_types": [
+            "network-port"
+          ]
+        }
+      ]
+    }
+  }
+}

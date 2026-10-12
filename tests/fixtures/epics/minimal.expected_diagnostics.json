@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "M-DEVICE-COUNT"
+  ],
+  "strict": [
+    "M-DEVICE-COUNT"
+  ]
+}

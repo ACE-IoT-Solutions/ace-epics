@@ -1,0 +1,141 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9
+        with:
+          python-version: '3.13'
+      - run: uv sync --locked --all-extras --group dev
+      - name: Verify tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: uv run python -c 'import os; from ace_epics import __version__; assert os.environ["RELEASE_TAG"] == "v" + __version__, "Tag and package version differ"'
+      - run: uv run ruff check .
+      - run: uv run ruff format --check .
+      - run: uv run pyrefly check
+      - run: uv run pytest --cov-fail-under=90 --cov-report=json
+      - run: uv run python scripts/check_coverage.py coverage.json
+      - run: uv run mkdocs build --strict
+      - run: uv run python scripts/check_site_links.py
+      - run: uv build
+      - run: uvx --from twine twine check dist/*
+      - run: uv run python scripts/check_distributions.py dist/*
+      - name: Extract versioned release notes
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: uv run python scripts/release_notes.py "$RELEASE_TAG"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: |
+            dist/*
+            release-notes.md
+  install:
+    needs: build
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+        extras: [base, all]
+        artifact: [wheel, sdist]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9
+        with:
+          python-version: ${{ matrix.python }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+      - name: Smoke isolated distribution install
+        env:
+          SMOKE_PYTHON: ${{ matrix.python }}
+          SMOKE_EXTRAS: ${{ matrix.extras }}
+          SMOKE_ARTIFACT: ${{ matrix.artifact }}
+        run: |
+          if [[ "$SMOKE_ARTIFACT" == wheel ]]; then
+            archives=(dist/*.whl)
+          else
+            archives=(dist/*.tar.gz)
+          fi
+          python scripts/smoke_install.py "${archives[0]}" --python "$SMOKE_PYTHON" --extras "$SMOKE_EXTRAS"
+  publish-test:
+    if: contains(github.ref_name, 'rc') || contains(github.ref_name, 'a') || contains(github.ref_name, 'b') || contains(github.ref_name, 'dev')
+    needs: [build, install]
+    runs-on: ubuntu-latest
+    environment: testpypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+  verify-testpypi:
+    needs: publish-test
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.13', '3.14']
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install exact published version and smoke outside checkout
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          SMOKE_PYTHON: ${{ matrix.python }}
+        run: |
+          for attempt in 1 2 3 4 5; do
+            if python scripts/smoke_install.py --testpypi-version "$RELEASE_TAG" --python "$SMOKE_PYTHON" --extras all; then
+              exit 0
+            fi
+            if [[ "$attempt" -lt 5 ]]; then
+              sleep 15
+            fi
+          done
+          exit 1
+  publish:
+    if: ${{ !contains(github.ref_name, 'rc') && !contains(github.ref_name, 'a') && !contains(github.ref_name, 'b') && !contains(github.ref_name, 'dev') }}
+    needs: [build, install]
+    runs-on: ubuntu-latest
+    environment: pypi
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+      - uses: pypa/gh-action-pypi-publish@release/v1
+  github-release:
+    needs: [build, install, publish, publish-test, verify-testpypi]
+    if: always() && needs.build.result == 'success' && (needs.publish.result == 'success' || (needs.publish-test.result == 'success' && needs.verify-testpypi.result == 'success'))
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+      - name: Attach distributions and notes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          release_flags=()
+          if [[ "$RELEASE_TAG" =~ (a|b|rc|dev) ]]; then
+            release_flags+=(--prerelease)
+          fi
+          gh release create "$RELEASE_TAG" dist/* --notes-file release-notes.md --title "$RELEASE_TAG" "${release_flags[@]}"

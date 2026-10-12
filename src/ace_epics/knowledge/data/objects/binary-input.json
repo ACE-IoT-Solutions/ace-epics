@@ -1,0 +1,926 @@
+{
+  "source": "ASHRAE 135-2024",
+  "clause": "12.6",
+  "table": "12-6",
+  "object_type": "binary-input",
+  "revision": 30,
+  "coverage_min_revision": 26,
+  "properties": {
+    "object-identifier": {
+      "requirement": "required",
+      "datatype": "BACnetObjectIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "object-name": {
+      "requirement": "required",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "range": {
+        "min_length": 1
+      }
+    },
+    "object-type": {
+      "requirement": "required",
+      "datatype": "BACnetObjectType",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "present-value": {
+      "requirement": "required",
+      "datatype": "BACnetBinaryPV",
+      "access": "C",
+      "conformance_code": "R1",
+      "conditions": [
+        {
+          "kind": "writable_if",
+          "property": "out-of-service",
+          "equals": true
+        }
+      ]
+    },
+    "description": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "device-type": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    },
+    "status-flags": {
+      "requirement": "required",
+      "datatype": "BACnetStatusFlags",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "event-state": {
+      "requirement": "required",
+      "datatype": "BACnetEventState",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true
+    },
+    "reliability": {
+      "requirement": "optional",
+      "datatype": "BACnetReliability",
+      "access": "C",
+      "conformance_code": "O",
+      "conditions": [
+        {
+          "kind": "writable_if",
+          "property": "out-of-service",
+          "equals": true,
+          "feature": "reliability-supports-fault-values"
+        }
+      ]
+    },
+    "out-of-service": {
+      "requirement": "required",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "polarity": {
+      "requirement": "required",
+      "datatype": "BACnetPolarity",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": []
+    },
+    "inactive-text": {
+      "requirement": "conditional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O2",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "inactive-text",
+            "active-text"
+          ]
+        }
+      ]
+    },
+    "active-text": {
+      "requirement": "conditional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O2",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "inactive-text",
+            "active-text"
+          ]
+        }
+      ]
+    },
+    "change-of-state-time": {
+      "requirement": "conditional",
+      "datatype": "BACnetDateTime",
+      "access": "R",
+      "conformance_code": "O3",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "change-of-state-time",
+            "change-of-state-count",
+            "time-of-state-count-reset"
+          ]
+        }
+      ]
+    },
+    "change-of-state-count": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O3",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "change-of-state-time",
+            "change-of-state-count",
+            "time-of-state-count-reset"
+          ]
+        }
+      ],
+      "range": {
+        "min": 0
+      },
+      "min_range": {
+        "min": 0,
+        "max": 65535
+      }
+    },
+    "time-of-state-count-reset": {
+      "requirement": "conditional",
+      "datatype": "BACnetDateTime",
+      "access": "C",
+      "conformance_code": "O3",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "change-of-state-time",
+            "change-of-state-count",
+            "time-of-state-count-reset"
+          ]
+        },
+        {
+          "kind": "writable_if",
+          "feature": "accepts-nonzero-writes",
+          "property": "change-of-state-count"
+        },
+        {
+          "kind": "read_only_if",
+          "feature": "accepts-nonzero-writes",
+          "property": "change-of-state-count",
+          "feature_equals": false
+        }
+      ]
+    },
+    "elapsed-active-time": {
+      "requirement": "conditional",
+      "datatype": "Unsigned32",
+      "access": "R",
+      "conformance_code": "O4",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "elapsed-active-time",
+            "time-of-active-time-reset"
+          ]
+        }
+      ],
+      "range": {
+        "min": 0,
+        "max": 4294967295
+      }
+    },
+    "time-of-active-time-reset": {
+      "requirement": "conditional",
+      "datatype": "BACnetDateTime",
+      "access": "C",
+      "conformance_code": "O4",
+      "conditions": [
+        {
+          "kind": "all_or_none",
+          "properties": [
+            "elapsed-active-time",
+            "time-of-active-time-reset"
+          ]
+        },
+        {
+          "kind": "writable_if",
+          "feature": "accepts-nonzero-writes",
+          "property": "elapsed-active-time"
+        },
+        {
+          "kind": "read_only_if",
+          "feature": "accepts-nonzero-writes",
+          "property": "elapsed-active-time",
+          "feature_equals": false
+        }
+      ]
+    },
+    "time-delay": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "notification-class": {
+      "requirement": "conditional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "alarm-value": {
+      "requirement": "conditional",
+      "datatype": "BACnetBinaryPV",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ]
+    },
+    "event-enable": {
+      "requirement": "conditional",
+      "datatype": "BACnetEventTransitionBits",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ]
+    },
+    "acked-transitions": {
+      "requirement": "conditional",
+      "datatype": "BACnetEventTransitionBits",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true
+    },
+    "notify-type": {
+      "requirement": "conditional",
+      "datatype": "BACnetNotifyType",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ]
+    },
+    "event-time-stamps": {
+      "requirement": "conditional",
+      "datatype": "BACnetARRAY[3] of BACnetTimeStamp",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "array_length": 3
+    },
+    "event-message-texts": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[3] of CharacterString",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "read_only": true,
+      "array_length": 3
+    },
+    "event-message-texts-config": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[3] of CharacterString",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "array_length": 3
+    },
+    "event-detection-enable": {
+      "requirement": "conditional",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "O5,7",
+      "conditions": [
+        {
+          "kind": "required_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ]
+    },
+    "event-algorithm-inhibit-ref": {
+      "requirement": "optional",
+      "datatype": "BACnetObjectPropertyReference",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ]
+    },
+    "event-algorithm-inhibit": {
+      "requirement": "conditional",
+      "datatype": "Boolean",
+      "access": "C",
+      "conformance_code": "O7,8",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        },
+        {
+          "kind": "required_if_present",
+          "property": "event-algorithm-inhibit-ref"
+        },
+        {
+          "kind": "read_only_if",
+          "property": "event-algorithm-inhibit-ref",
+          "initialized": true
+        },
+        {
+          "kind": "writable_if",
+          "property": "event-detection-enable",
+          "equals": true,
+          "reference_absent_or_uninitialized": "event-algorithm-inhibit-ref"
+        }
+      ]
+    },
+    "time-delay-normal": {
+      "requirement": "optional",
+      "datatype": "Unsigned",
+      "access": "R",
+      "conformance_code": "O7",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "intrinsic-reporting"
+        }
+      ],
+      "range": {
+        "min": 0
+      }
+    },
+    "reliability-evaluation-inhibit": {
+      "requirement": "optional",
+      "datatype": "Boolean",
+      "access": "R",
+      "conformance_code": "O9",
+      "conditions": [
+        {
+          "kind": "requires_property",
+          "property": "reliability"
+        }
+      ]
+    },
+    "property-list": {
+      "requirement": "required",
+      "datatype": "BACnetARRAY[N] of BACnetPropertyIdentifier",
+      "access": "R",
+      "conformance_code": "R",
+      "conditions": [],
+      "read_only": true,
+      "introduced_rev": 14
+    },
+    "interface-value": {
+      "requirement": "optional",
+      "datatype": "BACnetOptionalBinaryPV",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "read_only": true,
+      "introduced_rev": 16,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012at",
+        "section": "at-1, pp. 37\u201339",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-6.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "audit-level": {
+      "requirement": "optional",
+      "datatype": "BACnetAuditLevel",
+      "access": "R",
+      "conformance_code": "O10",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "auditable-operations": {
+      "requirement": "optional",
+      "datatype": "BACnetAuditOperationFlags",
+      "access": "R",
+      "conformance_code": "O10",
+      "conditions": [
+        {
+          "kind": "only_if",
+          "feature": "audit-reporting"
+        }
+      ],
+      "introduced_rev": 20,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "section": "bi-1, pp. 12, 26\u201327",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "tags": {
+      "requirement": "optional",
+      "datatype": "BACnetARRAY[N] of BACnetNameValue",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-2, p. 14",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "profile-location": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": [],
+      "introduced_rev": 19,
+      "introduction_evidence": {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "section": "ba-1, p. 13",
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "revision_source": "ASHRAE 135-2024, History of Revisions"
+      }
+    },
+    "profile-name": {
+      "requirement": "optional",
+      "datatype": "CharacterString",
+      "access": "R",
+      "conformance_code": "O",
+      "conditions": []
+    }
+  },
+  "history_coverage": {
+    "complete": true,
+    "verified_introductions": 5,
+    "notes": "Complete property-fact snapshots verified for revisions 14\u201330. Protocol revisions earlier than14 are outside the supported range.",
+    "complete_snapshot_revisions": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "snapshot_evidence": [
+      {
+        "source": "ASHRAE Addendum 135-2020cm",
+        "protocol_revision": 30,
+        "url": "https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/135_2020_cm_20241231.pdf",
+        "effect": "No Clause 12 property facts change."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cp",
+        "protocol_revision": 29,
+        "url": "https://www.ashrae.org/file%20library/technical%20resources/standards%20and%20guidelines/standards%20addenda/135_2020_cp_20241129.pdf",
+        "effect": "Six Device authorization properties added."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cj",
+        "protocol_revision": 28,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_cj_20240930.pdf",
+        "effect": "Lighting object changes outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020co",
+        "protocol_revision": 28,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_co_20240930.pdf",
+        "effect": "Reliability runtime configuration-error constraints added; property presence, datatype, access and required-property conditions unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020bx",
+        "protocol_revision": 27,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_bx_20240930.pdf",
+        "effect": "Two Device proxy properties added; remaining object changes concern Network Port."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ci",
+        "protocol_revision": 27,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/10/135_2020_ci_20240930.pdf",
+        "effect": "Schedule occupancy datatype recommendation has no required-property or range effect; other object changes outside these types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ch",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ch-PR-26.pdf",
+        "effect": "Segmentation state-machine changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ck",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020ck-PR-26.pdf",
+        "effect": "Application datatype aliases retain identical application tags and primitive value sets."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cn",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cn-PR-26.pdf",
+        "effect": "Engineering-unit meanings clarified and enum extended; Units remains BACnetEngineeringUnits."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cq",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cq-PR-26.pdf",
+        "effect": "CSML short-form serialization changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cs",
+        "protocol_revision": 26,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2024/07/Addendum-135-2020cs-PR-26.pdf",
+        "effect": "Certificate file interchange changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cf",
+        "protocol_revision": 25,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2023/10/135_2020_cf_20221130.pdf",
+        "effect": "Data attributes and segmentation changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020bv",
+        "protocol_revision": 24,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2020bv.pdf",
+        "effect": "Adds Schedule Write_Every_Scheduled_Action; existing access, ranges and required-property conditions unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ca",
+        "protocol_revision": 24,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2023/10/135_2020_ca_20220121.pdf",
+        "effect": "Adds color object types and lighting properties, outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cc",
+        "protocol_revision": 24,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2023/10/135_2020_cc_20220121.pdf",
+        "effect": "Network Port and BACnet/SC changes outside these fifteen property snapshots."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020ce",
+        "protocol_revision": 24,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2023/10/135_2020_ce_20220121.pdf",
+        "effect": "MS/TP property terminology aliases retain identifiers and wire semantics; CSML changes do not change Clause 12 access requirements."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2020cd",
+        "protocol_revision": 23,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2023/10/135_2020_cd_20210831.pdf",
+        "effect": "BACnet/SC TLS profile changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bj",
+        "protocol_revision": 22,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bj.pdf",
+        "effect": "Adds Device_UUID to Device; remaining represented property facts unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016by",
+        "protocol_revision": 22,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016by.pdf",
+        "effect": "Removes Network Security object and protocol, outside these fifteen property snapshots."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bz",
+        "protocol_revision": 22,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bz.pdf",
+        "effect": "Who-Am-I and You-Are services added; represented property facts unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016br",
+        "protocol_revision": 21,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016br.pdf",
+        "effect": "Non-commandable Null relinquish succeeds; multi-state runtime fault and timestamp behavior clarified without changing represented property presence/access/ranges."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bs",
+        "protocol_revision": 21,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bs-1.pdf",
+        "effect": "Elevator BIBBs and profiles, outside these object snapshots."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bt",
+        "protocol_revision": 21,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bt.pdf",
+        "effect": "Life safety and elevator changes, outside these object snapshots."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bu",
+        "protocol_revision": 21,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bu.pdf",
+        "effect": "Logging runtime status records and collection/encoding behavior clarified; represented property presence/access/ranges unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bw",
+        "protocol_revision": 21,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bw.pdf",
+        "effect": "Time series interchange format only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bd",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bd.pdf",
+        "effect": "Adds Staging object, outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016be",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016be.pdf",
+        "effect": "Lighting BIBBs and profiles only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bi",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bi.pdf",
+        "effect": "Adds per-object audit properties and Device audit recipient; Buffer_Size maximum acquires an unknown-capacity sentinel interpretation."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bk",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bk.pdf",
+        "effect": "Property identifier reserved range extends; existing identifiers unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bl",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bl.pdf",
+        "effect": "Introduces explicit mandatory Reliability writability while Out_Of_Service is true and fault values are supported."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bm",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bm.pdf",
+        "effect": "MS/TP state-machine usage timeout changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bn",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/07/Add-135-2016bn.pdf",
+        "effect": "BIBB datatype/clock requirements, without changing these Clause 12 property definitions."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bp",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bp.pdf",
+        "effect": "Web-service model and protocol changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2016bq",
+        "protocol_revision": 20,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2016bq-1.pdf",
+        "effect": "Physical access credential/event changes outside these object snapshots."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012am",
+        "protocol_revision": 19,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012am.pdf",
+        "effect": "Common-model, Web-service and identifier spelling changes; no represented facts change in these fifteen object types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012ba",
+        "protocol_revision": 19,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ba.pdf",
+        "effect": "Adds Tags and Profile_Location to all object types and Deployed_Profile_Location to Device."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012bc",
+        "protocol_revision": 19,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012bc.pdf",
+        "effect": "BIBB/profile expansions only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012aj",
+        "protocol_revision": 18,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012aj.pdf",
+        "effect": "IPv6 and Network Port changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012aq",
+        "protocol_revision": 18,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012aq.pdf",
+        "effect": "Adds Device Active_COV_Multiple_Subscriptions; elevator and fault algorithm changes outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012bf",
+        "protocol_revision": 18,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012bf.pdf",
+        "effect": "Advanced Network Port configuration and BVLL responses only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012bg",
+        "protocol_revision": 18,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012bg.pdf",
+        "effect": "Extends Device UTC_Offset from \u00b1780 to \u00b11440; Notification Class semantic correction and logging runtime buffer-clearing clarification."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012bh",
+        "protocol_revision": 18,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012bh.pdf",
+        "effect": "Segmentation state-machine changes only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012ai",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ai.pdf",
+        "effect": "Moves four Device subordinate-proxy properties to Network Port; Device MS/TP property mirror semantics replace earlier direct-port constraints."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012al",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012al.pdf",
+        "effect": "Gateway BIBBs and profiles only."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012as",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012as.pdf",
+        "effect": "Adds five command priority/value-source/time properties to commandable object types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012ay",
+        "protocol_revision": 17,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ay.pdf",
+        "effect": "Adds Timer and changes Access Credential expiration spelling, outside these fifteen types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012an",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "MS/TP extended frame and maximum APDU procedures; represented property datatypes unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012at",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Adds Interface_Value to six input/output types."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012au",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Encoding and coercion support clarification; existing property application datatypes unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012av",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Deprecates two service directions; Clause 12 property definitions unchanged."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012aw",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Adds analog fault thresholds and Device/Notification Class intrinsic-reporting properties; Notification Class Notification_Class becomes conditionally present and refers to another class."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012ax",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Recipient_List permits empty list and Schedule duplicate-time entries disallowed."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012az",
+        "protocol_revision": 16,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012-an-at-au-av-aw-ax-az-Final-1.pdf",
+        "effect": "Binary Value Change_Of_State_Count changes Unsigned32 to Unsigned; binary reset timestamps gain conditional writable/read-only requirements."
+      },
+      {
+        "source": "ASHRAE Addendum 135-2012ar",
+        "protocol_revision": 15,
+        "url": "https://bacnet.org/wp-content/uploads/sites/4/2022/08/Add-135-2012ar.pdf",
+        "effect": "Device time-distribution properties become one writable all-or-none group; encoding, BIBB and engineering-unit updates leave existing property application datatypes unchanged."
+      }
+    ],
+    "coverage_min_revision": 14,
+    "coverage_max_revision": 30
+  }
+}

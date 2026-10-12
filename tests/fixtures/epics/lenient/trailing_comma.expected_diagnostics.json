@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "V-TRAILING-COMMA"
+  ],
+  "strict": [
+    "V-TRAILING-COMMA"
+  ]
+}

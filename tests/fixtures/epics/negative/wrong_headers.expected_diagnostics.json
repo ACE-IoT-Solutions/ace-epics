@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-OBJECT-HEADERS"
+  ],
+  "strict": [
+    "P-OBJECT-HEADERS"
+  ]
+}

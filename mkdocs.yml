@@ -1,0 +1,54 @@
+site_name: ace-epics
+site_description: BACnet EPICS parsing, serialization, and validation
+site_dir: site
+docs_dir: docs/site
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - content.code.copy
+plugins:
+  - search
+  - gen-files:
+      scripts:
+        - scripts/gen_docs.py
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [src]
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+markdown_extensions:
+  - admonition
+  - pymdownx.superfences
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Format guide: format-guide/index.md
+  - Validation:
+      - Overview: validation/index.md
+      - Knowledge: validation/knowledge.md
+      - Query API: validation/query-api.md
+      - BIBBs: validation/bibb-knowledge.md
+      - Rules: validation/rules.md
+      - Object definitions: validation/object-knowledge.md
+  - Serialization:
+      - Overview: serialization/index.md
+      - JSON: serialization/json.md
+      - YAML: serialization/yaml.md
+      - RDF: serialization/rdf.md
+      - Vocabulary: serialization/vocabulary.md
+  - API: api/index.md
+  - Reference:
+      - Conformance: reference/conformance.md
+      - CLI: reference/cli.md
+      - Compatibility: reference/compatibility.md
+      - Decisions: reference/decisions.md
+      - Diagnostics: reference/diagnostics.md
+  - Project:
+      - Changelog: changelog.md
+      - Contributing: contributing.md
+      - Security: security.md
+      - License: license.md

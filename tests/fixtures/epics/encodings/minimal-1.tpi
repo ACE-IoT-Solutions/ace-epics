@@ -1,0 +1,38 @@
+PICS 1
+BACnet Protocol Implementation Conformance Statement
+Vendor Name: "Synthetic Works"
+Product Name: "Example Controller"
+Product Model Number: "SW-1"
+Product Description: "Invented conformance fixture"
+BIBBs Supported: {
+}
+BACnet Standard Application Services Supported: {
+}
+Standard Object Types Supported: {
+}
+Data Link Layer Option: {
+}
+Character Sets Supported: {
+}
+Special Functionality: {
+}
+Default Property Value Restrictions: {
+}
+Fail Times: {
+  Notification Fail Time: 1.0
+  Internal Processing Fail Time: 1.0
+  Minimum ON/OFF Time: 1.0
+  Schedule Evaluation Fail Time: 1.0
+  External Command Fail Time: 1.0
+  Program Object State Change Fail Time: 1.0
+  Acknowledgement Fail Time: 1.0
+  Subordinate Proxy Confirm Interval: 1.0
+  Unconfirmed Response Fail Time: 1.0
+  Channel Write Fail Time: 1.0
+  Auto Negotiation Fail Time: 1.0
+  Activate Changes Fail Time: 1.0
+  Foreign Device Registration Fail Time: 1.0
+}
+List of Objects in Test Device: {
+}
+End of BACnet Protocol Implementation Conformance Statement

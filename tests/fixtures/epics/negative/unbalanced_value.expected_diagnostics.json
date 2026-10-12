@@ -1,0 +1,12 @@
+{
+  "lenient": [
+    "P-SECTION-BRACE",
+    "P-VALUE-UNBALANCED",
+    "V-MISSING-COMMA"
+  ],
+  "strict": [
+    "P-SECTION-BRACE",
+    "P-VALUE-UNBALANCED",
+    "V-MISSING-COMMA"
+  ]
+}

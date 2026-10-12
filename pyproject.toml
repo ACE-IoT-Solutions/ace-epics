@@ -1,0 +1,62 @@
+[project]
+name = "ace-epics"
+dynamic = ["version"]
+description = "BACnet EPICS parsing, serialization, and consistency validation (ASHRAE 135.1)"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "Apache-2.0"
+authors = [{ name = "Andrew Rodgers", email = "andrew@aceiotsolutions.com" }]
+dependencies = ["pydantic>=2.7"]
+keywords = ["bacnet", "epics", "pics", "ashrae", "135.1", "conformance"]
+classifiers = ["Development Status :: 3 - Alpha", "Intended Audience :: Developers", "Topic :: System :: Networking", "Typing :: Typed", "Programming Language :: Python :: 3.13", "Programming Language :: Python :: 3.14"]
+
+[project.scripts]
+ace-epics = "ace_epics.cli:main"
+
+[project.optional-dependencies]
+yaml = ["pyyaml>=6"]
+rdf = ["rdflib>=7"]
+cli = []
+all = ["pyyaml>=6", "rdflib>=7"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "src/ace_epics/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/ace_epics"]
+
+[dependency-groups]
+dev = ["pytest>=8", "pytest-asyncio", "pytest-cov", "hypothesis", "ruff", "pyrefly", "pre-commit", "mkdocs-material", "mkdocstrings[python]", "mkdocs-gen-files", "types-pyyaml", "jsonschema>=4", "pyshacl>=0.30"]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF", "D100", "D101", "D102", "D103", "D104", "D106"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D"]
+"scripts/**" = ["D"]
+"docs/**" = ["D"]
+
+[tool.pyrefly]
+project-includes = ["src", "tests"]
+search-path = [".", "src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "--cov=ace_epics --cov-report=term-missing"
+markers = ["conformance: standard conformance traceability", "slow: extended fuzz or performance checks"]
+
+[tool.coverage.run]
+source = ["ace_epics"]
+patch = ["subprocess"]
+parallel = true

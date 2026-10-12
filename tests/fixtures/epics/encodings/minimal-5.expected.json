@@ -1,0 +1,57 @@
+{
+  "bibbs": [],
+  "character_sets": [],
+  "data_links": [],
+  "default_restrictions": {
+    "character_string": null,
+    "date": null,
+    "double": null,
+    "extra": {},
+    "list": null,
+    "octet_string": null,
+    "real": null,
+    "signed_integer": null,
+    "unsigned_integer": null,
+    "variable_length_array": null
+  },
+  "fail_times": {
+    "acknowledgement_fail_time": 1.0,
+    "activate_changes_fail_time": 1.0,
+    "audit_notification_forwarder_fail_time": null,
+    "auto_negotiation_fail_time": 1.0,
+    "channel_write_fail_time": 1.0,
+    "external_command_fail_time": 1.0,
+    "extra": {},
+    "foreign_device_registration_fail_time": 1.0,
+    "internal_processing_fail_time": 1.0,
+    "minimum_on_off_time": 1.0,
+    "notification_fail_time": 1.0,
+    "program_object_state_change_fail_time": 1.0,
+    "schedule_evaluation_fail_time": 1.0,
+    "subordinate_proxy_confirm_interval": 1.0,
+    "unconfirmed_response_fail_time": 1.0
+  },
+  "general": {
+    "product_description": "Invented conformance fixture",
+    "product_model_number": "SW-1",
+    "product_name": "Example Controller",
+    "vendor_name": "Synthetic Works"
+  },
+  "header": {
+    "charset_code": 5
+  },
+  "object_types": [],
+  "objects": [],
+  "services": [],
+  "special": {
+    "bacnet_ip_bbmd": false,
+    "bacnet_ipv6_bbmd": false,
+    "bacnet_sc_direct_connect": false,
+    "bacnet_sc_hub": false,
+    "max_apdu_size": null,
+    "router": false,
+    "segmented_requests_window": null,
+    "segmented_responses_window": null,
+    "unknown": []
+  }
+}

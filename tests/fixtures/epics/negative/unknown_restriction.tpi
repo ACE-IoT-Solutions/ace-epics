@@ -1,0 +1,627 @@
+PICS 0
+BACnet Protocol Implementation Conformance Statement
+Vendor Name: "Synthetic Works"
+Product Name: "Example Controller"
+Product Model Number: "SW-1"
+Product Description: "Invented conformance fixture"
+BIBBs Supported: {
+  DS-RP-B
+}
+BACnet Standard Application Services Supported: {
+  acknowledge-alarm                     Initiate Execute
+  confirmed-cov-notification            Initiate Execute
+  confirmed-event-notification          Initiate Execute
+  get-alarm-summary                     Initiate Execute
+  get-enrollment-summary                Initiate Execute
+  subscribe-cov                         Initiate Execute
+  atomic-read-file                      Initiate Execute
+  atomic-write-file                     Initiate Execute
+  add-list-element                      Initiate Execute
+  remove-list-element                   Initiate Execute
+  create-object                         Initiate Execute
+  delete-object                         Initiate Execute
+  read-property                         Initiate Execute
+  read-property-multiple                Initiate Execute
+  write-property                        Initiate Execute
+  write-property-multiple               Initiate Execute
+  device-communication-control          Initiate Execute
+  confirmed-private-transfer            Initiate Execute
+  confirmed-text-message                Initiate Execute
+  reinitialize-device                   Initiate Execute
+  vt-open                               Initiate Execute
+  vt-close                              Initiate Execute
+  vt-data                               Initiate Execute
+  i-am                                  Initiate Execute
+  i-have                                Initiate Execute
+  unconfirmed-cov-notification          Initiate Execute
+  unconfirmed-event-notification        Initiate Execute
+  unconfirmed-private-transfer          Initiate Execute
+  unconfirmed-text-message              Initiate Execute
+  time-synchronization                  Initiate Execute
+  who-has                               Initiate Execute
+  who-is                                Initiate Execute
+  read-range                            Initiate Execute
+  utc-time-synchronization              Initiate Execute
+  life-safety-operation                 Initiate Execute
+  subscribe-cov-property                Initiate Execute
+  get-event-information                 Initiate Execute
+  write-group                           Initiate Execute
+  subscribe-cov-property-multiple       Initiate Execute
+  confirmed-cov-notification-multiple   Initiate Execute
+  unconfirmed-cov-notification-multiple Initiate Execute
+  confirmed-audit-notification          Initiate Execute
+  audit-log-query                       Initiate Execute
+  unconfirmed-audit-notification        Initiate Execute
+  who-am-i                              Initiate Execute
+  you-are                               Initiate Execute
+  auth-request                          Initiate Execute
+}
+Standard Object Types Supported: {
+  accumulator
+  analog-input
+  analog-output
+  analog-value
+  averaging
+  binary-input
+  binary-output
+  binary-value
+  calendar
+  command
+  device
+  event-enrollment
+  file
+  group
+  life-safety-point
+  life-safety-zone
+  loop
+  multi-state-input
+  multi-state-output
+  multi-state-value
+  notification-class
+  program
+  pulse-converter
+  schedule
+  trend-log
+  network-port
+  channel
+  timer
+  color
+  audit-log
+}
+Data Link Layer Option: {
+  BACnet/IP, 'DIX' Ethernet
+  MS/TP manager. Baud rate(s): 9600, 19200
+}
+Character Sets Supported: {
+  ISO 10646 (UTF-8)
+}
+Special Functionality: {
+  Maximum APDU size in octets: 1476
+}
+Default Property Value Restrictions: {
+}
+Fail Times: {
+  Notification Fail Time: 1.0
+  Internal Processing Fail Time: 1.0
+  Minimum ON/OFF Time: 1.0
+  Schedule Evaluation Fail Time: 1.0
+  External Command Fail Time: 1.0
+  Program Object State Change Fail Time: 1.0
+  Acknowledgement Fail Time: 1.0
+  Subordinate Proxy Confirm Interval: 1.0
+  Unconfirmed Response Fail Time: 1.0
+  Channel Write Fail Time: 1.0
+  Auto Negotiation Fail Time: 1.0
+  Activate Changes Fail Time: 1.0
+  Foreign Device Registration Fail Time: 1.0
+}
+List of Objects in Test Device: {
+  {
+    object-identifier: (accumulator, 1)
+    object-name: "Synthetic accumulator"
+    object-type: accumulator
+    property-list: {}
+  }
+  {
+    object-identifier: (analog-input, 2)
+    object-name: "Synthetic analog-input"
+    object-type: analog-input
+    present-value: 1.0 C
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    units: ?
+    property-list: {present-value, status-flags, event-state, out-of-service, units}
+  }
+  {
+    object-identifier: (analog-output, 3)
+    object-name: "Synthetic analog-output"
+    object-type: analog-output
+    present-value: 1.0 W
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    units: ?
+    priority-array: {?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?}
+    relinquish-default: 1.0
+    current-command-priority: ?
+    property-list: {
+      present-value,
+      status-flags,
+      event-state,
+      out-of-service,
+      units,
+      priority-array,
+      relinquish-default,
+      current-command-priority
+    }
+  }
+  {
+    object-identifier: (analog-value, 4)
+    object-name: "Synthetic analog-value"
+    object-type: analog-value
+    present-value: 1.0 C
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    units: ?
+    description: "Invented value" W <mystery: 30>
+    property-list: {present-value, status-flags, event-state, out-of-service, units, description}
+  }
+  {
+    object-identifier: (averaging, 5)
+    object-name: "Synthetic averaging"
+    object-type: averaging
+    property-list: {}
+  }
+  {
+    object-identifier: (binary-input, 6)
+    object-name: "Synthetic binary-input"
+    object-type: binary-input
+    present-value: inactive C
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    polarity: ?
+    property-list: {present-value, status-flags, event-state, out-of-service, polarity}
+  }
+  {
+    object-identifier: (binary-output, 7)
+    object-name: "Synthetic binary-output"
+    object-type: binary-output
+    present-value: inactive W
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    polarity: ?
+    priority-array: {?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?}
+    relinquish-default: inactive
+    current-command-priority: ?
+    property-list: {
+      present-value,
+      status-flags,
+      event-state,
+      out-of-service,
+      polarity,
+      priority-array,
+      relinquish-default,
+      current-command-priority
+    }
+  }
+  {
+    object-identifier: (binary-value, 8)
+    object-name: "Synthetic binary-value"
+    object-type: binary-value
+    present-value: inactive C
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    property-list: {present-value, status-flags, event-state, out-of-service}
+  }
+  {
+    object-identifier: (calendar, 9)
+    object-name: "Synthetic calendar"
+    object-type: calendar
+    present-value: FALSE
+    date-list: {}
+    property-list: {present-value, date-list}
+  }
+  {
+    object-identifier: (command, 10)
+    object-name: "Synthetic command"
+    object-type: command
+    property-list: {}
+  }
+  {
+    object-identifier: (device, 11)
+    object-name: "Synthetic device"
+    object-type: device
+    system-status: ?
+    vendor-name: "Synthetic"
+    vendor-identifier: 1
+    model-name: "Synthetic"
+    firmware-revision: "Synthetic"
+    application-software-version: "Synthetic"
+    protocol-version: 1
+    protocol-revision: 30
+    protocol-services-supported: {
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE
+    }
+    protocol-object-types-supported: {
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      TRUE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      TRUE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      TRUE,
+      FALSE,
+      FALSE,
+      TRUE,
+      FALSE,
+      FALSE,
+      FALSE,
+      FALSE,
+      TRUE,
+      FALSE,
+      TRUE,
+      FALSE
+    }
+    object-list: {
+      (accumulator, 1),
+      (analog-input, 2),
+      (analog-output, 3),
+      (analog-value, 4),
+      (averaging, 5),
+      (binary-input, 6),
+      (binary-output, 7),
+      (binary-value, 8),
+      (calendar, 9),
+      (command, 10),
+      (device, 11),
+      (event-enrollment, 12),
+      (file, 13),
+      (group, 14),
+      (life-safety-point, 15),
+      (life-safety-zone, 16),
+      (loop, 17),
+      (multi-state-input, 18),
+      (multi-state-output, 19),
+      (multi-state-value, 20),
+      (notification-class, 21),
+      (program, 22),
+      (pulse-converter, 23),
+      (schedule, 24),
+      (trend-log, 25),
+      (network-port, 26),
+      (channel, 27),
+      (timer, 28),
+      (color, 29),
+      (audit-log, 30)
+    }
+    max-apdu-length-accepted: 1
+    segmentation-supported: no-segmentation
+    apdu-timeout: 1
+    number-of-apdu-retries: 1
+    device-address-binding: {}
+    database-revision: 1
+    local-time: 12:00:00.00
+    local-date: (Thursday, 1-January-2026)
+    utc-offset: 0
+    daylight-savings-status: FALSE
+    active-cov-subscriptions: ()
+    active-cov-multiple-subscriptions: ()
+    serial-number: "SYNTHETIC-001"
+    property-list: {
+      system-status,
+      vendor-name,
+      vendor-identifier,
+      model-name,
+      firmware-revision,
+      application-software-version,
+      protocol-version,
+      protocol-revision,
+      protocol-services-supported,
+      protocol-object-types-supported,
+      object-list,
+      max-apdu-length-accepted,
+      segmentation-supported,
+      apdu-timeout,
+      number-of-apdu-retries,
+      device-address-binding,
+      database-revision,
+      local-time,
+      local-date,
+      utc-offset,
+      daylight-savings-status,
+      active-cov-subscriptions,
+      active-cov-multiple-subscriptions,
+      serial-number
+    }
+  }
+  {
+    object-identifier: (event-enrollment, 12)
+    object-name: "Synthetic event-enrollment"
+    object-type: event-enrollment
+    property-list: {}
+  }
+  {
+    object-identifier: (file, 13)
+    object-name: "Synthetic file"
+    object-type: file
+    file-type: "Synthetic"
+    modification-date: ?
+    archive: FALSE W
+    read-only: FALSE
+    file-access-method: ?
+    file-size: 1 C
+    property-list: {file-type, modification-date, archive, read-only, file-access-method, file-size}
+  }
+  {
+    object-identifier: (group, 14)
+    object-name: "Synthetic group"
+    object-type: group
+    property-list: {}
+  }
+  {
+    object-identifier: (life-safety-point, 15)
+    object-name: "Synthetic life-safety-point"
+    object-type: life-safety-point
+    property-list: {}
+  }
+  {
+    object-identifier: (life-safety-zone, 16)
+    object-name: "Synthetic life-safety-zone"
+    object-type: life-safety-zone
+    property-list: {}
+  }
+  {
+    object-identifier: (loop, 17)
+    object-name: "Synthetic loop"
+    object-type: loop
+    property-list: {}
+  }
+  {
+    object-identifier: (multi-state-input, 18)
+    object-name: "Synthetic multi-state-input"
+    object-type: multi-state-input
+    present-value: 1 C
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    number-of-states: 1
+    property-list: {present-value, status-flags, event-state, out-of-service, number-of-states}
+  }
+  {
+    object-identifier: (multi-state-output, 19)
+    object-name: "Synthetic multi-state-output"
+    object-type: multi-state-output
+    present-value: 1 W
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    number-of-states: 1
+    priority-array: {?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?}
+    relinquish-default: 1
+    current-command-priority: ?
+    property-list: {
+      present-value,
+      status-flags,
+      event-state,
+      out-of-service,
+      number-of-states,
+      priority-array,
+      relinquish-default,
+      current-command-priority
+    }
+  }
+  {
+    object-identifier: (multi-state-value, 20)
+    object-name: "Synthetic multi-state-value"
+    object-type: multi-state-value
+    present-value: 1 C
+    status-flags: ?
+    event-state: ?
+    out-of-service: FALSE
+    number-of-states: 1
+    property-list: {present-value, status-flags, event-state, out-of-service, number-of-states}
+  }
+  {
+    object-identifier: (notification-class, 21)
+    object-name: "Synthetic notification-class"
+    object-type: notification-class
+    priority: {}
+    ack-required: ?
+    recipient-list: {}
+    property-list: {priority, ack-required, recipient-list}
+  }
+  {
+    object-identifier: (program, 22)
+    object-name: "Synthetic program"
+    object-type: program
+    property-list: {}
+  }
+  {
+    object-identifier: (pulse-converter, 23)
+    object-name: "Synthetic pulse-converter"
+    object-type: pulse-converter
+    property-list: {}
+  }
+  {
+    object-identifier: (schedule, 24)
+    object-name: "Synthetic schedule"
+    object-type: schedule
+    present-value: ? C
+    effective-period: ?
+    schedule-default: ?
+    list-of-object-property-references: {}
+    priority-for-writing: 1
+    status-flags: ?
+    reliability: ?
+    out-of-service: FALSE
+    weekly-schedule: {(), (), (), (), (), (), ()}
+    property-list: {
+      present-value,
+      effective-period,
+      schedule-default,
+      list-of-object-property-references,
+      priority-for-writing,
+      status-flags,
+      reliability,
+      out-of-service,
+      weekly-schedule
+    }
+  }
+  {
+    object-identifier: (trend-log, 25)
+    object-name: "Synthetic trend-log"
+    object-type: trend-log
+    enable: FALSE W
+    stop-when-full: FALSE
+    buffer-size: 1
+    log-buffer: {}
+    record-count: 1 W
+    total-record-count: 1
+    logging-type: ?
+    status-flags: ?
+    event-state: ?
+    property-list: {
+      enable,
+      stop-when-full,
+      buffer-size,
+      log-buffer,
+      record-count,
+      total-record-count,
+      logging-type,
+      status-flags,
+      event-state
+    }
+  }
+  {
+    object-identifier: (network-port, 26)
+    object-name: "Synthetic network-port"
+    object-type: network-port
+    property-list: {}
+  }
+  {
+    object-identifier: (channel, 27)
+    object-name: "Synthetic channel"
+    object-type: channel
+    property-list: {}
+  }
+  {
+    object-identifier: (timer, 28)
+    object-name: "Synthetic timer"
+    object-type: timer
+    property-list: {}
+  }
+  {
+    object-identifier: (color, 29)
+    object-name: "Synthetic color"
+    object-type: color
+    property-list: {}
+  }
+  {
+    object-identifier: (audit-log, 30)
+    object-name: "Synthetic audit-log"
+    object-type: audit-log
+    property-list: {}
+  }
+}
+End of BACnet Protocol Implementation Conformance Statement

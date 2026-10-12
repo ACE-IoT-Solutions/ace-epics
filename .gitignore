@@ -1,0 +1,30 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Licensed standards documents - never commit
+*.pdf
+# CocoIndex Code (ccc)
+/.cocoindex_code/
+
+resources/
+docs/spec/private/
+.cocoindex_code/
+.coverage
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+/site/
+.coverage.*
+coverage.json
+coverage.xml
+
+# macOS metadata
+.DS_Store

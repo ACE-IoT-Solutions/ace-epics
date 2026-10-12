@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-SIGNATURE-POSITION"
+  ],
+  "strict": [
+    "P-SIGNATURE-POSITION"
+  ]
+}

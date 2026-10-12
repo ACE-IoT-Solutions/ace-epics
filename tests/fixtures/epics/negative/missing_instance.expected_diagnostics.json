@@ -1,0 +1,10 @@
+{
+  "lenient": [
+    "P-OBJECT-IDENTIFIER",
+    "M-DEVICE-COUNT"
+  ],
+  "strict": [
+    "P-OBJECT-IDENTIFIER",
+    "M-DEVICE-COUNT"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "lenient": [
+    "P-TIMER-INTEGER"
+  ],
+  "strict": [
+    "P-TIMER-INTEGER"
+  ]
+}
