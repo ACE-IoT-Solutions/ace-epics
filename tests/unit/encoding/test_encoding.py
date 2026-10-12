@@ -1,4 +1,5 @@
 import codecs
+import os
 
 import pytest
 
@@ -70,6 +71,14 @@ def test_invalid_encoding_and_conflicting_width():
 )
 def test_non_ascii_codec_choices(code, content):
     text = f"PICS {code}\r\n{content}\r\n"
+    if code == 1 and os.name == "nt":
+        # mbcs uses the native Windows ANSI code page, which need not be Japanese.
+        try:
+            text.encode("mbcs")
+        except UnicodeEncodeError:
+            with pytest.raises(UnicodeEncodeError):
+                encode(text, code)
+            return
     assert decode(encode(text, code))[0] == text
 
 
@@ -92,3 +101,21 @@ def test_structurally_empty_epics_seed():
     assert result.document is not None
     assert {d.code for d in result.diagnostics} == {"P-SECTIONS-INCOMPLETE", "M-DEVICE-COUNT"}
     assert result.document.objects == []
+
+
+def test_microsoft_charset_roundtrips_non_ascii_supported_by_selected_code_page():
+    selected = "mbcs" if os.name == "nt" else "cp932"
+    assert detect(b"PICS 1\r\n").python_codec == selected
+    # Cover the actual selected locale rather than assuming a Japanese Windows ACP.
+    for sample in ("é", "漢字", "Ж", "א", "ع", "ก", "가"):
+        text = f"PICS 1\r\n{sample}\r\n"
+        try:
+            expected = text.encode(selected)
+        except UnicodeEncodeError:
+            continue
+        if expected.decode(selected) != text:
+            continue
+        assert encode(text, 1) == expected
+        assert decode(expected)[0] == text
+        return
+    pytest.fail(f"No representative non-ASCII sample roundtrips through {selected}")
