@@ -51,7 +51,7 @@ jobs:
       - uses: astral-sh/setup-uv@v9
         with:
           python-version: ${{ matrix.python }}
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: distributions
       - name: Smoke isolated distribution install
@@ -74,7 +74,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: distributions
       - uses: pypa/gh-action-pypi-publish@release/v1
@@ -114,7 +114,7 @@ jobs:
     permissions:
       id-token: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: distributions
       - uses: pypa/gh-action-pypi-publish@release/v1
@@ -125,7 +125,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v8
         with:
           name: distributions
       - name: Attach distributions and notes
