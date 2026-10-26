@@ -20,6 +20,7 @@ class Context:
     provider: KnowledgeProvider
     strict: bool = False
     memo: dict[str, Any] = field(default_factory=dict)
+    checked_objects: list[str] = field(default_factory=list)
     query: Query = field(init=False)
 
     def __post_init__(self) -> None:
@@ -112,6 +113,7 @@ def validate(
     capability_lookup = getattr(ctx.provider, "capabilities", None)
     available = capability_lookup() if capability_lookup is not None else None
     for rule in ordered:
+        ctx.checked_objects = []
         if not rule.applies(ctx):
             report.results.append(
                 RuleResult(rule_id=rule.id, clause=rule.clause, outcome="not_applicable")
@@ -141,10 +143,23 @@ def validate(
             outcome = "fail"
             failed.add(rule.id)
         elif any(d.severity == Severity.SKIPPED for d in findings):
-            outcome = "skipped"
+            outcome = "partial" if ctx.checked_objects else "skipped"
         else:
             outcome = "pass"
         report.results.append(
-            RuleResult(rule_id=rule.id, clause=rule.clause, outcome=outcome, diagnostics=findings)
+            RuleResult(
+                rule_id=rule.id,
+                clause=rule.clause,
+                outcome=outcome,
+                diagnostics=findings,
+                checked_objects=list(dict.fromkeys(ctx.checked_objects)),
+                skipped_objects=list(
+                    dict.fromkeys(
+                        d.object_id
+                        for d in findings
+                        if d.severity == Severity.SKIPPED and d.object_id is not None
+                    )
+                ),
+            )
         )
     return report

@@ -11,7 +11,7 @@ from pathlib import Path
 from ace_epics import __version__
 from ace_epics.api import convert, dump, load
 from ace_epics.codecs import registry
-from ace_epics.diagnostics import EpicsError, Severity
+from ace_epics.diagnostics import Diagnostic, EpicsError, Severity
 from ace_epics.knowledge import JsonKnowledgeProvider
 from ace_epics.validation import validate
 
@@ -104,6 +104,17 @@ def inspect_document(args: argparse.Namespace) -> str:
     return "\n".join(lines)
 
 
+def format_diagnostic(finding: Diagnostic) -> str:
+    """Render individual Clause 4/5 findings with available source locations."""
+    location = ""
+    if finding.line is not None:
+        location = f"line {finding.line}"
+        if finding.column is not None:
+            location += f":{finding.column}"
+        location += ": "
+    return f"{location}{finding.severity}: {finding.code}: {finding.message}"
+
+
 def main(argv: list[str] | None = None) -> int:
     """Execute a command; return0clean,1warnings-as-errors,2errors (Clause14)."""
     args = parser().parse_args(argv)
@@ -128,7 +139,7 @@ def main(argv: list[str] | None = None) -> int:
             )
             return 0
         if args.command == "validate":
-            doc = load(args.src, **read_options(args.src, None, args.strict))
+            doc = load(args.src, raise_on_error=False, **read_options(args.src, None, args.strict))
             selected = [r.strip() for r in args.rules.split(",")] if args.rules else None
             report = validate(
                 doc, JsonKnowledgeProvider(args.knowledge), rules=selected, strict=args.strict
@@ -143,12 +154,16 @@ def main(argv: list[str] | None = None) -> int:
                 if parse_findings:
                     print("\nParse diagnostics:\n")
                     for finding in parse_findings:
-                        print(f"- {finding.severity}: {finding.code}: {finding.message}")
+                        print(f"- {format_diagnostic(finding)}")
             elif not args.quiet:
                 for result in report.results:
                     print(f"{result.rule_id}: {result.outcome}")
+                    if result.checked_objects:
+                        print("  Checked objects: " + ", ".join(result.checked_objects))
+                    if result.skipped_objects:
+                        print("  Skipped objects: " + ", ".join(result.skipped_objects))
                 for finding in [*parse_findings, *report.diagnostics]:
-                    print(f"{finding.severity}: {finding.code}: {finding.message}")
+                    print(format_diagnostic(finding))
             findings = [*parse_findings, *report.diagnostics]
             if any(d.severity == Severity.ERROR for d in findings):
                 return 2
@@ -214,6 +229,9 @@ def main(argv: list[str] | None = None) -> int:
                     indent=2,
                 )
             )
+        elif isinstance(exc, EpicsError) and not args.quiet:
+            for finding in exc.diagnostics:
+                print(format_diagnostic(finding), file=sys.stderr)
         elif not args.quiet:
             print(f"ace-epics: {exc}", file=sys.stderr)
         return 2

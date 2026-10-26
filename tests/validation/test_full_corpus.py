@@ -20,7 +20,7 @@ def test_full_corpus_zero_errors_and_golden_reports():
     assert {r.rule_id for r in report.results} == {r.id for r in RULES}
     assert not [d for d in report.diagnostics if d.severity == Severity.ERROR]
     # Missing object tables and externally determined feature conditions remain visible.
-    assert any(result.outcome == "skipped" for result in report.results)
+    assert any(result.outcome == "partial" for result in report.results)
     report.run_at = datetime(2026, 1, 1, tzinfo=UTC)
     snapshots = ROOT / "tests/snapshots/validation"
     assert report.to_json() + "\n" == (snapshots / "full.json").read_text()

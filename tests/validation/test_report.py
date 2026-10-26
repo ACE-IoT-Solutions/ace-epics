@@ -18,7 +18,13 @@ def test_report_roundtrip_summary_markdown_and_exit_policy():
             RuleResult(rule_id="C5-14", clause="5(l)", outcome="skipped"),
         ],
     )
-    assert report.summary() == {"pass": 1, "fail": 0, "skipped": 1, "not_applicable": 0}
+    assert report.summary() == {
+        "pass": 1,
+        "fail": 0,
+        "partial": 0,
+        "skipped": 1,
+        "not_applicable": 0,
+    }
     assert report.exit_code() == 0
     assert report.exit_code(warnings_as_errors=True) == 1
     assert ValidationReport.model_validate(json.loads(report.to_json())) == report

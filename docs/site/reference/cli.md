@@ -24,9 +24,13 @@ report and do not themselves change the exit code. This policy follows the
 Phase 6 plan; the library report's `exit_code()` method maps errors to 1.
 
 JSON validation output includes `parse_diagnostics` alongside the document identity,
-run time, tool version, and rule results. Native parse errors produce a JSON envelope
-with diagnostics and an empty rule-result list. Text and Markdown include parse
-findings as well as validation findings.
+run time, tool version, and rule results. Validation runs whenever parsing recovers
+a document, including when it reports syntax errors. Those errors remain in the
+report and still produce exit code 2. Only a failure that produces no document has
+an empty rule-result list. Text and Markdown print parse findings individually with
+available line and column numbers. Object-property results include checked and
+skipped object identifiers; incomplete checks report `partial` unless an error makes
+the result `fail`.
 
 `fmt --in-place` serializes successfully before atomically replacing the file and
 preserves its permissions. `--preserve` retains value formatting metadata where

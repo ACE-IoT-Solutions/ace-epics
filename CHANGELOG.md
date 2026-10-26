@@ -19,6 +19,10 @@ versioning. Unreleased entries describe work in the repository, not published re
 
 ### Changed
 
+- Object-property validation reports partial knowledge coverage and identifies
+  checked and skipped objects without hiding failures.
+- CLI validation runs on recovered documents and prints located parse diagnostics
+  individually while retaining error exit codes.
 - RDF uses the BACpypes3 0.0.110 `bacnet:` vocabulary for supported object,
   property, and value mappings, with explicit `ace-epics:` declaration extensions.
 - CI action pins reference verified releases; documentation deployment requires

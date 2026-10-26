@@ -126,7 +126,7 @@ def test_relative_restriction_bounds_unknown_then_resolved(document, provider):
     )
     obj = document.objects[1]
     obj.property("present-value").restrictions = Restrictions(maximum=integer(11))
-    assert result(document, provider, "C5-20").outcome == "skipped"
+    assert result(document, provider, "C5-20").outcome == "partial"
     set_value(obj, "number-of-states", integer(10))
     assert result(document, provider, "C5-20").outcome == "fail"
     obj.property("present-value").restrictions = None

@@ -71,7 +71,7 @@ def test_unknown_conditions_cannot_pass_missing_obligations(document, provider):
             ),
         },
     )
-    assert result(document, provider, "C5-11").outcome == "skipped"
+    assert result(document, provider, "C5-11").outcome == "partial"
     for obj in document.objects:
         obj.properties.append(entry("feature-property", integer(1)))
     assert result(document, provider, "C5-11").outcome == "pass"
@@ -118,7 +118,7 @@ def test_dynamic_standard_bounds_and_constructed_element_ranges(document, provid
             ),
         },
     )
-    assert result(document, provider, "C5-19").outcome == "skipped"
+    assert result(document, provider, "C5-19").outcome == "partial"
     set_value(document.objects[1], "number-of-states", integer(10))
     assert result(document, provider, "C5-19").outcome == "fail"
     set_value(document.objects[1], "present-value", integer(5))

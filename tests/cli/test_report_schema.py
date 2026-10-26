@@ -2,6 +2,7 @@
 
 import copy
 import json
+from pathlib import Path
 
 import jsonschema
 import pytest
@@ -32,8 +33,10 @@ RULE = {
     "properties": {
         "rule_id": {"type": "string", "minLength": 1},
         "clause": {"type": "string"},
-        "outcome": {"enum": ["pass", "fail", "skipped", "not_applicable"]},
+        "outcome": {"enum": ["pass", "fail", "partial", "skipped", "not_applicable"]},
         "diagnostics": {"type": "array", "items": DIAGNOSTIC},
+        "checked_objects": {"type": "array", "items": {"type": "string"}},
+        "skipped_objects": {"type": "array", "items": {"type": "string"}},
     },
 }
 ENVELOPE = {
@@ -98,8 +101,8 @@ def test_validation_success_and_failure_envelopes(tmp_path, document, failure):
 
 
 def test_parse_failure_envelope_and_diagnostic_types(tmp_path):
-    path = tmp_path / "malformed.tpi"
-    path.write_text("broken")
+    path = tmp_path / "malformed.json"
+    path.write_text("{")
     command = run("validate", path, "--format", "json")
     assert command.returncode == 2
     payload = json.loads(command.stdout)
@@ -111,3 +114,44 @@ def test_parse_failure_envelope_and_diagnostic_types(tmp_path):
     malformed = copy.deepcopy(payload)
     del malformed["parse_diagnostics"][0]["message"]
     assert not VALIDATOR.is_valid(malformed)
+
+
+def test_recovered_native_document_runs_rules_and_keeps_parse_errors(tmp_path, document):
+    from ace_epics.codecs import epics
+
+    path = tmp_path / "recovered.tpi"
+    # An invalid header is recoverable; the database still supplies Clause 5 facts.
+    path.write_bytes(epics.dumps(document).replace("PICS 0", "PICS X").encode("utf-8"))
+    command = run("validate", path, "--rules", "C5-17", "--format", "json")
+    assert command.returncode == 2
+    payload = json.loads(command.stdout)
+    VALIDATOR.validate(payload)
+    assert payload["results"][0]["outcome"] == "pass"
+    assert any(d["severity"] == "error" for d in payload["parse_diagnostics"])
+    text = run("validate", path, "--rules", "C5-17")
+    assert text.returncode == 2
+    assert "C5-17: pass" in text.stdout
+    assert "line 1" in text.stdout
+    assert not text.stderr
+    markdown = run("validate", path, "--rules", "C5-17", "--format", "markdown")
+    assert "Parse diagnostics:" in markdown.stdout
+    assert "line 1" in markdown.stdout
+
+
+def test_partial_object_coverage_is_visible_in_cli_reports():
+    path = Path(__file__).resolve().parents[1] / "fixtures/epics/full.tpi"
+    command = run("validate", path, "--rules", "C5-09", "--format", "json")
+    assert command.returncode == 0
+    payload = json.loads(command.stdout)
+    VALIDATOR.validate(payload)
+    result = payload["results"][0]
+    assert result["outcome"] == "partial"
+    assert "(device, 11)" in result["checked_objects"]
+    assert result["skipped_objects"]
+    for output_format in ("text", "markdown"):
+        command = run("validate", path, "--rules", "C5-09", "--format", output_format)
+        assert command.returncode == 0
+        assert "partial" in command.stdout
+        assert "(device, 11)" in command.stdout
+        assert "Checked objects" in command.stdout
+        assert "Skipped objects" in command.stdout

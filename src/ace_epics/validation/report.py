@@ -16,8 +16,10 @@ class RuleResult(BaseModel):
     model_config = ConfigDict(extra="forbid")
     rule_id: str
     clause: str
-    outcome: Literal["pass", "fail", "skipped", "not_applicable"]
+    outcome: Literal["pass", "fail", "partial", "skipped", "not_applicable"]
     diagnostics: list[Diagnostic] = Field(default_factory=list)
+    checked_objects: list[str] = Field(default_factory=list)
+    skipped_objects: list[str] = Field(default_factory=list)
 
 
 class ValidationReport(BaseModel):
@@ -37,7 +39,9 @@ class ValidationReport(BaseModel):
     def summary(self) -> dict[str, int]:
         """Count all possible rule outcomes, including zero counts (Clause 14)."""
         counts = Counter(result.outcome for result in self.results)
-        return {key: counts[key] for key in ("pass", "fail", "skipped", "not_applicable")}
+        return {
+            key: counts[key] for key in ("pass", "fail", "partial", "skipped", "not_applicable")
+        }
 
     def exit_code(self, *, warnings_as_errors: bool = False) -> int:
         """Error findings fail; warning-only findings fail when requested (Clause 14)."""
@@ -65,10 +69,15 @@ class ValidationReport(BaseModel):
             f"Tool version: {self.tool_version}",
             f"Run at: {self.run_at.isoformat()}",
             "",
-            "| Rule | Clause | Outcome | Findings |",
-            "|---|---|---|---|",
+            "| Rule | Clause | Outcome | Checked objects | Skipped objects | Findings |",
+            "|---|---|---|---|---|---|",
         ]
         for result in self.results:
             findings = "<br>".join(escape(d.message) for d in result.diagnostics)
-            lines.append(f"| {result.rule_id} | {result.clause} | {result.outcome} | {findings} |")
+            checked = escape(", ".join(result.checked_objects))
+            skipped = escape(", ".join(result.skipped_objects))
+            lines.append(
+                f"| {result.rule_id} | {result.clause} | {result.outcome} | "
+                f"{checked} | {skipped} | {findings} |"
+            )
         return "\n".join(lines) + "\n"
